@@ -1,0 +1,31 @@
+/* 
+    Document   : default
+    Created on : 27-jun-2013, 1:12:39
+    Author     : Phil
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    color: grey;
+}
+
+
+/* Footer at end of every page */
+#footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+/* zorgt dat links op juiste plaats staan */
+.mainmenucontainer{
+    width:100%;
+    margin:0 auto;
+    list-style: none;
+}
