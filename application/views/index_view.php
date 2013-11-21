@@ -1,4 +1,4 @@
 <?php
 
-createPageStart("HomeCare", array("login" => "css"));
+createPageStart($strTitle, $arrHeader);
 echo $strContents;
