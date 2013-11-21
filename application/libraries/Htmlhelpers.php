@@ -22,8 +22,13 @@
  * 
  */
 
-class Class_HtmlHelpers
+class HtmlHelpers
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
 
     public function createPageStart($strTitle, $arrCss)
     {

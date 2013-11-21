@@ -11,10 +11,13 @@ class Start extends CI_Controller
         date_default_timezone_set("Europe/Brussels");
         echo date("d/m/Y H:i");
         
-        $result = authentication();
+        $this -> load -> library("login");
+        $this -> load -> library("htmlhelpers");
+        
+        $result = $this -> login -> authentication();
         if($result === true)
         {
-            createPageStart("HomeCare", array());
+            $this -> htmlhelpers -> createPageStart("HomeCare", array());
             //Check if logged on
             $blnLoggedOn = checkLogin();
             $this -> load -> model("MenuItems_Model", "objMenuItems");
@@ -27,7 +30,7 @@ class Start extends CI_Controller
         {
             if($result == "notset")
             {
-                createPageStart("HomeCare", array("login" => "css"));
+                $this -> htmlhelpers -> createPageStart("HomeCare", array("login" => "css"));
                 $this -> load -> model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
                 $this -> load -> model("Start_Model", "objModel");
@@ -36,7 +39,7 @@ class Start extends CI_Controller
             }
             else
             {
-                createPageStart("HomeCare", array("login" => "css"));
+                $this -> htmlhelpers -> createPageStart("HomeCare", array("login" => "css"));
                 $this -> load -> model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
                 $this -> load -> model("Start_Model", "objModel");

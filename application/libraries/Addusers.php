@@ -19,8 +19,14 @@
  * 
  */
 
-class Class_AddUsers
+class AddUsers
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
+
     public function addAdminToDB()
     {
         //creating random variable to use in account activation.

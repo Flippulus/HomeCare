@@ -22,8 +22,13 @@
  * 
  */
 
-class Class_Login
+class Login
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
 
     public function login($strPassword, $arrUserData)
     {
