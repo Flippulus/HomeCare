@@ -4,15 +4,12 @@
  * HomeCare home controller
  */
 
-class Default_Controller extends CI_Controller
+class Start extends CI_Controller
 {
     function index()
     {
         date_default_timezone_set("Europe/Brussels");
-        session_start();
-        connect_database();
-        //Runs script connecting to the Database
-        
+        echo date("d/m/Y H:i");
         
         $result = authentication();
         if($result === true)
@@ -33,7 +30,7 @@ class Default_Controller extends CI_Controller
                 createPageStart("HomeCare", array("login" => "css"));
                 $this -> load -> model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
-                $this -> load -> model("Default_Model", "objModel");
+                $this -> load -> model("Start_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
                 $this -> view -> assign("strContents", $this -> objModel -> getPageData());
             }
@@ -42,7 +39,7 @@ class Default_Controller extends CI_Controller
                 createPageStart("HomeCare", array("login" => "css"));
                 $this -> load -> model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
-                $this -> load -> model("Default_Model", "objModel");
+                $this -> load -> model("Start_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
                 $this -> view -> assign("strContents", $this -> objModel -> getErrorData($arrMainMenuItems, $result));
             }
