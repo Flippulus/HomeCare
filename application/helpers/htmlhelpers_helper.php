@@ -1,27 +1,5 @@
 <?php
 
-/*
- * 
- * PHP version 5
- * 
- * @Package accountanting
- * @Author Philippe Dirx <philippedirx@hotmail.com>
- * @Copyright 2013
- * @License
- * 
- * 
- * This file is property of Philippe Dirx.
- * This file is not meant to be used by others then Philippe Dirx or his assigners.
- * This file is created for the sole purpose of supporting the company of ThreeS, property of Rudi op 't Roodt, Boy Smeets and Roné Kirkels
- * 
- * 
- * Using tinyMVC structure: Model <- Controller -> View
- * 
- * script, autoloaded in sysfiles/configs/autoload.php
- * functions are public, can be hailed from any controller, model or view in myapp
- * 
- */
-
 function createPageStart($strTitle, $arrCss)
 {
     $strPageStart = "
@@ -30,23 +8,22 @@ function createPageStart($strTitle, $arrCss)
     <head>
         <title>" . $strTitle . "</title>
         <meta http-equiv = \"content-type\" content=\"text/html;charset = utf-8\" />
-        <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"/css/default.css\"/>
-        <link rel=\"shortcut icon\" type=\"image/png\" href=\"/images/faviconHomeCare.png\">
-        <script src = \"/javascript/jQuery.js\" type = \"text/javascript\"></script>";
+        <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/default.css\"/>
+        <link rel=\"shortcut icon\" type=\"image/png\" href=\"http://www.rimiclacihomecare.co.nf/images/faviconHomeCare.png\">
+        <script src = \"http://www.rimiclacihomecare.co.nf/javascript/jQuery.js\" type = \"text/javascript\"></script>";
     foreach ($arrCss as $strCss => $strType)
     {
         if ($strType == "css")
         {
             $strPageStart .= "
-            <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"/css/" . $strCss . ".css\"/>";
+            <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/" . $strCss . ".css\"/>";
         }
         if ($strType == "js")
         {
             $strPageStart .= "
-            <script type = \"text/javascript\" src = \"/javascript/" . $strCss . ".js\"></script>";
+            <script type = \"text/javascript\" src = \"http://www.rimiclacihomecare.co.nf/javascript/" . $strCss . ".js\"></script>";
         }
     }
-
     echo $strPageStart;
 }
 

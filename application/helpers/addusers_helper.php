@@ -1,24 +1,5 @@
 <?php
 
-/*
- * 
- * PHP version 5
- * 
- * @Package accountanting
- * @Author Philippe Dirx <philippedirx@hotmail.com>
- * @Copyright 2013
- * @License
- * 
- * 
- * This file is property of Philippe Dirx.
- * This file is not meant to be used by others then Philippe Dirx or his assigners.
- * This file is created for the sole purpose of supporting the company of ThreeS, property of Rudi op 't Roodt, Boy Smeets and Roné Kirkels
- * 
- * 
- * Using tinyMVC structure: Model <- Controller -> View
- * 
- */
-
 function addAdminToDB()
 {
     //creating random variable to use in account activation.
@@ -79,14 +60,7 @@ function addAdminToDB()
         }
         else
         {
-            $strContent = "
-                <h1>Welkom bij ThreeS!</h1>
-                <img src =\"http://www.threes.eu/nl/images/ThreeS.png\" />
-                <br>
-                <a href = \"http://www.threes.eu/nl/index.php/activateuser/index?code=" . $intActivationNumber . "&id=" . $arrUserData["id"] . "\">Volg aub deze link om uw account te activeren.</a>
-                <hr>
-                <p>Copyright ThreeS</p>";
-            mailto("ThreeS Admin", $_POST["user_mail"], $strContent);
+            
         }
     }
 }
