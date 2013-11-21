@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-class Documenten_Controller extends TinyMVC_Controller
+class Documenten_Controller extends CI_Controller
 {
     function index()
     {

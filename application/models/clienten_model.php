@@ -1,6 +1,6 @@
 <?php
 
-class Clienten_Model extends TinyMVC_Model
+class Clienten_Model extends CI_Model
 {
      
 }

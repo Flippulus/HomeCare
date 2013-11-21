@@ -1,7 +1,7 @@
 <?php
 
 
-class Home_Model extends TinyMVC_Model
+class Home_Model extends CI_Model
 {
     function getPageData($arrMainMenuItems, $blnLoggedOn)
     {

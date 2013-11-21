@@ -6,7 +6,7 @@
  */
 
 
-Class Documenten_Model extends TinyMVC_Model
+Class Documenten_Model extends CI_Model
 {
     function getPageData($arrMainMenuItems, $blnLoggedOn)
     {

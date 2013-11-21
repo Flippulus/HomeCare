@@ -19,7 +19,7 @@
  * 
  */
 
-class NoEntry_Model extends TinyMVC_Model
+class NoEntry_Model extends CI_Model
 {
     function getPageData()
     {

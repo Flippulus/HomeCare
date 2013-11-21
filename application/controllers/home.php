@@ -1,6 +1,6 @@
 <?php
 
-class Home_Controller extends TinyMVC_Controller
+class Home_Controller extends CI_Controller
 {
     function index()
     {

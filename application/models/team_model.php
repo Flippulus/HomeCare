@@ -16,7 +16,7 @@
  * - mail
  */
 
-class Team_Model extends TinyMVC_Model
+class Team_Model extends CI_Model
 {
     function getPageData()
     {

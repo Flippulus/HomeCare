@@ -19,7 +19,7 @@
  * This is a model, called on every page, to return all the contents of the menubar.
  */
 
-class MenuItems_Model extends TinyMVC_Model
+class MenuItems_Model extends CI_Model
 {
     function getMainMenuItems()
     {

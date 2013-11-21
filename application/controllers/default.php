@@ -4,7 +4,7 @@
  * HomeCare home controller
  */
 
-class Default_Controller extends TinyMVC_Controller
+class Default_Controller extends CI_Controller
 {
     function index()
     {

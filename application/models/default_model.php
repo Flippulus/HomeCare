@@ -1,7 +1,7 @@
 <?php
 
 
-class Default_Model extends TinyMVC_Model
+class Default_Model extends CI_Model
 {
     function getPageData()
     {

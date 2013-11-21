@@ -1,6 +1,6 @@
 <?php
 
-class Rapportage_Model extends TinyMVC_Model
+class Rapportage_Model extends CI_Model
 {
     function getReportData($arrMainMenuItems, $blnLoggedOn)
     {
