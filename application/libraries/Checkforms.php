@@ -19,8 +19,13 @@
  * 
  */
 
-class Class_CheckForms
+class CheckForms
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
 
     public function checkPassword($strPassword, $strPasswordAgain)
     {

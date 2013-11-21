@@ -22,8 +22,13 @@
  * 
  */
 
-class Class_DatabaseData
+class DatabaseData
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
 
     public function getDataBaseData($strTable, $arrParameters = false)
     {

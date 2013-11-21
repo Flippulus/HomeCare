@@ -22,8 +22,13 @@
  * 
  */
 
-class Class_Mailer
+class Mailer
 {
+    
+    public function __construct()
+    {}
+    public function __destruct()
+    {}
 
     public function mailto($strSubject, $strEmail, $strContent)
     {
