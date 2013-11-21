@@ -43,49 +43,7 @@ Class Documenten_Model extends CI_Model
             else
             {
                 echo "gelukt";
-    /*
-    //process the  form
-    $docName = $_FILES['doc']['tmp_name'];
-    $docSize = $_FILES['doc']['size'];
-    $docType = $_FILES['doc']['type'];
-    $docError = $_FILES['doc']['error'];
- 
-     allowedExts = array("pdf", "doc", "docx"); 
-     $extension = end(explode(".", $_FILES["file"]["name"]));
-      
-    $docName=$_POST['naam']. '_Resume.txt';
-    if ($fileError)
-    {
-        echo "We could not upload the file:<br>$fileError";
-        endPage();
-    }
-    elseif ($fileType != 'text/plain')
-    {
-        echo "You have attempted to upload a file of type: $fileType.
-                <br>Only text files allowed.";
-        endPage();
-    }
- 
-    $fileSavePath = 'Documenten/' . $resumeName;   
-    if (is_uploaded_file($resumeFile))
-    {
-        if (!move_uploaded_file($resumeFile,$fileSavePath))
-        {
-            echo 'Could not save file.';
-            endPage();
-        }
-    }
-    else
-    {
-        //This case happens if somehow the file
-        //we are working with was already on the server.
-        //It's to stop hackers.
-        echo 'Hey, what is going on here?
-                    Are you being bad?';
-        endPage();
-    }
-    $resume=makeFileSafe($fileSavePath);
-                */
+    
             }
             
         
