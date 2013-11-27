@@ -2,13 +2,13 @@
 
 class Rapportage_Model extends CI_Model
 {
-    function getReportData($arrMainMenuItems, $blnLoggedOn)
+    function getReportData($arrMainMenuItems, $blnLoggedOn,$strActiveMenu)
     {
         $strContent = "
             </head>
                 <body>";
         
-        $strContent .= build_main_menu($arrMainMenuItems, $blnLoggedOn);
+        $strContent .= build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
         
         $strContent.="";
         $result = getDataBaseData("reports");

@@ -7,8 +7,9 @@ class Rapportage extends CI_Controller {
         date_default_timezone_set("Europe/Brussels");
         session_start();
         connect_database();
-        
+        $strActiveMenu = "rapportage";
 
+        
         createPageStart("HomeCare", array());
 
         //Check if logged on
@@ -22,7 +23,7 @@ class Rapportage extends CI_Controller {
         //Get model data
 
         $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-        $arrContents = $this->objRapportage->getReportData($arrMainMenuItems, $blnLoggedOn);
+        $arrContents = $this->objRapportage->getReportData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
         
         //Display view
         //$this->view->display('index_view');
