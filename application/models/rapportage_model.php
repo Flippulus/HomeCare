@@ -37,16 +37,19 @@ class Rapportage_Model extends CI_Model
                 $strContent .="
                 <tr>
                     <td>".
-                        $arrTopicData["id"]."
+                        $arrTopicData["report_id"]."
                     </td>
                     <td>".
-                        $arrTopicData["user"]."
+                        $arrTopicData["report_client"]."
                     </td>
                     <td>".
-                        $arrTopicData["time"]."
+                        $arrTopicData["report_datetime"]."
                     </td>
                     <td>".
-                        $arrTopicData["content"]."
+                        $arrTopicData["report_content"]."
+                    </td>
+                    <td>".
+                        $arrTopicData["report_by_user"]."
                     </td>
                 </tr>";
             }                   
@@ -57,7 +60,7 @@ class Rapportage_Model extends CI_Model
             $strContent .="
                 <tr>
                     <td>
-                        I can't believe this isn't an error o.O
+                        I can't believe this is not an error o.O
                     </td>
                 </tr>
                 <tr>

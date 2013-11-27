@@ -22,13 +22,11 @@ class Rapportage extends CI_Controller {
         //Get model data
 
         $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-        $Reportdata = $this->objRapportage->getReportData($arrMainMenuItems, $blnLoggedOn);
-        //Assign to view
-        //$this->view->assign("strContents", $this->objRapportage->getPageData($arrMainMenuItems, $blnLoggedOn));
-        $this->view->assign('strContents', $Reportdata);
-
+        $arrContents = $this->objRapportage->getReportData($arrMainMenuItems, $blnLoggedOn);
+        
         //Display view
-        $this->view->display('index_view');
+        //$this->view->display('index_view');
+        $this->load->view("index_view", $arrContents);
 
         
         
