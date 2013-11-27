@@ -13,9 +13,7 @@ function login($strPassword, $arrUserData)
         return true;
     }
     else
-    {
-        return false;
-    }
+    {return false;}
 }
 
 function logoff()
@@ -64,33 +62,21 @@ function authentication()
                 if ($result != false)
                 {
                     if (login($strEncryptPassword, mysql_fetch_assoc($result)) == true)
-                    {
-                        return true;
-                    }
+                    {return true;}
                     else
-                    {
-                        return "incorrectpass";
-                    }
+                    {return "incorrectpass";}
                 }
                 else
-                {
-                    return "incorrectmail";
-                }
+                {return "incorrectmail";}
             }
             else
-            {
-                return "nopass";
-            }
+            {return "nopass";}
         }
         else
-        {
-            return "nomail";
-        }
+        {return "nomail";}
     }
     else
-    {
-        return "notset";
-    }
+    {return "notset";}
 }
 
 ?>

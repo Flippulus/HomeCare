@@ -14,7 +14,7 @@ class Start extends CI_Controller
         connect_database();
 
         $result = authentication();
-        if ($result === true)
+        if ($result == true)
         {
             $arrContents["strTitle"] = "HomeCare";
             $arrContents["arrHeader"] = array();
@@ -32,6 +32,7 @@ class Start extends CI_Controller
             $arrContents["arrHeader"] = array("login" => "css");
             if ($result == "notset")
             {
+                echo "WANT DIE SHIT MOET INGEGEVEN WORDEN";
                 $this->load->model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
                 $this->load->model("Start_Model", "objModel");
