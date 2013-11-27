@@ -8,7 +8,6 @@
 
 <h3>Your file was successfully uploaded!</h3>
 
-<?php $this->load->library('upload'); ?>
 <ul>
 <?php foreach ($upload_data as $item => $value):?>
 <li><?php echo $item;?>: <?php echo $value;?></li>

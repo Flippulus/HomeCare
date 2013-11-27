@@ -5,10 +5,6 @@
 </head>
 <body>
 
-<?php 
-$error = "An error occured while uploading";
-echo $error;
-?>
 
 <?php echo form_open_multipart('upload/do_upload');?>
 
