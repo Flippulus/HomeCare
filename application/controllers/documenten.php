@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-class Documenten_Controller extends CI_Controller
+class Documenten extends CI_Controller
 {
     
     function __construct()

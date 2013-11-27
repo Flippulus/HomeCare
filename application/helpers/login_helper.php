@@ -4,12 +4,12 @@
 function login($strPassword, $arrUserData)
 {
     //Admin part, not for clients
-    if ($arrUserData["password"] == $strPassword)
+    if ($arrUserData["user_password"] == $strPassword)
     {
-        $_SESSION['useremail'] = $arrUserData["mail"];
-        $_SESSION['userid'] = $arrUserData["id"];
-        $_SESSION["firstname"] = $arrUserData["firstname"];
-        $_SESSION["lastname"] = $arrUserData["lastname"];
+        $_SESSION['useremail'] = $arrUserData["user_mail"];
+        $_SESSION['userid'] = $arrUserData["user_id"];
+        $_SESSION["firstname"] = $arrUserData["user_firstname"];
+        $_SESSION["lastname"] = $arrUserData["user_lastname"];
         return true;
     }
     else
@@ -36,13 +36,9 @@ function encryptPassword($strUserMail, $strPassword)
 function checkLogin()
 {
     if (isset($_SESSION["firstname"]) and isset($_SESSION["lastname"]) and isset($_SESSION["useremail"]) and isset($_SESSION["userid"]))
-    {
-        return true;
-    }
+    {return true;}
     else
-    {
-        return false;
-    }
+    {return false;}
 }
 
 function authentication()
@@ -58,7 +54,7 @@ function authentication()
                 //ecnrypt the password
                 $strEncryptPassword = encryptPassword($strUserMail, $strPassword);
                 //Get user data from DB
-                $result = getDataBaseData("users", array("mail" => $strUserMail));
+                $result = getDataBaseData("users", array("user_mail" => $strUserMail));
                 if ($result != false)
                 {
                     if (login($strEncryptPassword, mysql_fetch_assoc($result)) == true)

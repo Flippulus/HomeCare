@@ -14,7 +14,7 @@ class Start extends CI_Controller
         connect_database();
 
         $result = authentication();
-        if ($result == true)
+        if ($result === true)
         {
             $arrContents["strTitle"] = "HomeCare";
             $arrContents["arrHeader"] = array();

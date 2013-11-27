@@ -6,7 +6,7 @@
  */
 
 
-Class Team_Controller extends CI_Controller
+Class Team extends CI_Controller
 {
     function index()
     {

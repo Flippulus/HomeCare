@@ -1,6 +1,6 @@
 <?php
 
-class Rapportage_Controller extends CI_Controller {
+class Rapportage extends CI_Controller {
 
     function index() {
         //Runs script connecting to the Database

@@ -1,6 +1,6 @@
 <?php
 
-class Clienten_Controller extends CI_Controller
+class Clienten extends CI_Controller
 {
     function index() {
         //Load model
