@@ -26,7 +26,7 @@ class MenuItems_Model extends CI_Model
         $arrMainMenuItems = array(
             "Home" => array(
                 "name" => "Home",//Phil
-                "controller" => "default"
+                "controller" => "home"
             ),
             "Planning" => array(
                 "name" => "Planning",//Phil

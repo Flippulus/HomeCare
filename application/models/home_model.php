@@ -3,7 +3,7 @@
 
 class Home_Model extends CI_Model
 {
-    function getPageData($arrMainMenuItems, $blnLoggedOn)
+    function getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
     {
         $strContents = "
             </head>
@@ -11,7 +11,7 @@ class Home_Model extends CI_Model
         
         
         
-        $strContents .= build_main_menu($arrMainMenuItems, $blnLoggedOn);
+        $strContents .= build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
         
         
         $strContents .= "

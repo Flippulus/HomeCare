@@ -9,6 +9,7 @@ function createPageStart($strTitle, $arrCss)
         <title>" . $strTitle . "</title>
         <meta http-equiv = \"content-type\" content=\"text/html;charset = utf-8\" />
         <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/default.css\"/>
+        <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/menu.css\"/>
         <link rel=\"shortcut icon\" type=\"image/png\" href=\"http://www.rimiclacihomecare.co.nf/images/faviconHomeCare.png\">
         <script src = \"http://www.rimiclacihomecare.co.nf/javascript/jQuery.js\" type = \"text/javascript\"></script>";
     foreach ($arrCss as $strCss => $strType)
@@ -27,21 +28,22 @@ function createPageStart($strTitle, $arrCss)
     echo $strPageStart;
 }
 
-function build_main_menu($arrMainMenuItems, $blnLoggedOn)
+function build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
 {
     //Header start
     $strHeader = "
         <!-- site navigation -->
-        <div class = \"mainmenuwrapper\">
-            <div class = \"mainmenucontainter\">
-                <ul class = \"mainmenu\">";
-    foreach ($arrMainMenuItems as $arrSubMenuItems)
+        <div id='cssmenu'>
+            <ul>";
+    foreach ($arrMainMenuItems as  $arrMenuItems)
     {
+        if($arrMenuItems["controller"] == $strActiveMenu)
+        {
+            $strHeader .= "
+                <li class='active'><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
+        }
         $strHeader .= "
-                    <li title = \"Ga naar de " . $arrSubMenuItems["name"] . " pagina\">
-                        <a href = \"/index.php/" . $arrSubMenuItems["controller"] .
-                "/index\">" . $arrSubMenuItems["name"] . "</a>
-                    </li>";
+                <li><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
     }
 
     if ($blnLoggedOn == true)
@@ -54,10 +56,9 @@ function build_main_menu($arrMainMenuItems, $blnLoggedOn)
     }
 
     $strHeader .= "
-                </ul>
-            </div><!-- mainmenucontainer -->
-         </div><!-- mainmenuwrapper -->
-         <!-- end of site navigation -->
+            </ul>
+        </div>
+        <!-- end of site navigation -->
          ";
     return $strHeader;
 }

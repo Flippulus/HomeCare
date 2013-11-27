@@ -9,16 +9,20 @@ class Home extends CI_Controller
         connect_database();
         //Runs script connecting to the Database
         
-        createPageStart("HomeCare", array());
-        
         authentication();
         
+        $strActiveMenu = "home";
+        $blnLoggedOn = checkLogin();
         $this -> load -> model("MenuItems_Model", "objMenuItems");
         $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
+        
+        $arrContents["strTitle"] = "HomeCare";
+        $arrContents["arrHeader"] = array();
+        
         $this -> load -> model("Home_Model", "objModel");
         //Loading the model so the page contents can be created and given to the view
-        $this -> view -> assign("strContents", $this -> objModel -> getPageData($arrMainMenuItems));
+        $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
         //Assigning the contents to the view, by getting them from the model
-        $this -> view -> display("index_view");
+        $this -> view -> display("index_view", $arrContents);
     }
 }
