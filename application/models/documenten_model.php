@@ -20,7 +20,7 @@ Class Documenten_Model extends CI_Model
         $strContents.= "
                     <form method=\"POST\" enctype=\"multipart/form-data\" >
                         Select File To Upload:<br />
-                        <input type=\"file\" name=\"userfile\" multiple=\"multiple\" />
+                        <input type=\"file\" name=\"userfile\" />
                         <br /><br />
                         <input type=\"submit\" name=\"frmFileUpload\" value=\"Upload\" class=\"btn btn-success\" />
                     </form>";
