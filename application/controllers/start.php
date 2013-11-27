@@ -25,15 +25,14 @@ class Start extends CI_Controller
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
             $this->load->model("Home_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
+            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
         }
         else
         {
             $arrContents["strTitle"] = "HomeCare Login";
-            $arrContents["arrHeader"] = array("login" => "css");
+            $arrContents["arrHeader"] = array("login" => "css", "logon" => "js");
             if ($result == "notset")
             {
-                echo "WANT DIE SHIT MOET INGEGEVEN WORDEN";
                 $this->load->model("MenuItems_Model", "objMenuItems");
                 $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
                 $this->load->model("Start_Model", "objModel");
@@ -46,7 +45,7 @@ class Start extends CI_Controller
                 $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
                 $this->load->model("Start_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
-                $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $result);
+                $arrContents["strContents"] = $this->objModel->getErrorData($result);
             }
         }
         //Assigning the contents to the view, by getting them from the model

@@ -62,8 +62,6 @@ function build_main_menu($arrMainMenuItems, $strActiveMenu)
 function build_logoff()
 {
     return "
-        </ul>
-        <ul class = \"login\">
             <li>
                 <form method=\"post\" action = \"/index.php/default/index\">
                     <label>Ingelogd als " . $_SESSION['useremail'] . "</label>

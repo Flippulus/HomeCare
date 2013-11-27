@@ -9,10 +9,10 @@ class Home extends CI_Controller
         connect_database();
         //Runs script connecting to the Database
         
-        authentication();
+        $blnLoggedOn = checkLogin();
+        //HIER MOET IK FAILSAFE OP MAKEN
         
         $strActiveMenu = "home";
-        $blnLoggedOn = checkLogin();
         $this -> load -> model("MenuItems_Model", "objMenuItems");
         $arrMainMenuItems = $this -> objMenuItems -> getMainMenuItems();
         
@@ -21,7 +21,7 @@ class Home extends CI_Controller
         
         $this -> load -> model("Home_Model", "objModel");
         //Loading the model so the page contents can be created and given to the view
-        $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
+        $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $strActiveMenu);
         //Assigning the contents to the view, by getting them from the model
         $this -> load -> view("index_view", $arrContents);
     }

@@ -3,7 +3,7 @@
 
 class Home_Model extends CI_Model
 {
-    function getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
+    function getPageData($arrMainMenuItems, $strActiveMenu)
     {
         $strContents = "
             </head>
