@@ -10,7 +10,7 @@ class Start extends CI_Controller
     function index()
     {
         date_default_timezone_set("Europe/Brussels");
-        //Correct timezone (Brussels)
+        session_start();
         connect_database();
 
         $result = authentication();
