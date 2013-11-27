@@ -23,6 +23,6 @@ class Home extends CI_Controller
         //Loading the model so the page contents can be created and given to the view
         $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
         //Assigning the contents to the view, by getting them from the model
-        $this -> view -> display("index_view", $arrContents);
+        $this -> load -> view("index_view", $arrContents);
     }
 }

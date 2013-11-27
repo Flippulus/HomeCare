@@ -11,7 +11,7 @@ class Home_Model extends CI_Model
         
         
         
-        $strContents .= build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
+        $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         
         
         $strContents .= "

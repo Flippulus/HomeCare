@@ -28,7 +28,7 @@ function createPageStart($strTitle, $arrCss)
     echo $strPageStart;
 }
 
-function build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
+function build_main_menu($arrMainMenuItems, $strActiveMenu)
 {
     //Header start
     $strHeader = "
@@ -42,18 +42,14 @@ function build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
             $strHeader .= "
                 <li class='active'><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
         }
-        $strHeader .= "
+        else
+        {
+            $strHeader .= "
                 <li><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
+        }
     }
 
-    if ($blnLoggedOn == true)
-    {
-        $strHeader .= build_logoff();
-    }
-    else
-    {
-        $strHeader .= build_login();
-    }
+    $strHeader .= build_logoff();
 
     $strHeader .= "
             </ul>
@@ -61,26 +57,6 @@ function build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu)
         <!-- end of site navigation -->
          ";
     return $strHeader;
-}
-
-function build_login()
-{
-
-    $strText = "
-            </ul>
-            <ul class = \"login\">
-                <li>";
-
-    $strText .= "
-                    <form method=\"post\">
-                        email: <input type=\"email\" name=\"login_mail\" />
-                        Password: <input type=\"password\" name=\"login_pass\" />
-                        <input type=\"submit\" name = \"frmLogOn\" value=\"Login\" />
-                    </form>
-                </li>
-            </ul>";
-
-    return $strText;
 }
 
 function build_logoff()
