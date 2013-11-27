@@ -7,23 +7,25 @@ class Rapportage extends CI_Controller {
         date_default_timezone_set("Europe/Brussels");
         session_start();
         connect_database();
-        $strActiveMenu = "rapportage";
-
+        
         
         createPageStart("HomeCare", array());
 
         //Check if logged on
-        $blnLoggedOn = checkLogin();
+        //$blnLoggedOn = checkLogin();
 
         //Load model
-
+        $strActiveMenu = "rapportage";
+        $arrContents["strTitle"] = "HomeCare";
+        $arrContents["arrHeader"] = array();
+        
         $this->load->model("MenuItems_Model", "objMenuItems");
         $this->load->model("Rapportage_Model", "objRapportage");
 
         //Get model data
 
         $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-        $arrContents = $this->objRapportage->getReportData($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
+        $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
         
         //Display view
         //$this->view->display('index_view');

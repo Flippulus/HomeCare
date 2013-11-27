@@ -2,13 +2,13 @@
 
 class Rapportage_Model extends CI_Model
 {
-    function getReportData($arrMainMenuItems, $blnLoggedOn,$strActiveMenu)
+    function getReportData($arrMainMenuItems, $strActiveMenu)
     {
         $strContent = "
             </head>
                 <body>";
         
-        $strContent .= build_main_menu($arrMainMenuItems, $blnLoggedOn, $strActiveMenu);
+        $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         
         $strContent.="";
         $result = getDataBaseData("reports");
@@ -19,11 +19,6 @@ class Rapportage_Model extends CI_Model
         if($result == null)
         {
             $strContent .="
-                <tr>
-                    <td>
-                        Welp, It's lonely in here ;_;
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         Error: Database seems to be empty.
@@ -58,11 +53,6 @@ class Rapportage_Model extends CI_Model
         else
         {
             $strContent .="
-                <tr>
-                    <td>
-                        I can't believe this is not an error o.O
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         Error: unspecified error has appeared. Please try again later.
