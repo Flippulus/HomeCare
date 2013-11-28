@@ -64,8 +64,8 @@ function build_logoff()
     return "
             <li>
                 <form method=\"post\" action = \"/index.php/default/index\">
-                    <label>Ingelogd als " . $_SESSION['useremail'] . "</label>
-                    <input type=\"submit\" name = \"frmLogOff\" value=\"Log uit\" />
+                    " . $_SESSION['useremail'] . "
+                    <a href = \"/index.php/start\">Log uit.</a>
                 </form>
             </li>
         </ul>";

@@ -16,19 +16,32 @@ class Start extends CI_Controller
         $result = authentication();
         if ($result === true)
         {
-            $arrContents["strTitle"] = "HomeCare";
-            $arrContents["arrHeader"] = array();
-            $strActiveMenu = "home";
-            //Check if logged on
-            $blnLoggedOn = checkLogin();
-            $this->load->model("MenuItems_Model", "objMenuItems");
-            $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-            $this->load->model("Home_Model", "objModel");
-            //Loading the model so the page contents can be created and given to the view
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+            //only if user is logged in, can he/she come to this page
+            if (checkLogin() == true)
+            {
+                $arrContents["strTitle"] = "HomeCare";
+                $arrContents["arrHeader"] = array();
+                $strActiveMenu = "home";
+                $this->load->model("MenuItems_Model", "objMenuItems");
+                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+                $this->load->model("Home_Model", "objModel");
+                //Loading the model so the page contents can be created and given to the view
+                $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+            }
+            else
+            {
+                $arrContents["strTitle"] = "HomeCare Login";
+                $arrContents["arrHeader"] = array("login" => "css", "logon" => "js");
+                $this->load->model("MenuItems_Model", "objMenuItems");
+                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+                $this->load->model("Start_Model", "objModel");
+                //Loading the model so the page contents can be created and given to the view
+                $arrContents["strContents"] = $this->objModel->getPageData();
+            }
         }
         else
         {
+            logoff();
             $arrContents["strTitle"] = "HomeCare Login";
             $arrContents["arrHeader"] = array("login" => "css", "logon" => "js");
             if ($result == "notset")
