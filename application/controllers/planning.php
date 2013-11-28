@@ -1,6 +1,7 @@
 <?php
-{
 
+class Planning extends CI_Controller
+{
     function index()
     {
         date_default_timezone_set("Europe/Brussels");
@@ -29,5 +30,4 @@
             $arrContents["strContents"] = $this->objModel->getPageData();
         }
     }
-
 }

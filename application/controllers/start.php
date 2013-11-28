@@ -10,7 +10,8 @@ class Start extends CI_Controller
     function index()
     {
         date_default_timezone_set("Europe/Brussels");
-        session_start();
+        if (session_id() == '')
+        {session_start();}
         connect_database();
 
         $result = authentication();
@@ -27,17 +28,10 @@ class Start extends CI_Controller
                 $this->load->model("Home_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
                 $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                $this->load->view("index_view", $arrContents);
             }
             else
-            {
-                $arrContents["strTitle"] = "HomeCare Login";
-                $arrContents["arrHeader"] = array("login" => "css", "logon" => "js");
-                $this->load->model("MenuItems_Model", "objMenuItems");
-                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-                $this->load->model("Start_Model", "objModel");
-                //Loading the model so the page contents can be created and given to the view
-                $arrContents["strContents"] = $this->objModel->getPageData();
-            }
+            {load_controller('start');}
         }
         else
         {
@@ -51,6 +45,7 @@ class Start extends CI_Controller
                 $this->load->model("Start_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
                 $arrContents["strContents"] = $this->objModel->getPageData();
+                $this->load->view("index_view", $arrContents);
             }
             else
             {
@@ -59,10 +54,10 @@ class Start extends CI_Controller
                 $this->load->model("Start_Model", "objModel");
                 //Loading the model so the page contents can be created and given to the view
                 $arrContents["strContents"] = $this->objModel->getErrorData($result);
+                $this->load->view("index_view", $arrContents);
             }
         }
-        //Assigning the contents to the view, by getting them from the model
-        $this->load->view("index_view", $arrContents);
+        
     }
 
 }

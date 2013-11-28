@@ -5,11 +5,10 @@ class Home extends CI_Controller
 
     function index()
     {
-        date_default_timezone_set("Europe/Brussels");
         session_start();
+        date_default_timezone_set("Europe/Brussels");
         connect_database();
-        //Runs script connecting to the Database
-
+        
         if (checkLogin() == true)
         {
             $strActiveMenu = "home";
@@ -21,14 +20,10 @@ class Home extends CI_Controller
 
             $this->load->model("Home_Model", "objModel");
             $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
-            
+            $this->load->view("index_view", $arrContents);
         }
         else
-        {
-            $this->load->library('../controllers/start');
-            $this -> start -> index();
-        }
-        $this->load->view("index_view", $arrContents);
+        {load_controller('start');}
     }
 
 }

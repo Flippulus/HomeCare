@@ -23,6 +23,7 @@ class Documenten extends CI_Controller
 
                 $this->load->model("Documenten_Model", "objModel");
                 $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                $this->load->view("index_view", $arrContents);
             }
             else
             {
@@ -36,6 +37,7 @@ class Documenten extends CI_Controller
 
                     $this->load->model("Documenten_Model", "objModel");
                     $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                    $this->load->view("index_view", $arrContents);
                 }
                 else
                 {
@@ -47,15 +49,15 @@ class Documenten extends CI_Controller
 
                     $this->load->model("Documenten_Model", "objModel");
                     $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                    $this->load->view("index_view", $arrContents);
                 }
             }
         }
         else
         {
-            $this->load->library('../controllers/start');
-            $this -> start -> index();
+            load_controller('start');
         }
-        $this->load->view("index_view", $arrContents);
+        
     }
 
 }
