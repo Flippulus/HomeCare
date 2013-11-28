@@ -70,13 +70,7 @@ class Rapportage_Model extends CI_Model
     }
     function build_inputArea(){
     $strData="<form name=\"input\" action=\"html_form_action.asp\" method=\"get\">
-            <textarea cols=\"100\" rows=\"8\" name=\"post_content\" maxlength=\"2048\" wrap=\"soft\" style=\"resize: none\"></textarea>
-            <br/>";
-    
-    $strData="        <label for=\"description\">Description:</label>
-            <textarea name=\"description\" id=\"description\" cols=\"60\" rows=\"5\" maxlength=\"255\"></textarea>
-            <div id=\"characterLeft\"></div>
-            
+            <textarea name=\"description\" id=\"description\" cols=\"100\" rows=\"8\" maxlength=\"2048\" wrap=\"soft\" style=\"resize: none\"></textarea>          
             <br/>
             <input type=\"submit\" value=\"Submit\">
             </form> ";
