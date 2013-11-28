@@ -9,7 +9,7 @@ class Rapportage extends CI_Controller {
         connect_database();
         
         
-        createPageStart("HomeCare", array());
+        //createPageStart("HomeCare", array("textarea"=>"js"));
 
         //Check if logged on
         //$blnLoggedOn = checkLogin();
@@ -17,7 +17,7 @@ class Rapportage extends CI_Controller {
         //Load model
         $strActiveMenu = "rapportage";
         $arrContents["strTitle"] = "HomeCare";
-        $arrContents["arrHeader"] = array();
+        $arrContents["arrHeader"] = array("textarea"=>"js");
         
         $this->load->model("MenuItems_Model", "objMenuItems");
         $this->load->model("Rapportage_Model", "objRapportage");

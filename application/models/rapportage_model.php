@@ -6,7 +6,7 @@ class Rapportage_Model extends CI_Model
     {
         $strContent = "
             </head>
-                <body>";
+                <body onload='start();'>";
         
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         
@@ -21,7 +21,7 @@ class Rapportage_Model extends CI_Model
             $strContent .="
                 <tr>
                     <td>
-                        Error: Database seems to be empty.
+                        Er zijn  nog geen rapportages in de database.
                     </td>
                 </tr>";
         }
@@ -44,7 +44,7 @@ class Rapportage_Model extends CI_Model
                         $arrTopicData["report_content"]."
                     </td>
                     <td>".
-                        $arrTopicData["report_by_user"]."
+                        $arrTopicData["report_b_user"]."
                     </td>
                 </tr>";
             }                   
@@ -55,18 +55,33 @@ class Rapportage_Model extends CI_Model
             $strContent .="
                 <tr>
                     <td>
-                        Error: unspecified error has appeared. Please try again later.
-                        Database might be offline for a moment.
+                        Error: Er zijn momenteel problemen met de database. Probeer later opnieuw.
+                        De database kan even offline zijn.
                     </td>
                 </tr>";
         }
         $strContent .="
             </table>";
         
+        $strContent .= $this->build_inputArea();
         $strContent .= build_footer();
         
         return $strContent;
     }
+    function build_inputArea(){
+    $strData="<form name=\"input\" action=\"html_form_action.asp\" method=\"get\">
+            <textarea cols=\"100\" rows=\"8\" name=\"post_content\" maxlength=\"2048\" wrap=\"soft\" style=\"resize: none\"></textarea>
+            <br/>";
     
+    $strData="        <label for=\"description\">Description:</label>
+            <textarea name=\"description\" id=\"description\" cols=\"60\" rows=\"5\" maxlength=\"255\"></textarea>
+            <div id=\"characterLeft\"></div>
+            
+            <br/>
+            <input type=\"submit\" value=\"Submit\">
+            </form> ";
+    
+    return $strData;
+    }
 }
 ?>
