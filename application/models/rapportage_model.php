@@ -27,7 +27,7 @@ class Rapportage_Model extends CI_Model
         }
         elseif ($result !=false)
         {
-            while($arrTopicData == mysql_fetch_assoc($result))
+            while($arrTopicData = mysql_fetch_assoc($result))
             {
                 $strContent .="
                 <tr>
@@ -44,7 +44,7 @@ class Rapportage_Model extends CI_Model
                         $arrTopicData["report_content"]."
                     </td>
                     <td>".
-                        $arrTopicData["report_b_user"]."
+                        $arrTopicData["reported_by_user"]."
                     </td>
                 </tr>";
             }                   
@@ -69,7 +69,7 @@ class Rapportage_Model extends CI_Model
         return $strContent;
     }
     function build_inputArea(){
-    $strData="<form name=\"input\" action=\"html_form_action.asp\" method=\"get\">
+    $strData="<form name=\"input\"  method=\"post\">
             <textarea name=\"description\" id=\"description\" cols=\"100\" rows=\"8\" maxlength=\"2048\" wrap=\"soft\" style=\"resize: none\"></textarea>          
             <div id=\"characterLeft\"></div>
             <br/>

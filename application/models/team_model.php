@@ -26,21 +26,20 @@ class Team_Model extends CI_Model
         
         $strContents .= "<table>";
         
-        while($arrUserData == mysql_fetch_assoc($result))
+        while($arrUserData = mysql_fetch_assoc($result))
         {
             $strContents .= "<tr class ='usertabletitle'><td>".
-            $arrUserData["firstname"]."</td><td>".
-            $arrUserData["lastname"].
+            $arrUserData["user_firstname"]."</td><td>".
+            $arrUserData["user_lastname"].
             "</td></tr>". 
-            "<tr id ='".$arrUserData['id']."' class ='usertablehidden'>".
-            "<td>".$arrUserData["street"]."</td>".
-            "<td>".$arrUserData["number"]."</td>".
-            "<td>".$arrUserData["mailbox"]."</td>".
-            "<td>".$arrUserData["postal"]."</td>".
-            "<td>".$arrUserData["location"]."</td>".
-            "<td>".$arrUserData["phone"]."</td>".
-            "<td>".$arrUserData["cell"]."</td>".
-            "<td>".$arrUserData["mail"]."</td>";
+            "<tr id ='".$arrUserData['user_id']."' class ='usertablehidden'>".
+            "<td>".$arrUserData["user_street"]."</td>".
+            "<td>".$arrUserData["user_streetnumber"]."</td>".
+            "<td>".$arrUserData["user_postal"]."</td>".
+            "<td>".$arrUserData["user_location"]."</td>".
+            "<td>".$arrUserData["user_phone"]."</td>".
+            "<td>".$arrUserData["user_cell"]."</td>".
+            "<td>".$arrUserData["user_mail"]."</td>";
                      
         }
         $strContents .="</table>";
