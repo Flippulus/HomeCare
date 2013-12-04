@@ -49,7 +49,7 @@ and open the template in the editor.
 #cssmenu
 {
     background: #333;
-    border-bottom: 4px solid #1b9bff;
+    border-bottom: 4px solid #ff4c4c;
     font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
     font-size: 12px; 
 }
@@ -84,11 +84,21 @@ and open the template in the editor.
 
 #cssmenu ul li:hover > a, #cssmenu ul li.active > a
 {
-    background: #1b9bff;
+    background: #ff4c4c;
     color: #FFF;
 }
 #cssmenu ul li.has-sub > a:after
 {
     content: '+';
     margin-left: 5px; 
+}
+
+#logoff
+{
+    float: right;
+}
+
+#logoff li a
+{
+    line-height: 48px;
 }

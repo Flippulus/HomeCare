@@ -62,11 +62,12 @@ function build_main_menu($arrMainMenuItems, $strActiveMenu)
 function build_logoff()
 {
     return "
+        <ul id = \"logoff\">
             <li>
-                <form method=\"post\" action = \"/index.php/default/index\">
-                    " . $_SESSION['useremail'] . "
-                    <a href = \"/index.php/start\">Log uit.</a>
-                </form>
+                <a href = \"/index.php/start\">
+                    ".$_SESSION["firstname"]." ".$_SESSION["lastname"]."
+                    Log uit
+                </a>
             </li>
         </ul>";
 }
