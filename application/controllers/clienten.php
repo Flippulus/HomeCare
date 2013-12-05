@@ -10,14 +10,15 @@ class Clienten extends CI_Controller
         
         if (checkLogin() == true)
         {
-            $arrContents["strTitle"] = "HomeCare Clienten";
+            $strActiveMenu = "clienten";
+            $arrContents["strTitle"] = "Clienten";
             $arrContents["arrHeader"] = array();
-            $strActiveMenu = "planning";
+            
             $this->load->model("MenuItems_Model", "objMenuItems");
-            $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
             $this->load->model("Clienten_Model", "objModel");
+            $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
             //Loading the model so the page contents can be created and given to the view
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+            $arrContents["strContents"] = $this->objModel->getClientData($arrMainMenuItems, $strActiveMenu);
             $this->load->view("index_view", $arrContents);
         }
         else
