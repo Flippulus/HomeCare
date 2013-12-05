@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 
 Class Team extends CI_Controller
@@ -14,13 +18,16 @@ Class Team extends CI_Controller
         if (checkLogin() == true)
         {
             $arrContents["strTitle"] = "HomeCare Team";
-            $arrContents["arrHeader"] = array();
+            $arrContents["arrHeader"] = array('showHide'=>'js', 'extraInfo'=>'css');
             $strActiveMenu = "team";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
             $this->load->model("Team_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
             $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+            $this->load->view("index_view", $arrContents);
+            
+            
         }
         else
         {load_controller('start');}
