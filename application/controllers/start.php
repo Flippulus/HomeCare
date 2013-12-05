@@ -1,8 +1,6 @@
 <?php
 
-/*
- * HomeCare home controller
- */
+
 
 class Start extends CI_Controller
 {
