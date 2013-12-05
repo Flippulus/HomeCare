@@ -4,6 +4,8 @@ class Rapportage_Model extends CI_Model
 {
     function getReportData($arrMainMenuItems, $strActiveMenu)
     {
+        $strSql="SELECT * FROM reports LEFT JOIN users ON reports.reported_by_user=users.user_id ORDER BY report_id DESC";
+        
         $strContent = "
             </head>
                 <body onload='start();'>";
@@ -11,8 +13,7 @@ class Rapportage_Model extends CI_Model
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         
         $strContent.="";
-        $result = getDataBaseData("reports");
-        
+        $result = mysql_query($strSql);
         $strContent .="
             <table class='topic'  style = 'border: 1px #000000 solid;'>";
         
@@ -38,13 +39,10 @@ class Rapportage_Model extends CI_Model
                         $arrTopicData["report_content"]." --
                     </td>
                     <td>".
-                        "about:" . $arrTopicData["report_client"]." --
-                    </td>
-                    <td>".
                         "at:".$arrTopicData["report_datetime"]." --
                     </td>
                     <td>".
-                        "by:". $arrTopicData["reported_by_user"]."
+                        "by:". $arrTopicData["user_firstname"]."
                     </td>
                 </tr>";
             }                   
