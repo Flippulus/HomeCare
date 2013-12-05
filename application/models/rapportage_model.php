@@ -14,7 +14,7 @@ class Rapportage_Model extends CI_Model
         $result = getDataBaseData("reports");
         
         $strContent .="
-            <table class='topic'>";
+            <table class='topic'  style = 'border: 1px #000000 solid;'>";
         
         if($result == null)
         {
@@ -32,19 +32,19 @@ class Rapportage_Model extends CI_Model
                 $strContent .="
                 <tr>
                     <td>".
-                        $arrTopicData["report_id"]."
+                        $arrTopicData["report_id"]." --
                     </td>
                     <td>".
-                        $arrTopicData["report_client"]."
+                        $arrTopicData["report_content"]." --
                     </td>
                     <td>".
-                        $arrTopicData["report_datetime"]."
+                        "about:" . $arrTopicData["report_client"]." --
                     </td>
                     <td>".
-                        $arrTopicData["report_content"]."
+                        "at:".$arrTopicData["report_datetime"]." --
                     </td>
                     <td>".
-                        $arrTopicData["reported_by_user"]."
+                        "by:". $arrTopicData["reported_by_user"]."
                     </td>
                 </tr>";
             }                   
@@ -69,11 +69,12 @@ class Rapportage_Model extends CI_Model
         return $strContent;
     }
     function build_inputArea(){
-    $strData="<form name=\"input\"  method=\"post\">
-            <textarea name=\"description\" id=\"description\" cols=\"100\" rows=\"8\" maxlength=\"2048\" wrap=\"soft\" style=\"resize: none\"></textarea>          
-            <div id=\"characterLeft\"></div>
-            <br/>
-            <input type=\"submit\" value=\"Submit\">
+    $strData="
+            <form name='report_input'  method='post'>
+                <textarea name='report_content' id='report_content' cols='100' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
+                <div id='characterLeft'></div>
+                <br/>
+                <input type='submit' value='Submit' name='frmSubmitReport'>
             </form> ";
     
     return $strData;

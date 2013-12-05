@@ -14,7 +14,7 @@ class Rapportage extends CI_Controller
         {
             //Load model
             $strActiveMenu = "rapportage";
-            $arrContents["strTitle"] = "HomeCare";
+            $arrContents["strTitle"] = "Rapportages";
             $arrContents["arrHeader"] = array("textarea" => "js");
 
             $this->load->model("MenuItems_Model", "objMenuItems");
@@ -22,8 +22,18 @@ class Rapportage extends CI_Controller
 
             //Get model data
 
-            $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-            $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+            if(isset($_POST['frmSubmitReport']))
+            {                
+                post_report("1", $_POST['report_content'], $_SESSION['userid']);
+                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+            }
+            else
+            {
+                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+            }
+            
 
             //Display view
             //$this->view->display('index_view');
