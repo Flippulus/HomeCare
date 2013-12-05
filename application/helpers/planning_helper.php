@@ -1,15 +1,15 @@
 <?php
 
-function drawCalendar()
+function getCalendarPrefs()
 {
-    $arrPrefs = array
-            (
-               'start_day'    => 'monday',
-               'month_type'   => 'long',
-               'day_type'     => 'short',
-               "show_next_prev" => TRUE,
-               "template" =>
-           "{table_open}<table border=\"0\" cellpadding=\"4\" cellspacing=\"0\">{/table_open}
+    return array
+        (
+        'start_day' => 'monday',
+        'month_type' => 'long',
+        'day_type' => 'short',
+        "show_next_prev" => TRUE,
+        "template" =>
+        "{table_open}<table border=\"0\" cellpadding=\"4\" cellspacing=\"0\" id = \"calendar\">{/table_open}
 
             {heading_row_start}<tr>{/heading_row_start}
 
@@ -38,12 +38,5 @@ function drawCalendar()
             {cal_row_end}</tr>{/cal_row_end}
 
             {table_close}</table>{/table_close}"
-             );
-        
-        $this -> load -> library("calendar", $arrPrefs);
-        $arrData = array();
-        for($i = 1; $i < 32; $i++)
-        {$arrData[$i] = "?view=day&day=$i";}
-        
-        return $this -> calendar -> generate(date("Y"), date("n"), $arrData);
+    );
 }
