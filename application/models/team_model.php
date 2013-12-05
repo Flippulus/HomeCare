@@ -50,8 +50,7 @@ class Team_Model extends CI_Model
             "<tr><td>".$arrUserData["user_location"]."</td></tr>".
             "<tr><td>".$arrUserData["user_phone"]."</td></tr>".
             "<tr><td>".$arrUserData["user_cell"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_mail"]."</td></tr></tr>".
-            "<tr><td><a href='#' id='example-hide' class='hideLink' onclick='showHide('example');return false;'>Hide this content.</a></tr></td>";
+            "<tr><td>".$arrUserData["user_mail"]."</td></tr>";
             
                      
         }

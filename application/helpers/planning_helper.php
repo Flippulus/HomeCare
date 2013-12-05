@@ -7,7 +7,6 @@ function getCalendarPrefs()
         'start_day' => 'monday',
         'month_type' => 'long',
         'day_type' => 'short',
-        "show_next_prev" => TRUE,
         "template" =>
         "{table_open}<table border=\"0\" cellpadding=\"4\" cellspacing=\"0\" id = \"calendar\">{/table_open}
 
