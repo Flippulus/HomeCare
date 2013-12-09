@@ -8,7 +8,12 @@ Class Planning_Model extends CI_Model
         $strContents = "
             </head>
             <body>";
-
+        
+        if(isset($_GET["day"]))
+        {$intDay = $_GET["day"];}
+        else
+        {$intDay = date("d");}
+        
         $arrPrefs = getCalendarPrefs();
 
         $this->load->library("calendar", $arrPrefs);
@@ -18,6 +23,9 @@ Class Planning_Model extends CI_Model
         
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContents .= $this->calendar->generate(date("Y"), date("n"), $arrData);
+        
+        $strContents .= "";
+        
         $strContents .= build_footer();
 
         return $strContents;

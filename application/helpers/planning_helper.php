@@ -39,3 +39,49 @@ function getCalendarPrefs()
             {table_close}</table>{/table_close}"
     );
 }
+
+function createPlanningTable($date)
+{
+    
+    $intDay = date("d", strtotime($date));
+    
+    $arrPlanning = mysql_fetch_assoc(getDataBaseData("planning", array("planning_date" => date("Y-m-d", strtotime($date)))));
+    $arrUser1 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_morning_user"])));
+    $arrUser2 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_noon_user"])));
+    $arrUser3 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_evening_user"])));
+    $strTable = "
+        <!-- Start Planning Table -->
+            <table id = \"dayplanningcontainer\">
+                <tr>
+                    <th>
+                        <a href = \"/index.php/planning?view=day&day=" . ($intDay - 1) . "\">Gisteren</a>
+                    </th>
+                    <th>
+                        Vandaag: " . date("d/m/Y") . "
+                    </th>
+                    <th>
+                        <a href = \"/index.php/planning?view=day&day=" . ($intDay + 1) . "\">Morgen</a>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Ochtend: ".$arrUser1["user_firstname"]." ".$arrUser1["user_lastname"]."</td>
+                </tr>
+                <tr id = \"morning_data\">
+                    
+                </tr>
+                <tr>
+                    <td>Middag: ".$arrUser2["user_firstname"]." ".$arrUser2["user_lastname"]."</td>
+                </tr>
+                <tr id = \"noon_data\">
+                    
+                </tr>
+                <tr>
+                    <td>Avond: ".$arrUser3["user_firstname"]." ".$arrUser3["user_lastname"]."</td>
+                </tr>
+                <tr id = \"evening_data\">
+                    
+                </tr>
+            </table>";
+
+    return $strTable;
+}
