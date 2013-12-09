@@ -28,12 +28,12 @@ class Team_Model extends CI_Model
                         <body>";
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContents .= "
-                        <div id='wrap'>
-                        <table border ='1'>";
+                        <div id='wrap'>";
         
         while($arrUserData = mysql_fetch_assoc($result))
         {
-            $strContents .= "
+            
+            $strContents .= " <table border ='0'>
                             <tr class ='usertabletitle'>
                                 <td>".$arrUserData["user_firstname"]."</td>
                                 <td>".$arrUserData["user_lastname"]."</td>
@@ -43,7 +43,6 @@ class Team_Model extends CI_Model
                             </tr>  
                         </table>
                         <table id='".$arrUserData["user_id"]."' class='more'>".      
-            "<tr id ='".$arrUserData['user_id']."' class ='usertablehidden'>".
             "<tr><td>".$arrUserData["user_street"]."</td></tr>".
             "<tr><td>".$arrUserData["user_streetnumber"]."</td></tr>".
             "<tr><td>".$arrUserData["user_postal"]."</td></tr>".
