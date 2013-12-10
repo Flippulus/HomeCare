@@ -35,17 +35,17 @@ function build_main_menu($arrMainMenuItems, $strActiveMenu)
         <!-- site navigation -->
         <div id='cssmenu'>
             <ul>";
-    foreach ($arrMainMenuItems as  $arrMenuItems)
+    foreach ($arrMainMenuItems as $arrMenuItems)
     {
-        if($arrMenuItems["controller"] == $strActiveMenu)
+        if ($arrMenuItems["controller"] == $strActiveMenu)
         {
             $strHeader .= "
-                <li class='active'><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
+                <li class='active'><a href='/index.php/" . $arrMenuItems["controller"] . "'>" . $arrMenuItems["name"] . "</a></li>";
         }
         else
         {
             $strHeader .= "
-                <li><a href='/index.php/".$arrMenuItems["controller"]."'>".$arrMenuItems["name"]."</a></li>";
+                <li><a href='/index.php/" . $arrMenuItems["controller"] . "'>" . $arrMenuItems["name"] . "</a></li>";
         }
     }
 
@@ -59,13 +59,44 @@ function build_main_menu($arrMainMenuItems, $strActiveMenu)
     return $strHeader;
 }
 
+function buildSubMenu($arrMenuItems, $strActiveMenu)
+{
+    $strMenu = "
+        <!-- submenu -->
+        <table class = \"submenu\">";
+
+    foreach ($arrMenuItems as $arrMenuItem)
+    {
+        if ($strActiveMenu == $arrMenuItem["controller"])
+        {
+            $strMenu .= "
+            <tr>
+                <td class = \"active\" onclick = \"window.location = '/nl/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
+            </tr>";
+        }
+        else
+        {
+            $strMenu .= "
+            <tr>
+                <td onclick = \"window.location = '/nl/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
+            </tr>";
+        }
+    }
+
+    $strMenu .= "
+        </table>
+        <!-- End of submenu -->";
+
+    return $strMenu;
+}
+
 function build_logoff()
 {
     return "
         <ul id = \"logoff\">
             <li>
                 <a href = \"/index.php/start\">
-                    ".$_SESSION["firstname"]." ".$_SESSION["lastname"]."
+                    " . $_SESSION["firstname"] . " " . $_SESSION["lastname"] . "
                     Log uit
                 </a>
             </li>
