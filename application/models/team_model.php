@@ -28,7 +28,7 @@ class Team_Model extends CI_Model
                         <body>";
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContents .= "
-                        <div class='CSSTableGenerator'>";
+                        <div class='UserTable'>";
         
         while($arrUserData = mysql_fetch_assoc($result))
         {
