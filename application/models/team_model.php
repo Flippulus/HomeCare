@@ -28,32 +28,26 @@ class Team_Model extends CI_Model
                         <body>";
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContents .= "
-                        <div id='wrap'>";
+                        <div class='CSSTableGenerator'>";
         
         while($arrUserData = mysql_fetch_assoc($result))
         {
             
-            $strContents .= " <table border ='0'>
-                            <tr class ='usertabletitle'>
-                                <td>".$arrUserData["user_firstname"]."</td>
-                                <td>".$arrUserData["user_lastname"]."</td>
+            $strContents .= " <table border ='1'>
+                            <tr style='cursor: pointer;' onclick = \"showHide('".$arrUserData["user_id"]."');\">
+                                <td colspan='2'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                             </tr>
-                            <tr onclick = \"showHide('".$arrUserData["user_id"]."');\">
-                                <td>See more.</td>
-                            </tr>  
-                        </table>
-                        <table id='".$arrUserData["user_id"]."' class='more'>".      
-            "<tr><td>".$arrUserData["user_street"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_streetnumber"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_postal"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_location"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_phone"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_cell"]."</td></tr>".
-            "<tr><td>".$arrUserData["user_mail"]."</td></tr>";
-            
-                     
+   
+            <tr><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
+            <tr><td>Nummer: </td><td>".$arrUserData["user_streetnumber"]."</td></tr>
+            <tr><td>Postcode: </td><td>".$arrUserData["user_postal"]."</td></tr>
+            <tr><td>Gemeente: </td><td>".$arrUserData["user_location"]."</td></tr>
+            <tr><td>Telefoon: </td><td>".$arrUserData["user_phone"]."</td></tr>
+            <tr><td>GSM: </td><td>".$arrUserData["user_cell"]."</td></tr>
+            <tr><td>Email: </td><td>".$arrUserData["user_mail"]."</td></tr></table><br/>";
+         
         }
-        $strContents .="</table></div>";
+        $strContents .="</div>";
         return $strContents;
     }
 }
