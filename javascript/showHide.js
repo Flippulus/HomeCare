@@ -1,18 +1,24 @@
-function showHide(id, here)
+function showHide(id)
 {
-   if (document.getElementById(id))
-   {
-      if (document.getElementById(id).style.display === 'none')
-      {
-          document.getElementById(id).style.display = 'block';
-          here.innerHTML = "<td>Klik hier om terug in te klappen.</td>";
-      }
-      else
-      {
-          document.getElementById(id).style.display = 'none';
-          here.innerHTML = "<td>Klik hier voor meer info.</td>";
-      }
-   }
+if (document.getElementById(id))
+    {
+        if (document.getElementById(id).style.display === 'none')
+        {
+            var elements = document.getElementsByClassName("userdata" + id);
+            for (var i in elements)
+            {
+                if (elements.hasOwnProperty(i))
+                {elements[i].style.display = 'block';}
+            }
+        }
+        else
+        {
+            var elements = document.getElementsByClassName("userdata" + id);
+            for (var i in elements)
+            {
+                if (elements.hasOwnProperty(i))
+                {elements[i].style.display = 'none';}
+            }
+        }
+    }
 }
-
-
