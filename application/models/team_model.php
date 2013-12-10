@@ -38,13 +38,13 @@ class Team_Model extends CI_Model
                                 <td colspan='2'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                             </tr>
    
-            <tr><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
-            <tr><td>Nummer: </td><td>".$arrUserData["user_streetnumber"]."</td></tr>
-            <tr><td>Postcode: </td><td>".$arrUserData["user_postal"]."</td></tr>
-            <tr><td>Gemeente: </td><td>".$arrUserData["user_location"]."</td></tr>
-            <tr><td>Telefoon: </td><td>".$arrUserData["user_phone"]."</td></tr>
-            <tr><td>GSM: </td><td>".$arrUserData["user_cell"]."</td></tr>
-            <tr><td>Email: </td><td>".$arrUserData["user_mail"]."</td></tr></table><br/>";
+            <tr id = \"".$arrUserData["user_id"]."\" class = \"user".$arrUserData["user_id"]."\"><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>Nummer: </td><td>".$arrUserData["user_streetnumber"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>Postcode: </td><td>".$arrUserData["user_postal"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>Gemeente: </td><td>".$arrUserData["user_location"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>Telefoon: </td><td>".$arrUserData["user_phone"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>GSM: </td><td>".$arrUserData["user_cell"]."</td></tr>
+            <tr class = \"user".$arrUserData["user_id"]."\"><td>Email: </td><td>".$arrUserData["user_mail"]."</td></tr></table><br/>";
          
         }
         $strContents .="</div>";
