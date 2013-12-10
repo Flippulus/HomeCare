@@ -10,6 +10,7 @@ and open the template in the editor.
 
 #cssmenu
 {
+    width:100%;
     padding: 0;
     margin: 0;
     border: 0;
@@ -60,6 +61,7 @@ and open the template in the editor.
 
 #cssmenu > ul
 {
+    width:100%;
     *display: inline-block;
 }
 
