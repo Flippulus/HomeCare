@@ -8,7 +8,7 @@ if (document.getElementById(id))
             for (var i in elements)
             {
                 if (elements.hasOwnProperty(i))
-                {elements[i].style.display = 'inherit';}
+                {elements[i].style.display = 'table-row';}
             }
         }
         else

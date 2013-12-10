@@ -127,18 +127,6 @@
    .UserTable tr:first-child td:last-child{
        border-width:0px 0px 1px 1px;
    }
-   
-   /* css for javascript usertable */
-   
-   .hidden
-   {
-       display:none;
-   }
-   .shown
-   {
-       display:block;
-       width:100%;
-   }
 
    /* This CSS is used for the Show/Hide functionality. */
 
