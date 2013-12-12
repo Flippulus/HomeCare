@@ -11,7 +11,7 @@ class Planning extends CI_Controller
         if (checkLogin() == true)
         {
             $arrContents["strTitle"] = "HomeCare planning";
-            $arrContents["arrHeader"] = array("planning" => "css");
+            $arrContents["arrHeader"] = array("planning" => "css", "table" => "css", "showHide" => "js");
             $strActiveMenu = "planning";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();

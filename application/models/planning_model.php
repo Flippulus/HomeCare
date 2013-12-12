@@ -25,7 +25,13 @@ Class Planning_Model extends CI_Model
         $strContents .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         $strContents .= $this->calendar->generate(date("Y"), date("n"), $arrData);
         
-        $strContents .= "";
+        $arrDayData = mysql_fetch_assoc(getDataBaseData("planning", array("planning_date" => date("Y-m-d"))));
+        
+        $strContents .= "
+            <div class = \"homecaretable\">
+                <table>
+                    <tr style = \"cursor:pointer;\" onclick = \"showHide('planning_', 'morning')\">
+                        <td>Ochtend: ";
         
         $strContents .= build_footer();
 

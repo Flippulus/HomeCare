@@ -1,10 +1,10 @@
-function showHide(id)
+function showHide(klasse, id)
 {
 if (document.getElementById(id))
     {
         if (document.getElementById(id).style.display === 'none')
         {
-            var elements = document.getElementsByClassName("user" + id);
+            var elements = document.getElementsByClassName(klasse + id);
             for (var i in elements)
             {
                 if (elements.hasOwnProperty(i))
@@ -13,7 +13,7 @@ if (document.getElementById(id))
         }
         else
         {
-            var elements = document.getElementsByClassName("user" + id);
+            var elements = document.getElementsByClassName(klasse + id);
             for (var i in elements)
             {
                 if (elements.hasOwnProperty(i))
