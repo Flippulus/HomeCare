@@ -4,7 +4,9 @@ class Clienten_Model extends CI_Model
 {
      function getClientData($arrMainMenuItems, $strActiveMenu)
      {
-         $strSql="SELECT * FROM clients LEFT JOIN users ON clients.added_by_user=users.user_id ORDER BY client_lastname ASC";
+         $strSql="SELECT * FROM clients AS c1
+             LEFT JOIN users AS u1 ON c1.added_by_user=u1.user_id
+             ORDER BY client_lastname ASC";
          
          $strContent = "
             </head>
@@ -15,7 +17,7 @@ class Clienten_Model extends CI_Model
          $result = mysql_query($strSql);
          $strContent .="
             <table class='topic'  style = 'border: 1px #000000 solid;'>";
-        
+
         if($result == null)
         {
             $strContent .="
@@ -29,32 +31,35 @@ class Clienten_Model extends CI_Model
         {
             while($arrTopicData = mysql_fetch_assoc($result))
             {
+                $arrResponsible=  mysql_fetch_assoc(getDataBaseData('users', array('user_id'=>$arrTopicData['client_responsible_user'])));
                 $strContent .="
                 <tr>
+                
                     <td>Toegevoegd door: </td>
                     <td>".
-                        $arrTopicData["user_firstname"]."
+                        $arrTopicData["user_firstname"].  //Deze geeft het verkeerde waarde terug
+                        "
                     </td>
                 </tr>
                 <tr>
                     <td>Toegevoegd op: </td>
                     <td>".
-                        $arrTopicData["client_join_datetime"]."
+                        date("d/m/Y h:i",strtotime($arrTopicData["client_join_datetime"]))."
                     </td>
                 </tr>
                 <tr>
                     <td>Datum van in zorg: </td>
                     <td>".
-                        $arrTopicData["client_date_in_care"]."
+                        date("d/m/Y",strtotime($arrTopicData["client_date_in_care"]))."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
                     <td>Verantwoordelijke verzorger: </td>
                     <td>".
-                        $arrTopicData["user_firstname"]."
+                        //$arrTopicData["user_firstname"].  //Deze geeft het verkeerde waarde terug
+                        $arrResponsible['user_firstname'].
+                        "
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr><td colspan='2'><hr/></td></tr>
                 <tr>
@@ -71,8 +76,16 @@ class Clienten_Model extends CI_Model
                 </tr>
                 <tr>
                     <td>Geslacht: </td>
-                    <td>".
-                        $arrTopicData["client_gender"]."
+                    <td>";
+                        if($arrTopicData["client_gender"]==1)
+                        {
+                            $strContent .="Man";
+                        }
+                        else
+                        {
+                           $strContent .="Vrouw" ;
+                        }
+                        $strContent .="
                     </td>
                 </tr>
                 <tr>
@@ -88,23 +101,21 @@ class Clienten_Model extends CI_Model
                     </td>
                 </tr>
                 <tr>
-                    <td>Civil register: </td>
+                    <td>RijksRegister: </td>
                     <td>".
                         $arrTopicData["client_civil_register"]."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
-                    <td>Healtcare nummer: </td>
+                    <td>Nummer van de Gezondheidszorg: </td>
                     <td>".
                         $arrTopicData["client_healthcare_number"]."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
                     <td>Geboortedatum: </td>
                     <td>".
-                        $arrTopicData["client_birthdate"]."
+                        date("d/m/Y",strtotime($arrTopicData["client_birthdate"]))."
                     </td>
                 </tr>
                 <tr><td colspan='2'><hr/></td></tr>
@@ -175,21 +186,18 @@ class Clienten_Model extends CI_Model
                     <td>".
                         $arrTopicData["client_indication"]."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
                     <td>Indicatie beschrijving: </td>
                     <td>".
                         $arrTopicData["client_indication_description"]."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
                     <td>Anamnese: </td>
                     <td>".
                         $arrTopicData["client_anamnese"]."
                     </td>
-                    <td>????????????</td>
                 </tr>
                 <tr>
                     <td>Medicatie lijst: </td>
