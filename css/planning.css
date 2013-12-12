@@ -13,3 +13,8 @@
 {
     color: blue;
 }
+
+tr[class*="planning"]
+{
+    display:none;   
+}

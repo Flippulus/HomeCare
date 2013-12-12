@@ -16,7 +16,7 @@ class Planning extends CI_Controller
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
             if(isset($_GET["view"]))
-            {$strActiveMenu = $_GET["view"];}
+            {$strActiveSubMenu = $_GET["view"];}
             else
             {$strActiveSubMenu = "dag";}
             $this->load->model("MenuItems_Model", "objMenuItems");

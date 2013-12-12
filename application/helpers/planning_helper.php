@@ -85,3 +85,16 @@ function createPlanningTable($date)
 
     return $strTable;
 }
+
+function getPlanning($strDayTime, $arrDayData)
+{
+    $strPlanning = $arrDayData["planning_".$strDayTime];
+    $arrStrings = explode("/", $strPlanning);
+    $arrPlanning = array();
+    foreach($arrStrings as $strExploded)
+    {
+        $arrSplitted = explode("-", $strExploded);
+        $arrPlanning[$arrSplitted[0]] = $arrSplitted[1];
+    }
+    return $arrPlanning;
+}
