@@ -10,28 +10,33 @@ and open the template in the editor.
 
 #cssmenu
 {
+    background: #656565;
+    font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+    font-size: 12px;
     width:100%;
     padding: 0;
     margin: 0;
     border: 0;
     opacity: 0.8;
+    border-bottom: 4px solid #ff4c4c;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
     border-radius:4px;
 }
-#cssmenu ul, #cssmenu li 
+#cssmenu ul
 {
+    text-transform: uppercase;
     list-style: none;
     margin: 0;
     padding: 0;
-}
-#cssmenu ul
-{
     position: relative;
     z-index: 597;
 }
 #cssmenu ul li 
 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     float: left;
     min-height: 1px;
     vertical-align: middle;
@@ -49,16 +54,10 @@ and open the template in the editor.
     display: block;
     line-height: 1em;
     text-decoration: none;
-}
-
-#cssmenu
-{
     background: #656565;
-    border-bottom: 4px solid #ff4c4c;
-    font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
-    font-size: 12px; 
+    color: #FFF;
+    padding: 0 20px;
 }
-
 #cssmenu > ul
 {
     width:100%;
@@ -72,17 +71,6 @@ and open the template in the editor.
     clear: both; 
 }
 
-#cssmenu a
-{
-    background: #656565;
-    color: #FFF;
-    padding: 0 20px; 
-}
-#cssmenu ul
-{
-    text-transform: uppercase;
-}
-
 #cssmenu > ul > li > a
 {
     line-height: 48px;
@@ -92,6 +80,38 @@ and open the template in the editor.
 {
     background: #ff4c4c;
     color: #FFF;
+}
+
+#submenu
+{
+    background: #656565;
+    font-family: 'Oxygen Mono', Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+    border: 0;
+    opacity: 0.8;
+    border-right: 4px solid #ff4c4c;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    cursor: pointer;
+}
+#submenu td
+{
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    text-transform: uppercase;
+    color: #FFF;
+    line-height: 30px;
+    min-width: 75px;
+}
+#submenu td.active
+{
+    background: #ff4c4c;
 }
 
 #logoff

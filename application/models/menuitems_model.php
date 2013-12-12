@@ -41,11 +41,11 @@ class MenuItems_Model extends CI_Model
         {
             case "planning":
                 $arrMainMenuItems = array(
-                    "Dag" => array(
+                    "dag" => array(
                         "name" => "Dag",
                         "controller" => "planning?view=day"
                     ),
-                    "Week" => array(
+                    "week" => array(
                         "name" => "Week",
                         "controller" => "planning?view=week"
                     ),
