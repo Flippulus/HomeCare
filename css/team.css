@@ -35,6 +35,7 @@
        margin-top:10px;
        box-shadow: 10px 10px 5px #888888;
        border:1px solid #000000;
+       opacity:0.8;
 
        -moz-border-radius-bottomleft:4px;
        -webkit-border-bottom-left-radius:4px;
@@ -127,6 +128,13 @@
    .UserTable tr:first-child td:last-child{
        border-width:0px 0px 1px 1px;
    }
+   
+   tr[class*="user"]
+   {
+       display:none;   
+   }
+   
+  
 
    /* This CSS is used for the Show/Hide functionality. */
 

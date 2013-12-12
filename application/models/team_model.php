@@ -38,7 +38,7 @@ class Team_Model extends CI_Model
                                 <td colspan='2'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                             </tr>
    
-            <tr id = \"".$arrUserData["user_id"]."\" class = \"user".$arrUserData["user_id"]."\"><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
+            <tr style='display:none' id = \"".$arrUserData["user_id"]."\" class = \"user".$arrUserData["user_id"]."\"><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
             <tr class = \"user".$arrUserData["user_id"]."\"><td>Nummer: </td><td>".$arrUserData["user_streetnumber"]."</td></tr>
             <tr class = \"user".$arrUserData["user_id"]."\"><td>Postcode: </td><td>".$arrUserData["user_postal"]."</td></tr>
             <tr class = \"user".$arrUserData["user_id"]."\"><td>Gemeente: </td><td>".$arrUserData["user_location"]."</td></tr>
