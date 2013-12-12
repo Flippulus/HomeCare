@@ -22,9 +22,10 @@ Class Team extends CI_Controller
             $strActiveMenu = "team";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+            $arrSubMenuItems = $this ->objMenuItems->getSubMenuItems('team');    
             $this->load->model("Team_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'team');
             $this->load->view("index_view", $arrContents);
             
             

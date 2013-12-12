@@ -18,8 +18,8 @@
 
 class Team_Model extends CI_Model
 {
-    function getPageData($arrMainMenuItems, $strActiveMenu)
-    {
+    function getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu)
+    {   
         $strContents = "";
         
         $result = getDataBaseData("users");
@@ -27,6 +27,7 @@ class Team_Model extends CI_Model
         $strContents .= "</head>
                         <body>";
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContents .=buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         $strContents .= "
                         <div class='UserTable'>";
         
