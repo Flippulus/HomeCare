@@ -22,7 +22,7 @@ Class Planning_Model extends CI_Model
         {$arrData[$i] = "?view=day&day=$i";}
         
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
-        $strContents .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);;
+        $strContents .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         $strContents .= $this->calendar->generate(date("Y"), date("n"), $arrData);
         
         $strContents .= "";

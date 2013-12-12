@@ -18,7 +18,7 @@ Class Team extends CI_Controller
         if (checkLogin() == true)
         {
             $arrContents["strTitle"] = "HomeCare Team";
-            $arrContents["arrHeader"] = array('showHide'=>'js', 'team'=>'css');
+            $arrContents["arrHeader"] = array('showHide'=>'js', 'team'=>'css', 'table' => 'css');
             $strActiveMenu = "team";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
