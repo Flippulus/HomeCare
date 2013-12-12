@@ -55,7 +55,7 @@ class MenuItems_Model extends CI_Model
                 $arrMainMenuItems = array(
                     "team" => array(
                         "name" => "Team",
-                        "controller" => "Team"
+                        "controller" => "team"
                     ),
                     "register" => array(
                         "name" => "Registreer",

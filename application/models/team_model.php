@@ -29,13 +29,13 @@ class Team_Model extends CI_Model
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContents .=buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         $strContents .= "
-                        <div class='UserTable'>";
+                        <div class='homecaretable'>";
         
         while($arrUserData = mysql_fetch_assoc($result))
         {
             
             $strContents .= " <table border ='1'>
-                            <tr style='cursor: pointer;' onclick = \"showHide('".$arrUserData["user_id"]."');\">
+                            <tr style='cursor: pointer;' onclick = \"showHide('user', '".$arrUserData["user_id"]."');\">
                                 <td colspan='2'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                             </tr>
    
