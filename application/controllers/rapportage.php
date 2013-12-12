@@ -21,16 +21,26 @@ class Rapportage extends CI_Controller
             $this->load->model("Rapportage_Model", "objRapportage");
 
             //Get model data
-
+            $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+            
             if(isset($_POST['frmSubmitReport']))
             {                
-                post_report("0", $_POST['report_content'], $_SESSION['userid']);
-                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+                post_report($_POST['report_content'], $_SESSION['userid']);
                 $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
             }
+            elseif(isset($_POST['frmEditReport']))
+            {                
+                Update_report($_POST['update_content'], $_GET['report_id']);
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+            }
+            elseif(isset($_GET['report_id']))
+            {
+                $strId= $_GET['report_id'];
+                $arrContents["strContents"] = $this->objRapportage->updateReportData($arrMainMenuItems, $strActiveMenu, $strId);
+            }
+            
             else
             {
-                $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
                 $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
             }
             
