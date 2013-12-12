@@ -15,9 +15,12 @@ class Planning extends CI_Controller
             $strActiveMenu = "planning";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-            $strActiveSubMenu = "planning";
+            if(isset($_GET["view"]))
+            {$strActiveMenu = $_GET["view"];}
+            else
+            {$strActiveSubMenu = "dag";}
             $this->load->model("MenuItems_Model", "objMenuItems");
-            $arrSubMenuItems = $this->objMenuItems->getSubMenuItems();
+            $arrSubMenuItems = $this->objMenuItems->getSubMenuItems("planning");
             $this->load->model("Planning_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
             $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu);

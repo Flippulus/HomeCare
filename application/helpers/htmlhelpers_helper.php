@@ -63,22 +63,22 @@ function buildSubMenu($arrMenuItems, $strActiveMenu)
 {
     $strMenu = "
         <!-- submenu -->
-        <table class = \"submenu\">";
+        <table id = \"submenu\">";
 
-    foreach ($arrMenuItems as $arrMenuItem)
+    foreach ($arrMenuItems as $strMenuItem => $arrMenuItem)
     {
-        if ($strActiveMenu == $arrMenuItem["controller"])
+        if ($strActiveMenu == $strMenuItem)
         {
             $strMenu .= "
             <tr>
-                <td class = \"active\" onclick = \"window.location = '/nl/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
+                <td class = \"active\" onclick = \"window.location = '/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
             </tr>";
         }
         else
         {
             $strMenu .= "
             <tr>
-                <td onclick = \"window.location = '/nl/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
+                <td onclick = \"window.location = '/index.php/" . $arrMenuItem["controller"] . "'\">" . $arrMenuItem["name"] . "</td>
             </tr>";
         }
     }
