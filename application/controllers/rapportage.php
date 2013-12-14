@@ -14,35 +14,50 @@ class Rapportage extends CI_Controller
         {
             //Load model
             $strActiveMenu = "rapportage";
+            
+            
             $arrContents["strTitle"] = "Rapportages";
-            $arrContents["arrHeader"] = array("textarea" => "js", "rapportage" => "css");
+            $arrContents["arrHeader"] = array("textarea" => "js", "rapportage" => "css", "table"=>"css");
 
             $this->load->model("MenuItems_Model", "objMenuItems");
             $this->load->model("Rapportage_Model", "objRapportage");
 
             //Get model data
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
+            $arrSubMenuItems = $this ->objMenuItems->getSubMenuItems("Rapportage");
+            
+            
+            if(isset($_GET["post"]))
+            {$strActiveSubMenu = $_GET["post"];}
+            else
+            {$strActiveSubMenu = "Report";}
+            
             
             if(isset($_POST['frmSubmitReport']))
             {                
+                $strActiveSubMenu = "Report";
                 post_report($_POST['report_content'], $_SESSION['userid']);
-                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
             }
             elseif(isset($_POST['frmEditReport']))
             {                
-                Update_report($_POST['update_content'], $_GET['report_id']);
-                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+                Update_report($_POST['report_update'], $_GET['report_id']);
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
             }
             elseif(isset($_GET['report_id']))
             {
                 $strId= $_GET['report_id'];
-                $arrContents["strContents"] = $this->objRapportage->updateReportData($arrMainMenuItems, $strActiveMenu, $strId);
+                $arrContents["strContents"] = $this->objRapportage->updateReportData($arrMainMenuItems, $strActiveMenu, $strId, $arrSubMenuItems,$strActiveSubMenu);
             }
-            
+            elseif(isset($_GET["post"])&&($_GET["post"]=="Nieuw"))
+            {
+                $arrContents["strContents"] = $this->objRapportage->build_inputArea($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
+            }
             else
             {
-                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu);
+                $arrContents["strContents"] = $this->objRapportage->getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
             }
+            
             
 
             //Display view

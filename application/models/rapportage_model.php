@@ -2,7 +2,7 @@
 
 class Rapportage_Model extends CI_Model
 {
-    function getReportData($arrMainMenuItems, $strActiveMenu)
+    function getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu)
     {
         $strSql="SELECT * FROM reports 
             LEFT JOIN users ON reports.reported_by_user=users.user_id 
@@ -13,11 +13,17 @@ class Rapportage_Model extends CI_Model
                 <body onload='start();'>";
         
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
         $strContent.="";
         $result = mysql_query($strSql);
         $strContent .="
-            <table class='topic'  style = 'border: 1px #000000 solid;'>";
+            
+        <div class='homecaretable'>
+            <table>
+                <tr>
+                    <td colspan='4'>Rapportages</td>
+                </tr>";
         
         if($result == null)
         {
@@ -48,7 +54,7 @@ class Rapportage_Model extends CI_Model
                 {
                     $strContent.="
                         <td>
-                            <a href='/index.php/rapportage?report_id=".$arrTopicData["report_id"]."'>link</a>
+                            <a href='/index.php/rapportage?report_id=".$arrTopicData["report_id"]."'>Edit</a>
                         </td>
                     </tr>";
                 }
@@ -70,15 +76,15 @@ class Rapportage_Model extends CI_Model
                     </tr>";
         }
         $strContent .="
-            </table>";
+            </table>
+        </div>";
         
-        $strContent .= $this->build_inputArea();
         $strContent .= build_footer();
         
         return $strContent;
     }
     
-    function updateReportData($arrMainMenuItems, $strActiveMenu, $strId)
+    function updateReportData($arrMainMenuItems, $strActiveMenu, $strId, $arrSubMenuItems, $strActiveSubMenu)
     {
         $strSql="SELECT * FROM reports 
             LEFT JOIN users ON reports.reported_by_user=users.user_id 
@@ -87,55 +93,77 @@ class Rapportage_Model extends CI_Model
         
         $strContent = "
             </head>
-                <body>";
+                <body onload='start();'>";
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
          
         $strContent.="";
         $result = mysql_query($strSql);
         $strContent .="
-            <table class='topic'  style = 'border: 1px #000000 solid;'>";
+            <div class='homecaretable'>
+                <table>";
         while(($arrTopicData = mysql_fetch_assoc($result)))
         {
             if($arrTopicData["report_id"]==$strId)
             {
                 $strContent .="
-                <table>
                     <tr>
-                        <td>
-                            <form name='edit_report'  method='post'>".
-                            $this->build_updateArea($arrTopicData["report_content"]).
-                            "</form>
+                        <td>Update de rapportage</td>
+                    </tr>
+                    <tr>
+                        <td>".
+                        $this->build_updateArea($arrTopicData["report_content"]).
+                            "
                         </td>
                     </tr>
                 </table>";
             }
         }
+        $strContent.="</div>";
         
         $strContent .= build_footer();
             return $strContent;
     }
     
-    function build_inputArea() {
-        $strData = "
-            <form name='report_input'  method='post'>
-                <textarea name='report_content' id='report_content' cols='100' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
-                <div id='characterLeft'></div>
-                <br/>
-                <input type='submit' value='Submit' name='frmSubmitReport'>
-            </form> ";
+    function build_inputArea($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu) {
+        $strContent = "
+            </head>
+                <body onload='start();'>";
+        
+        $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
+        
+        $strContent.="
+                    <div class='homecaretable'>
+                        <table>
+                            <tr>
+                                <td>Voeg een nieuwe rapportage toe</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <form name='report_input'  method='post'>
+                                        <textarea name='report_content' id='description' cols='96' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
+                                        <div id='characterLeft'></div>
+                                        <br/>
+                                        <input type='submit' value='Submit' name='frmSubmitReport'>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>";
 
-        return $strData;
+        return $strContent;
     }
     
     function build_updateArea($report_content) {
         $strData = "
-            <form name='report_input'  method='post'>
-                <textarea name='update_content' id='update_content' cols='100' rows='8' maxlength='2048' wrap='soft' style='resize: none'>$report_content</textarea>          
-                <div id='characterLeft'></div>
-                <br/>
-                <input type='submit' value='Submit' name='frmEditReport'>
-            </form> ";
+                            <form name='report_update'  method='post'>
+                                <textarea name='report_update' id='description' cols='96' rows='8' maxlength='2048' wrap='soft' style='resize: none'>$report_content</textarea>          
+                                <div id='characterLeft'></div>
+                                <br/>
+                                <input type='submit' value='Submit' name='frmEditReport'>
+                            </form>";
 
         return $strData;
     }

@@ -51,6 +51,30 @@ class MenuItems_Model extends CI_Model
                     ),
                 );
                 break;
+            case "Rapportage":
+                $arrMainMenuItems = array(
+                    "Report" => array(
+                        "name" => "Rapportage",
+                        "controller" => "rapportage?post=Report"
+                    ),
+                    "Nieuw" => array(
+                        "name" => "Voeg toe",
+                        "controller" => "rapportage?post=Nieuw"
+                    ),
+                );
+                break;
+            case "clienten":
+                $arrMainMenuItems = array(
+                    "client" => array(
+                        "name" => "Cliënt",
+                        "controller" => "clienten?client=client"
+                    ),
+                    "Nieuw" => array(
+                        "name" => "Registreer",
+                        "controller" => "clienten?client=Nieuw"
+                    ),
+                );
+                break;
             case "team":
                 $arrMainMenuItems = array(
                     "team" => array(
