@@ -15,6 +15,7 @@ body {
     color: grey;
     background-image: url(/images/room_001.png); 
     background-repeat:no-repeat;
+    background-attachment: fixed; 
 }
 
 
