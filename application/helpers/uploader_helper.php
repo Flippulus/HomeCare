@@ -3,6 +3,7 @@
 
 function getUploadConfig($strType, $strDir)
 {
+    echo realpath(APPPATH . '../documents/'.$strType);
     if ($strDir == false)
     {
         return array(

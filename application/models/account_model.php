@@ -12,12 +12,12 @@ Class Account_Model extends CI_Model
     {   
         $strContents = "";
         
-        $result = getDataBaseData("users",array("user_id", $_SESSION["userid"]));
+        $result = getDataBaseData("users", array("user_id" => $_SESSION["userid"]));
         
         $strContents .= "</head>
                         <body>";
         $strContents .= build_main_menu($arrMainMenuItems, $strActiveMenu);
-        $strContents .=buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
+        $strContents .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         $strContents .= "
                         <div class='homecaretable'>";
         
@@ -38,7 +38,7 @@ Class Account_Model extends CI_Model
             <tr><td>Gemeente: </td><td>".$arrUserData["user_location"]."</td></tr>
             <tr><td>Telefoon: </td><td>".$arrUserData["user_phone"]."</td></tr>
             <tr><td>GSM: </td><td>".$arrUserData["user_cell"]."</td></tr>
-            <tr><td>Email: </td><td>".$arrUserData["user_mail"]."</td></tr></table><br/>";
+            <tr><td>Email: </td><td>".$arrUserData["user_mail"]."</td></tr></table>";
         }
         $strContents .="</div>";
         return $strContents;
@@ -50,7 +50,7 @@ Class Account_Model extends CI_Model
         
          $strContents = "";
         
-        $result = getDataBaseData("users",array("user_id", $_SESSION["userid"]));
+        $result = getDataBaseData("users",array("user_id" => $_SESSION["userid"]));
         
         $strContents .= "</head>
                         <body>";

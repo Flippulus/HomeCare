@@ -11,6 +11,7 @@ Class Team extends CI_Controller
     function index()
     {
         date_default_timezone_set("Europe/Brussels");
+        session_save_path(dirname('tmp/'));
         session_start();
         connect_database();
         //Runs script connecting to the Database

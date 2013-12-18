@@ -142,5 +142,3 @@ function changeDataBaseRecord($strTable, $arrValues, $strParam, $strParamValue)
         return true;
     }
 }
-
-?>

@@ -9,7 +9,7 @@ class Start extends CI_Controller
     {
         date_default_timezone_set("Europe/Brussels");
         if (session_id() == '')
-        {session_start();}
+        {session_save_path(dirname('tmp/'));session_start();}
         connect_database();
 
         $result = authentication();

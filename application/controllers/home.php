@@ -5,6 +5,7 @@ class Home extends CI_Controller
 
     function index()
     {
+        session_save_path(dirname('tmp/'));
         session_start();
         date_default_timezone_set("Europe/Brussels");
         connect_database();
