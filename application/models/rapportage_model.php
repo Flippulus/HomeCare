@@ -19,7 +19,7 @@ class Rapportage_Model extends CI_Model
         $result = mysql_query($strSql);
         $strContent .="    
         <div class='homecaretable'>
-            <table id= reportTable>
+            <table id='reportTable'>
                 <thead>
                     <tr>
                         <td colspan='4'>Rapportages</td>
