@@ -25,10 +25,12 @@ Class Account_Model extends CI_Model
         {
             
             $strContents .= " <table border ='1'>
-                            <tr style='cursor: pointer;'>
-                                <td>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
-                                <td id='editClass'><a href=/index.php/account?edit_account=".$arrUserData["user_id"].">Pas aan</a></td>
-                            </tr>
+                            <thead>
+                                <tr style='cursor: pointer;'>
+                                    <td>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
+                                    <td id='editClass'><a href=/index.php/account?edit_account=".$arrUserData["user_id"].">Pas aan</a></td>
+                                </tr>
+                            </thead>
    
             <tr style='display:none' id = \"".$arrUserData["user_id"]."\" class = \"user".$arrUserData["user_id"]."\"><td>Straat: </td><td>".$arrUserData["user_street"]."</td></tr>
             <tr><td>Nummer: </td><td>".$arrUserData["user_streetnumber"]."</td></tr>
@@ -61,11 +63,13 @@ Class Account_Model extends CI_Model
         {
             
             $strContents .= "<table border ='1'>
+                            <thead>
                             <tr style='cursor: pointer;'>
                                 <td>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                                 <td id='editClass'><input type ='submit' name ='frmSaveAccount' value='Sla op'/></td>
+                            </thead>
                             </tr>
-   
+                            
             <tr><td>Straat: </td><td><input type='text' value='".$arrUserData["user_street"]."'placeholder ='Straat'/></td></tr>
             <tr><td>Nummer: </td><td><input type='text' value='".$arrUserData["user_streetnumber"]."' placeholder='Nummer'/></td></tr>
             <tr><td>Postcode: </td><td><input type='number' value='".$arrUserData["user_postal"]."' placeholder='Postcode'/></td></tr>
