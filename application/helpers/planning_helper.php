@@ -1,9 +1,11 @@
 <?php
 
-function getCalendarPrefs()
+function getCalendarPrefs($strView, $day)
 {
     return array
         (
+        'show_next_prev' => TRUE,
+        'next_prev_url' => "/index.php/planning?view=$strView&day=$day",
         'start_day' => 'monday',
         'month_type' => 'long',
         'day_type' => 'short',

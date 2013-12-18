@@ -158,10 +158,10 @@ class CI_Calendar {
 		if ($this->show_next_prev == TRUE)
 		{
 			// Add a trailing slash to the  URL if needed
-			$this->next_prev_url = preg_replace("/(.+?)\/*$/", "\\1/",  $this->next_prev_url);
+			//$this->next_prev_url = preg_replace("/(.+?)\/*$/", "\\1/",  $this->next_prev_url);
 
 			$adjusted_date = $this->adjust_date($month - 1, $year);
-			$out .= str_replace('{previous_url}', $this->next_prev_url.$adjusted_date['year'].'/'.$adjusted_date['month'], $this->temp['heading_previous_cell']);
+			$out .= str_replace('{previous_url}', $this->next_prev_url.'&month='.$adjusted_date['month']."&year=".$adjusted_date['year'], $this->temp['heading_previous_cell']);
 			$out .= "\n";
 		}
 
@@ -178,7 +178,7 @@ class CI_Calendar {
 		if ($this->show_next_prev == TRUE)
 		{
 			$adjusted_date = $this->adjust_date($month + 1, $year);
-			$out .= str_replace('{next_url}', $this->next_prev_url.$adjusted_date['year'].'/'.$adjusted_date['month'], $this->temp['heading_next_cell']);
+			$out .= str_replace('{next_url}', $this->next_prev_url.'&month='.$adjusted_date['month']."&year=".$adjusted_date['year'], $this->temp['heading_next_cell']);
 		}
 
 		$out .= "\n";
@@ -304,11 +304,11 @@ class CI_Calendar {
 		}
 		elseif ($this->day_type == 'short')
 		{
-			$day_names = array('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat');
+			$day_names = array('zo', 'ma', 'di', 'wo', 'do', 'vr', 'za');
 		}
 		else
 		{
-			$day_names = array('su', 'mo', 'tu', 'we', 'th', 'fr', 'sa');
+			$day_names = array('zo', 'ma', 'di', 'wo', 'do', 'vr', 'za');
 		}
 
 		$days = array();

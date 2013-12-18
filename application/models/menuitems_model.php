@@ -41,7 +41,7 @@ class MenuItems_Model extends CI_Model
         {
             case "planning":
                 $arrMainMenuItems = array(
-                    "dag" => array(
+                    "day" => array(
                         "name" => "Dag",
                         "controller" => "planning?view=day"
                     ),
@@ -83,7 +83,7 @@ class MenuItems_Model extends CI_Model
                     ),
                     "register" => array(
                         "name" => "Registreer",
-                        "controller" => "register"
+                        "controller" => "registreer_team"
                     ),
                     "account" => array(
                         "name" => "Account",
