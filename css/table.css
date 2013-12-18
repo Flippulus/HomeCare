@@ -86,7 +86,7 @@ and open the template in the editor.
 {
     border-width:0px 0px 0px 0px;
 }
-.homecaretable tr:first-child td
+.homecaretable thead tr:first-child td
 {
     background:-o-linear-gradient(bottom, #ff4c4c 5%, #ff4c4c 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff4c4c), color-stop(1, #ff4c4c) );
     background:-moz-linear-gradient( center top, #ff4c4c 5%, #ff4c4c 100% );
@@ -101,7 +101,7 @@ and open the template in the editor.
     font-weight:bold;
     color:#ffffff;
 }
-.homecaretable tr:first-child:hover td
+.homecaretable thead tr:first-child:hover td
 {
     background:-o-linear-gradient(bottom, #ff4c4c 5%, #ff4c4c 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff4c4c), color-stop(1, #ff4c4c) );
     background:-moz-linear-gradient( center top, #ff4c4c 5%, #ff4c4c 100% );
@@ -109,11 +109,11 @@ and open the template in the editor.
 
     background-color:#ff4c4c;
 }
-.homecaretable tr:first-child td:first-child
+.homecaretable thead tr:first-child td:first-child
 {
     border-width:0px 0px 1px 0px;
 }
-.homecaretable tr:first-child td:last-child
+.homecaretable thead tr:first-child td:last-child
 {
-    border-width:0px 0px 1px 1px;
+    border-width:0px 0px 1px 0px;
 }

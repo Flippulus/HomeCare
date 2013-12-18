@@ -8,3 +8,12 @@ and open the template in the editor.
     Author     : Phil
 */
 
+.homecaretable tbody tr td:first-child
+{
+    width:500px;
+}
+
+.homecaretable tbody tr:last-child
+{
+    border-bottom: 1px solid #000000;
+}

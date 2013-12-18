@@ -17,13 +17,15 @@ class Rapportage_Model extends CI_Model
         
         $strContent.="";
         $result = mysql_query($strSql);
-        $strContent .="
-            
+        $strContent .="    
         <div class='homecaretable'>
-            <table>
-                <tr>
-                    <td colspan='4'>Rapportages</td>
-                </tr>";
+            <table id= reportTable>
+                <thead>
+                    <tr>
+                        <td colspan='4'>Rapportages</td>
+                    </tr>
+                </thead>
+                <tbody>";
         
         if($result == null)
         {
@@ -40,7 +42,7 @@ class Rapportage_Model extends CI_Model
             {
                 $strContent .="
                     <tr>
-                        <td>".
+                        <td >".
                             $arrTopicData["report_content"]."
                         </td>
                         <td>".
@@ -76,6 +78,7 @@ class Rapportage_Model extends CI_Model
                     </tr>";
         }
         $strContent .="
+                </tbody>
             </table>
         </div>";
         
@@ -108,15 +111,19 @@ class Rapportage_Model extends CI_Model
             if($arrTopicData["report_id"]==$strId)
             {
                 $strContent .="
-                    <tr>
-                        <td>Update de rapportage</td>
-                    </tr>
-                    <tr>
-                        <td>".
-                        $this->build_updateArea($arrTopicData["report_content"]).
-                            "
-                        </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <td>Update de rapportage</td>
+                        </tr>
+                    </thead>
+                    </tbody>
+                        <tr>
+                            <td>".
+                            $this->build_updateArea($arrTopicData["report_content"]).
+                                "
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>";
             }
         }
@@ -137,19 +144,23 @@ class Rapportage_Model extends CI_Model
         $strContent.="
                     <div class='homecaretable'>
                         <table>
-                            <tr>
-                                <td>Voeg een nieuwe rapportage toe</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <form name='report_input'  method='post'>
-                                        <textarea name='report_content' id='description' cols='96' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
-                                        <div id='characterLeft'></div>
-                                        <br/>
-                                        <input type='submit' value='Submit' name='frmSubmitReport'>
-                                    </form>
-                                </td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <td>Voeg een nieuwe rapportage toe</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <form name='report_input'  method='post'>
+                                            <textarea name='report_content' id='description' cols='95' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
+                                            <div id='characterLeft'></div>
+                                            <br/>
+                                            <input type='submit' value='Submit' name='frmSubmitReport'>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>";
 
@@ -159,7 +170,7 @@ class Rapportage_Model extends CI_Model
     function build_updateArea($report_content) {
         $strData = "
                             <form name='report_update'  method='post'>
-                                <textarea name='report_update' id='description' cols='96' rows='8' maxlength='2048' wrap='soft' style='resize: none'>$report_content</textarea>          
+                                <textarea name='report_update' id='description' cols='95' rows='8' maxlength='2048' wrap='soft' style='resize: none'>$report_content</textarea>          
                                 <div id='characterLeft'></div>
                                 <br/>
                                 <input type='submit' value='Submit' name='frmEditReport'>

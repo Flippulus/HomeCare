@@ -10,4 +10,5 @@ function start() {
             $('#characterLeft').text(ch + ' characters left');
         }
     });
+    $('#reportTable').tablePagination({});
 }

@@ -17,7 +17,7 @@ class Rapportage extends CI_Controller
             
             
             $arrContents["strTitle"] = "Rapportages";
-            $arrContents["arrHeader"] = array("textarea" => "js", "rapportage" => "css", "table"=>"css");
+            $arrContents["arrHeader"] = array("textarea" => "js","tablePagination"=>"js" , "rapportage" => "css", "table"=>"css");
 
             $this->load->model("MenuItems_Model", "objMenuItems");
             $this->load->model("Rapportage_Model", "objRapportage");

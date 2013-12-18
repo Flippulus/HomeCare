@@ -26,6 +26,8 @@ function post_report($content,$by, $client="0")
                 VALUES ('".$client."','".  $time."','".strip_tags($content)."','".$by."')";
             mysql_query($sql);
         }
+        else
+        {}
     }
  }  
  
@@ -47,6 +49,8 @@ function post_report($content,$by, $client="0")
                 WHERE report_id ='$report_id'";
             mysql_query($sql);
         }
+        else
+        {}
     }
 }
 
