@@ -258,7 +258,7 @@ class Clienten_Model extends CI_Model
         $strContent.="";
         $strContent .="
          <div class='homecaretable'>
-            <form>
+            <form name='addClient' method='post'>
                 <table>
                     <thead>
                         <tr>
@@ -365,29 +365,27 @@ class Clienten_Model extends CI_Model
                                 <input type='text' name='apothecary'>
                             </td>
                         </tr>
-                        <tr><td colspan='2'><hr/></td></tr>
-                        <tr>
-                            <td>Toegevoegd door: </td>
-                            <td>
-                                nog doen
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Toegevoegd op: </td>
-                            <td>
-                                nog doen
-                            </td>
-                        </tr>
                         <tr>
                             <td>Datum van in zorg: </td>
                             <td>
-                                nog doen
+                                <input type='date' name='dateInCare'>
                             </td>
                         </tr>
                         <tr>
                             <td>Verantwoordelijke verzorger: </td>
                             <td>
-                                nog doen
+                                <select name='respUser'>";
+                                    $result=getDataBaseData("users");
+                                
+                                    while($arrUserData = mysql_fetch_assoc($result))
+                                    {
+                                       $strContent.="
+                                    <option value = '".$arrUserData["user_id"]."'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</option>";
+                                    }
+                                        
+        
+                                $strContent.="
+                                </select> 
                             </td>
                         </tr>
                         <tr><td colspan='2'><hr/></td></tr>
@@ -463,7 +461,7 @@ class Clienten_Model extends CI_Model
                         <tr>
                             <td>
                                 Er ging iets fout. Vraag je lokale admin voor hulp
-                                Bericht voor admin:' \$result=null bij showPages-->clienten_model'.
+                                Bericht voor admin:' \$result==null bij showPages-->clienten_model'.
                             </td>
                         </tr>";
         }
@@ -585,13 +583,18 @@ class Clienten_Model extends CI_Model
                         <td>";
                         if($arrTopicData["client_gender"]==1)
                         {
-                            $strContent .="Man";
+                            $strContent .="
+                                <input type='radio' name='sex' value='man' checked>Man<br>
+                                <input type='radio' name='sex' value='vrouw'>Vrouw";
                         }
                         else
                         {
-                           $strContent .="Vrouw" ;
+                           $strContent .="
+                                <input type='radio' name='sex' value='man'>Man<br>
+                                <input type='radio' name='sex' value='vrouw' checked>Vrouw" ;
                         }
                         $strContent .="
+                            
                         </td>
                     </tr>
                     <tr>
@@ -690,19 +693,6 @@ class Clienten_Model extends CI_Model
                     </tr>
                     <tr><td colspan='2'><hr/></td></tr>
                     <tr>
-                        <td>Toegevoegd door: </td>
-                        <td>".
-                            $arrTopicData["user_firstname"].
-                            "
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Toegevoegd op: </td>
-                        <td>".
-                            date("d/m/Y h:i",strtotime($arrTopicData["client_join_datetime"]))."
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Datum van in zorg: </td>
                         <td>".
                             date("d/m/Y",strtotime($arrTopicData["client_date_in_care"]))."
@@ -710,10 +700,27 @@ class Clienten_Model extends CI_Model
                     </tr>
                     <tr>
                         <td>Verantwoordelijke verzorger: </td>
-                        <td>".
-                            $arrResponsible['user_firstname'].
-                            "
-                        </td>
+                        <td>
+                            <select name='respUser'>";
+                            $result=getDataBaseData("users");
+
+                            while($arrUserData = mysql_fetch_assoc($result))
+                            {
+                                if($arrUserData["user_id"]==$arrTopicData['client_responsible_user'])
+                                {
+                                    $strContent.="
+                                    <option value = '".$arrUserData["user_id"]."' selected>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</option>";
+                                }
+                                else
+                                {
+                                    $strContent.="
+                                    <option value = '".$arrUserData["user_id"]."'>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</option>";
+                                }
+                            }
+                                        
+        
+                                $strContent.="</select> 
+                            </td>
                     </tr>
                     <tr><td colspan='2'><hr/></td></tr>
                     <tr>

@@ -6,8 +6,10 @@ class Rapportage extends CI_Controller
     function index()
     {
         //Runs script connecting to the Database
-        date_default_timezone_set("Europe/Brussels");
+        session_save_path(dirname('tmp/'));
         session_start();
+        date_default_timezone_set("Europe/Brussels");
+        
         connect_database();
 
         if (checkLogin() == true)

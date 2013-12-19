@@ -4,6 +4,7 @@ class Clienten extends CI_Controller
 {
     function index()
     {
+        session_save_path(dirname('tmp/'));
         session_start();
         date_default_timezone_set("Europe/Brussels");
         connect_database();
@@ -26,15 +27,16 @@ class Clienten extends CI_Controller
             $arrSubMenuItems = $this ->objMenuItems->getSubMenuItems("clienten");
             
             //Loading the model so the page contents can be created and given to the view
-            if((isset($_GET["client"]))&&($_GET["client"]=="Nieuw"))
+            
+            if(isset($_POST['frmAddClient']))
+            {
+                $strActiveSubMenu="client";
+                add_client($_POST['firstName'],$_POST['lastName'],$_POST['dateOfBirth'],$_POST['sex'],$_POST['civilState'],$_POST['partnerName'],$_POST['civilNumber'],$_POST['healtcareNumber'],$_POST['location'],$_POST['postal'],$_POST['street'],$_POST['number'],$_POST['mailbox'],$_POST['phone'],$_POST['cell'],$_POST['doctor'],$_POST['apothecary'],$_POST['dateInCare'],$_POST['respUser'],$_POST['familyData'],$_POST['indication'],$_POST['indicationDesc'],$_POST['anamnese'],$_POST['medication'],$_POST['extra']);
+                $arrContents["strContents"] = $this->objClienten->showPages($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
+            }
+            elseif((isset($_GET["client"]))&&($_GET["client"]=="Nieuw"))
             {
                 $arrContents["strContents"] = $this->objClienten->addUser($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
-            }
-            elseif(isset($_POST['frmAddClient']))
-            {
-                $strActiveSubMenu='client';
-                
-                $arrContents["strContents"] = $this->objClienten->showPages($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu);
             }
             elseif(isset($_GET['client_id']))
             {
