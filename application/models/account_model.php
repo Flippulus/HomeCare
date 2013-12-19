@@ -93,8 +93,3 @@ Class Account_Model extends CI_Model
     
    
 }
-
-
-
-
-?>

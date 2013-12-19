@@ -18,6 +18,8 @@ Class ActivateAccount extends CI_Controller
             $this->load->model("ActivateAccount_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
             
+            $arrContents["strContents"] = $this -> objModel -> getPageData();
+            
             $this->load->view("index_view", $arrContents);
         }
         else
