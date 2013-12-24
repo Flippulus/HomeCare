@@ -276,7 +276,9 @@ class Clienten_Model extends CI_Model
                         </tr>
                         <tr>
                             <td>Geboortedatum:</td>
-                            <td><input type='date' name='dateOfBirth'></td>
+                            <td>
+                                <input type='date' name='dateOfBirth'>
+                            </td>
                         </tr>
                         <tr>
                             <td>Geslacht</td>
@@ -552,11 +554,12 @@ class Clienten_Model extends CI_Model
                 {
                 $arrResponsible=  mysql_fetch_assoc(getDataBaseData('users', array('user_id'=>$arrTopicData['client_responsible_user'])));
                 $strContent .="
+            <form name='editClient' method='post'>        
             <table>
                 <thead>
                     <tr>
                         <td>".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</td>
-                        <td id='editClass'><a href=/index.php/clienten?save_client=".$arrTopicData["client_id"].">Sla op</a>
+                        <td id='editClass'><input type='submit' value='Sla op' name='frmEditClient'>
                     </tr>
                 </thead>
                 <tbody>
@@ -574,8 +577,8 @@ class Clienten_Model extends CI_Model
                     </tr>
                     <tr>
                         <td>Geboortedatum: </td>
-                        <td>".
-                            date("d/m/Y",strtotime($arrTopicData["client_birthdate"]))."
+                        <td>
+                            <input type='date' name='dateOfBirth' value=".date("d/m/Y",strtotime($arrTopicData["client_birthdate"])).">
                         </td>
                     </tr>
                     <tr>
@@ -694,8 +697,8 @@ class Clienten_Model extends CI_Model
                     <tr><td colspan='2'><hr/></td></tr>
                     <tr>
                         <td>Datum van in zorg: </td>
-                        <td>".
-                            date("d/m/Y",strtotime($arrTopicData["client_date_in_care"]))."
+                        <td>
+                            <input type='date' name='dateInCare' value=".date("d/m/Y",strtotime($arrTopicData["client_date_in_care"])).">
                         </td>
                     </tr>
                     <tr>
@@ -760,7 +763,8 @@ class Clienten_Model extends CI_Model
                         </td>
                     </tr>
                 </tbody>
-            </table>";
+            </table>
+            </form>";
             }    
             }
         }
