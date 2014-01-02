@@ -6,6 +6,7 @@ class Rapportage_Model extends CI_Model
     {
         $strSql="SELECT * FROM reports 
             LEFT JOIN users ON reports.reported_by_user=users.user_id 
+            WHERE report_client = 0
             ORDER BY report_id DESC";
         
         $strContent = "

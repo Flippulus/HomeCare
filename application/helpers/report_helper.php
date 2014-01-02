@@ -19,15 +19,10 @@ function post_report($content,$by, $client="0")
     }
     else
     {        
-        if ($client == "0")
-        {
             $time=date("Y-m-d H:i:s"); 
             $sql = "INSERT INTO reports (report_client,report_datetime,report_content,reported_by_user)
                 VALUES ('".$client."','".  $time."','".strip_tags($content)."','".$by."')";
             mysql_query($sql);
-        }
-        else
-        {}
     }
  }  
  
@@ -41,16 +36,11 @@ function post_report($content,$by, $client="0")
     } 
     else 
     {
-        if ($client == "0") 
-        {
             $time = date("Y-m-d H:i:s");
             $sql = "UPDATE reports 
                 SET report_content= '".strip_tags($content)."', report_datetime='".$time."'
                 WHERE report_id ='$report_id'";
             mysql_query($sql);
-        }
-        else
-        {}
     }
 }
 

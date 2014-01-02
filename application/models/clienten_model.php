@@ -486,12 +486,12 @@ class Clienten_Model extends CI_Model
                             </tr>
                             <tr class = 'client".$arrTopicData["client_id"]."'>
                                 <td>
-                                    <a href=/index.php/clienten?report_id=".$arrTopicData["client_id"].">Rapportages over ".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</a>
+                                    <a href=/index.php/clienten?client_report=".$arrTopicData["client_id"].">Rapportages over ".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</a>
                                 </td>
                             </tr>
                             <tr class = 'client".$arrTopicData["client_id"]."'>
                                 <td>
-                                    <a href=/index.php/clienten?doc_id=".$arrTopicData["client_id"].">Documenten van ".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</a>
+                                    <a href=/index.php/clienten?client_doc=".$arrTopicData["client_id"].">Documenten van ".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -783,6 +783,110 @@ class Clienten_Model extends CI_Model
         }
         $strContent .="
         </div>";
+        $strContent .= build_footer();
+        
+        return $strContent;
+    }
+    
+    function getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu,$strId)
+    {
+        $boolCheck=false;
+        $strSql="SELECT * FROM reports 
+            LEFT JOIN users ON reports.reported_by_user=users.user_id 
+            WHERE report_client = '$strId'
+            ORDER BY report_id DESC";
+         
+         $strContent = "
+            </head>
+                <body onload='start();'>";
+        
+        $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
+        
+        $strContent.="";
+        $result = mysql_query($strSql);
+        $strContent .="    
+        <div class='homecaretable'>
+            <table id='reportTable'>
+                <thead>
+                    <tr>
+                        <td colspan='4'>Rapportages</td>
+                    </tr>
+                </thead>
+                <tbody>";
+        
+        if($result == null)
+        {
+            $strContent .="
+                    <tr>
+                        <td>
+                            Er zijn  nog geen rapportages in de database.
+                        </td>
+                    </tr>";
+        }
+        elseif ($result !=false)
+        {
+            while($arrTopicData = mysql_fetch_assoc($result))
+            {
+                $boolCheck=true;
+                if($arrTopicData["report_client"]==$strId)
+                {
+                    $strContent .="
+                        <tr>
+                            <td >".
+                                $arrTopicData["report_content"]."
+                            </td>
+                            <td>".
+                                "at:".$arrTopicData["report_datetime"]."
+                            </td>
+                            <td>".
+                                "by:". $arrTopicData["user_firstname"]."
+                            </td>";
+
+                    if ($_SESSION['userid']==$arrTopicData["user_id"])
+                    {
+                        $strContent.="
+                            <td>
+                                <a href='/index.php/clienten?client_report=".$strId."&report_id=".$arrTopicData["report_id"]."'>Edit</a>
+                            </td>
+                        </tr>";
+                    }
+                    else{$strContent.="
+                            <td>
+                            </td>
+                        </tr>";}
+                } 
+                
+            }
+            if($boolCheck==true)
+            {
+                //Leeg laten, Dit is slechts een controle om te kijken of de while lus uitgevoerd word
+            }
+            else
+            {
+                $strContent .="
+
+                    <td>
+                        Er zijn  nog geen rapportages in de database over deze client.
+                    </td>
+                ";
+            }
+        }
+        else
+        {
+            $strContent .="
+                    <tr>
+                        <td>
+                            Error: Er zijn momenteel problemen met de database. Probeer later opnieuw.
+                            De database kan even offline zijn.
+                        </td>
+                    </tr>";
+        }
+        $strContent .="
+                </tbody>
+            </table>
+        </div>";
+        
         $strContent .= build_footer();
         
         return $strContent;
