@@ -13,12 +13,14 @@ Class Documenten_Model extends CI_Model
 
         $strContents.= "
                 <div id = \"upload\">
-                    <form method=\"POST\" enctype=\"multipart/form-data\" >
+                    <form method = \"POST\" enctype = \"multipart/form-data\" >
                         Select File To Upload:
-                        <br />
-                        <input type=\"file\" name=\"userfile\" />
-                        <br />
-                        <input type=\"submit\" name=\"frmFileUpload\" value=\"Uploaden\" />
+                        <br>
+                        <input type = \"file\" name = \"userfile\" />
+                        <br>
+                        <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
+                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selectedmap\" value = \"root\">
+                        <input type = \"hidden\" id = \"selectedmap\" name = \"selecteddoc\" value = \"\">
                     </form>
                 </div>
                 <div id = \"documents_container\">";
@@ -47,17 +49,17 @@ Class Documenten_Model extends CI_Model
                 if($strMap != "")
                 {
                     $strContents .= "
-                        <li id = \"map_$strMap\">$strMap</li>";
+                        <li id = \"map_$strMap\" onclick = \"selectmap(this);\">$strMap</li>";
                     
                     if(!empty($arrDoc))
                     {
                         $strContents .= "
-                        <ul class = \"docs\">";
+                        <ul id = \"map_$strMap\" class = \"docs\">";
                         
                         foreach ($arrDoc as $intId => $strDoc)
                         {
                             $strContents .= "
-                            <li id = \"doc_$intId\">$strDoc</li>";
+                            <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDoc</li>";
                         }
                         $strContents .= "
                         </ul>";
@@ -73,7 +75,7 @@ Class Documenten_Model extends CI_Model
                     foreach($arrDoc as $intId => $strDoc)
                     {
                         $strContents .= "
-                        <li id = \"doc_$intId\">$strDoc</li>";
+                        <li id = \"doc_$intId\" onclick = \"selectmap(this);\">$strDoc</li>";
                     }
                 }
             }
