@@ -810,7 +810,7 @@ class Clienten_Model extends CI_Model
             <table id='reportTable'>
                 <thead>
                     <tr>";
-                        $arrClientName= mysql_fetch_assoc(getDataBaseData('clients'));
+                        $arrClientName= mysql_fetch_assoc(getDataBaseData('clients', array("client_id" => $strId)));
                         
                         $strContent .="
                         <td colspan='4'>Rapportages over ". $arrClientName["client_firstname"]." ".$arrClientName["client_lastname"] ."</td>";
