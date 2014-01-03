@@ -36,6 +36,8 @@ div#documents_container
 ul.maps>li
 {
     cursor: pointer;
+    list-style: none;
+    background-image: url("www.rimiclacihomecare.co.nf/images/folder.png");
 }
 
 ul.maps>li:hover
@@ -51,6 +53,7 @@ ul.docs
 ul.docs>li
 {
     cursor: pointer;
+    list-style: none;
 }
 
 ul.docs>li:hover

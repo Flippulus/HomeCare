@@ -19,8 +19,8 @@ Class Documenten_Model extends CI_Model
                         <input type = \"file\" name = \"userfile\" />
                         <br>
                         <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
-                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selectedmap\" value = \"root\">
-                        <input type = \"hidden\" id = \"selectedmap\" name = \"selecteddoc\" value = \"\">
+                        <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
+                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
                     </form>
                 </div>
                 <div id = \"documents_container\">";
@@ -49,7 +49,7 @@ Class Documenten_Model extends CI_Model
                 if($strMap != "")
                 {
                     $strContents .= "
-                        <li id = \"map_$strMap\" onclick = \"selectmap(this);\">$strMap</li>";
+                        <li class = \"map\" id = \"map_$strMap\" onclick = \"selectmap(this);\">$strMap</li>";
                     
                     if(!empty($arrDoc))
                     {
@@ -75,7 +75,7 @@ Class Documenten_Model extends CI_Model
                     foreach($arrDoc as $intId => $strDoc)
                     {
                         $strContents .= "
-                        <li id = \"doc_$intId\" onclick = \"selectmap(this);\">$strDoc</li>";
+                        <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDoc</li>";
                     }
                 }
             }

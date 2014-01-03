@@ -1,35 +1,35 @@
 function selectmap(object)
 {
-    var arrChildren = document.getElementsByClassName("maps")[0].childNodes;
-    for(var i = 0; i < arrChildren.length; i++)
+    var arrMaps = document.getElementsByClassName("map");
+    for(var i = 0; i < arrMaps.length; i++)
     {
-        if(arrChildren[i].nodeName.toLowerCase() === "li")
+        if(arrMaps[i].nodeName.toLowerCase() === "li")
         {
-            if(arrChildren[i].id === object.id)
+            if(arrMaps[i].id === object.id)
             {
-                object.style.color = "red";
-                var arrMaps = document.getElementsByClassName("docs");
-                for(var i2 = 0; i2 < arrMaps.length; i2++)
+                object.style.color = "#ff4c4c";
+                var arrDocs = document.getElementsByClassName("docs");
+                for(var i2 = 0; i2 < arrDocs.length; i2++)
                 {
-                    if(arrMaps[i2].id == object.id)
+                    if(arrDocs[i2].id === object.id)
                     {
-                        if(arrMaps[i2].style.display == "block")
-                        {arrMaps[i2].style.display = "none";}
+                        if(arrDocs[i2].style.display === "block")
+                        {arrDocs[i2].style.display = "none";}
                         else
-                        {arrMaps[i2].style.display = "block";}
+                        {arrDocs[i2].style.display = "block";}
                     }
                 }
             }
             else
             {
-                arrChildren[i].style.color= "#EEEEEE";
+                arrMaps[i].style.color= "#EEEEEE";
             }
         }
     }
-    
+    document.getElementById("selectedmap").value = object.id;
 }
 
 function selectdoc(object)
 {
-    
+    document.getElementById("selecteddoc").value = object.id;
 }
