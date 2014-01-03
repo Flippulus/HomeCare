@@ -10,7 +10,7 @@ function createPageStart($strTitle, $arrCss)
         <meta http-equiv = \"content-type\" content=\"text/html;charset = utf-8\" />
         <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/default.css\"/>
         <link type = \"text/css\" media = \"screen\" rel = \"stylesheet\" href = \"http://www.rimiclacihomecare.co.nf/css/menu.css\"/>
-        <link rel=\"shortcut icon\" type=\"image/png\" href=\"http://www.rimiclacihomecare.co.nf/images/faviconHomeCare.png\">
+        <link rel=\"shortcut icon\" type=\"image/png\" href=\"/images/default/faviconHomeCare.png\">
         <script src = \"http://www.rimiclacihomecare.co.nf/javascript/jQuery.js\" type = \"text/javascript\"></script>";
     foreach ($arrCss as $strCss => $strType)
     {

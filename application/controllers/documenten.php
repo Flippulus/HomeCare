@@ -20,7 +20,7 @@ class Documenten extends CI_Controller
             {
                 //Variabelen voor header en titel
                 $arrContents["strTitle"] = "Document uploaden";
-                $arrContents["arrHeader"] = array();
+                $arrContents["arrHeader"] = array("documenten" => "css", "docs_js" => "js");
 
                 $this->load->model("Documenten_Model", "objModel");
                 $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
