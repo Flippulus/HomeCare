@@ -890,7 +890,31 @@ class Clienten_Model extends CI_Model
         $strContent .="
                 </tbody>
             </table>
-        </div>";
+        </div>
+        <br/>
+        <br/>
+        <br/>
+                    <div class='homecaretable'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Voeg een nieuwe rapportage toe bij deze cliënt</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <form name='client_report_input'  method='post'>
+                                            <textarea name='report_content' id='description' cols='94' rows='8' maxlength='2048' wrap='soft' style='resize: none'></textarea>          
+                                            <div id='characterLeft'></div>
+                                            <br/>
+                                            <input type='submit' value='Submit' name='frmSubmitClientReport'>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>";
         
         $strContent .= build_footer();
         

@@ -48,6 +48,12 @@ class Clienten extends CI_Controller
                 $strId= $_GET['client_report'];
                 $arrContents["strContents"] = $this->objClienten->getReportData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu,$strId);
             }
+            elseif(isset($_POST['frmSubmitClientReport']))
+            {                
+                post_report($_POST['report_content'],$_SESSION['userid'] ,$_GET['client_report']);
+                $strId= $_GET['client_report'];
+                $arrContents["strContents"] = $this->objClienten->getReportData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu,$strId);
+            }
             elseif(isset($_GET['report_id']))
             {
                 $strId= $_GET['report_id'];
