@@ -247,7 +247,7 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
     
-    function addUser($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu) //Mee bezig
+    function addUser($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu)
     {
         $strContent = "
             </head>
@@ -809,8 +809,13 @@ class Clienten_Model extends CI_Model
         <div class='homecaretable'>
             <table id='reportTable'>
                 <thead>
-                    <tr>
-                        <td colspan='4'>Rapportages</td>
+                    <tr>";
+                        $arrClientName= mysql_fetch_assoc(getDataBaseData('clients'));
+                        
+                        $strContent .="
+                        <td colspan='4'>Rapportages over ". $arrClientName["client_firstname"]." ".$arrClientName["client_lastname"] ."</td>";
+            
+                    $strContent .="
                     </tr>
                 </thead>
                 <tbody>";
@@ -892,6 +897,4 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
 }
-
-
 ?>

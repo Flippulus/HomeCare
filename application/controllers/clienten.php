@@ -18,7 +18,8 @@ class Clienten extends CI_Controller
             {$strActiveSubMenu = "client";}
             
             $arrContents["strTitle"] = "Clienten";
-            $arrContents["arrHeader"] = array("table"=>"css","clienten"=>"css", "rapportage" => "css", "showHide"=>"js", "textarea" => "js","tablePagination"=>"js" );
+            $arrContents["arrHeader"] = array("table"=>"css","clienten"=>"css", "rapportage" => "css", 
+                                              "showHide"=>"js", "textarea" => "js","tablePagination"=>"js" );
             
             $this->load->model("MenuItems_Model", "objMenuItems");
             $this->load->model("Clienten_Model", "objClienten");
@@ -70,7 +71,6 @@ class Clienten extends CI_Controller
             {
                 $strId= $_GET['edit_client'];
                 $arrContents["strContents"] = $this->objClienten->updateClient($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId);
-            
             }
             else
             {
