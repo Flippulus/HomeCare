@@ -15,7 +15,8 @@ class Home_Model extends CI_Model
         
         
         $strContents .= "
-        <h1>This site is still under construction!</h1>";
+        <h1>This site is still under construction!</h1>
+        <div id  = \"test123\">";
         
 		
         $strContents .= build_footer();
