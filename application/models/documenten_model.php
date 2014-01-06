@@ -23,8 +23,14 @@ Class Documenten_Model extends CI_Model
                         <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
                     </form>
                 </div>
+                <div id = \"file_info\">
+                    
+                </div>
                 <div id = \"documents_container\">";
-        
+        $strJs = "
+                <script>
+                    
+                </scipt>";
         $result2 = getDataBaseData("docmaps");
         
         while($arrMapNames = mysql_fetch_assoc($result2))

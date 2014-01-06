@@ -31,19 +31,15 @@ Class Account extends CI_Controller
             if(isset($_POST['frmSaveAccount']))
             {
                 
-                $arrContents[""];
-                
+                $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'account');
             }
-            
-            
-            
             elseif(isset($_GET['edit_account']))
             {
                  $arrContents["strContents"] = $this->objModel->getAdjustData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'account', $_GET['edit_account']);
             }
             else
             {
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'account');
+                $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'account');
             }
            
             $this->load->view("index_view", $arrContents);

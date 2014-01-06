@@ -18,6 +18,23 @@ div#upload
     padding: 2px;
 }
 
+div#file_info
+{
+    float: left;
+    margin-top: 10%;
+    margin-left: 2%;
+    color: #EEEEEE;
+    background-color: #656565;
+    opacity: 0.8;
+    border-bottom: 2px solid #ff4c4c;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    padding: 2px;
+    min-width: 200px;
+    min-height: 100px;
+}
+
 div#documents_container
 {
     padding: 5px;
@@ -33,14 +50,14 @@ div#documents_container
     margin-left: 40%;
 }
 
-ul.maps>li
+li.map
 {
     cursor: pointer;
     list-style: none;
-    background-image: url("www.rimiclacihomecare.co.nf/images/folder.png");
+    list-style-image: url(/images/folder.png);
 }
 
-ul.maps>li:hover
+ul.maps li:hover
 {
     text-decoration: underline;
 }
@@ -50,13 +67,8 @@ ul.docs
     display: none;
 }
 
-ul.docs>li
+li.doc
 {
     cursor: pointer;
     list-style: none;
-}
-
-ul.docs>li:hover
-{
-    text-decoration: underline;
 }
