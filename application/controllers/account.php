@@ -30,7 +30,7 @@ Class Account extends CI_Controller
             
             if(isset($_POST['frmSaveAccount']))
             {
-                
+                changeAccountData();
                 $arrContents["strContents"] = $this -> objModel -> getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,'account');
             }
             elseif(isset($_GET['edit_account']))
