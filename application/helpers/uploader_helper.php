@@ -3,7 +3,6 @@
 
 function getUploadConfig($strType, $strDir)
 {
-    echo realpath(APPPATH . '../documents/'.$strType);
     if ($strDir == false)
     {
         return array(
@@ -23,5 +22,27 @@ function getUploadConfig($strType, $strDir)
             'overwrite' => TRUE,
             'max_size' => "5000KB"
         );
+    }
+}
+
+function uploadFile($strAction, $intClientId = 1)
+{
+    $CI =& get_instance();
+    
+    if($strAction == "general")
+    {
+        $CI -> load -> library("upload", getUploadConfig("general", $_POST["selectedmap"]));
+        if($CI -> upload -> do_upload())
+        {
+            
+        }
+        else
+        {
+            echo $CI -> upload -> display_errors();
+        }
+    }
+    else
+    {
+        $CI -> load -> library("upload", getUploadConfig("clients", $intClientId));
     }
 }

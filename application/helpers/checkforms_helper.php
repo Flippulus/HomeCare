@@ -38,10 +38,13 @@ function addAccount()
     $strTelephone = $_POST['user_phone'];
     $strMobile = $_POST['user_cell']; 
     
-    
-     changeDataBaseRecord('users', array("user_firstname" => $strFirstname,"user_lastname" => $strLastname,"user_password" => $strFirstpassword,"user_password" => $strSecondpassword, "user_street" => $strStreet, "user_streetnumber" => $strStreetnumber, "user_postal" => $strPostal,
-                                        "user_location" => $strCity, "user_phone" => $strTelephone, "user_cell" => $strMobile, "user_activated" => "true"
-                                        ), "user_activated", $_GET["id"]);
-    
-    
+    if(checkPassword($strFirstpassword, $strSecondpassword) == true)
+    {
+        $arrUserData = mysql_fetch_assoc($result = getDataBaseData("users", array("user_activated" => $_GET["id"])));
+        $strEncryptedPassword = encryptPassword($arrUserData["user_mail"], $strFirstpassword);
+        changeDataBaseRecord('users', array("user_firstname" => $strFirstname, "user_lastname" => $strLastname, "user_password" => $strEncryptedPassword, "user_rights" => "0",
+                                            "user_street" => $strStreet, "user_streetnumber" => $strStreetnumber, "user_postal" => $strPostal,
+                                            "user_location" => $strCity, "user_phone" => $strTelephone, "user_cell" => $strMobile, "user_activated" => "true", "user_level" => 1),
+                                            "user_activated", $_GET["id"]);
+    }
 }

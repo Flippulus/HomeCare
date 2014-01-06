@@ -24,7 +24,6 @@ Class Documenten_Model extends CI_Model
                     </form>
                 </div>
                 <div id = \"file_info\">
-                    
                 </div>
                 <div id = \"documents_container\">";
         $strJs = "
@@ -63,17 +62,16 @@ Class Documenten_Model extends CI_Model
                         
                         foreach ($arrDoc as $intId => $strDoc)
                         {
-                            $arrDocType = split(".", $strDoc);
+                            $arrDocType = preg_split('/[.]/', $strDoc);
                             $strDocName = $arrDocType[0];
                             $strDocType = $arrDocType[1];
                             $strContents .= "
-                            <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDoc</li>";
-                            $strJs .= "[$intId, $strDoc]";
+                            <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDocName</li>";
+                            $strJs .= "[$intId, '$strDocName', '$strDocType', '$strMap'], ";
                         }
                         $strContents .= "
                         </ul>";
                     }
-                    
                 }
             }
             
@@ -83,8 +81,12 @@ Class Documenten_Model extends CI_Model
                 {
                     foreach($arrDoc as $intId => $strDoc)
                     {
+                        $arrDocType = preg_split('/[.]/', $strDoc);
+                        $strDocName = $arrDocType[0];
+                        $strDocType = $arrDocType[1];
                         $strContents .= "
-                        <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDoc</li>";
+                        <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDocName</li>";
+                        $strJs .= "[$intId, '$strDocName', '$strDocType', 'root'], ";
                     }
                 }
             }
@@ -95,7 +97,7 @@ Class Documenten_Model extends CI_Model
         $strContents .= "            
                 </div>";
         
-        $strJs .= "
+        $strJs .= "];
             </script>";
         
         $strContents .= $strJs;
