@@ -11,6 +11,7 @@ Class ActivateAccount extends CI_Controller
         session_start();
         connect_database();
         //Runs script connecting to the Database
+        
         if(isset($_GET["id"]))
         {
             $arrContents["strTitle"] = "HomeCare Account";
@@ -18,12 +19,25 @@ Class ActivateAccount extends CI_Controller
             $this->load->model("ActivateAccount_Model", "objModel");
             //Loading the model so the page contents can be created and given to the view
             
+             if(isset($_POST['frmSaveAccount']))
+            {
+                addAccount();
+                load_controller("start");
+              
+            }
+            else
+            {
             $arrContents["strContents"] = $this -> objModel -> getPageData();
+            $this->load->view("index_view", $arrContents); 
+            }
             
-            $this->load->view("index_view", $arrContents);
         }
         else
+            
         {load_controller("start");}
+        
+        
+        
     }
     
     
