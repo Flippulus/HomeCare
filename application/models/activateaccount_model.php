@@ -32,6 +32,14 @@ Class ActivateAccount_Model extends CI_Model
                                 </tr>
                                 <tr>
                                     <td>
+                                         <input required name = \"user_password\" type= 'password' placeholder = 'Wachtwoord' />
+                                    </td>
+                                    <td>
+                                         <input required name = \"user_password\" type= 'password' placeholder = 'Herhaal wachtwoord' />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                          <input required name = \"user_street\" type= 'text' placeholder = 'Straat' />
                                     </td>
                                     <td>

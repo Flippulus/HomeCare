@@ -29,6 +29,8 @@ function addAccount()
 {
     $strFirstname = $_POST['user_firstname'];
     $strLastname = $_POST['user_lastname'];
+    $strFirstpassword = $_POST['user_password'];
+    $strSecondpassword = $_POST['user_password'];
     $strStreet = $_POST['user_street'];
     $strStreetnumber = $_POST['user_streetnumber'];
     $strPostal = $_POST['user_postal'];
@@ -37,8 +39,8 @@ function addAccount()
     $strMobile = $_POST['user_cell']; 
     
     
-     changeDataBaseRecord('users', array("user_firstname" => $strFirstname,"user_lastname" => $strLastname, "user_street" => $strStreet, "user_streetnumber" => $strStreetnumber, "user_postal" => $strPostal,
-                                        "user_location" => $strCity, "user_phone" => $strTelephone, "user_cell" => $strMobile
+     changeDataBaseRecord('users', array("user_firstname" => $strFirstname,"user_lastname" => $strLastname,"user_password" => $strFirstpassword,"user_password" => $strSecondpassword, "user_street" => $strStreet, "user_streetnumber" => $strStreetnumber, "user_postal" => $strPostal,
+                                        "user_location" => $strCity, "user_phone" => $strTelephone, "user_cell" => $strMobile, "user_activated" => "true"
                                         ), "user_activated", $_GET["id"]);
     
     
