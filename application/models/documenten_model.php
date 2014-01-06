@@ -29,8 +29,7 @@ Class Documenten_Model extends CI_Model
                 <div id = \"documents_container\">";
         $strJs = "
                 <script>
-                    
-                </scipt>";
+                    var arrDocs = [";
         $result2 = getDataBaseData("docmaps");
         
         while($arrMapNames = mysql_fetch_assoc($result2))
@@ -64,8 +63,12 @@ Class Documenten_Model extends CI_Model
                         
                         foreach ($arrDoc as $intId => $strDoc)
                         {
+                            $arrDocType = split(".", $strDoc);
+                            $strDocName = $arrDocType[0];
+                            $strDocType = $arrDocType[1];
                             $strContents .= "
                             <li class = \"doc\" id = \"doc_$intId\" onclick = \"selectdoc(this);\">$strDoc</li>";
+                            $strJs .= "[$intId, $strDoc]";
                         }
                         $strContents .= "
                         </ul>";
@@ -92,6 +95,10 @@ Class Documenten_Model extends CI_Model
         $strContents .= "            
                 </div>";
         
+        $strJs .= "
+            </script>";
+        
+        $strContents .= $strJs;
 
         $strContents .= build_footer();
         return $strContents;

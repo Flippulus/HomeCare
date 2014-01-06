@@ -20,13 +20,8 @@ function changeAccountData()
     $strMobile = $_POST['mobile'];
     $strMailadress = $_POST['mailadress'];
     
-    changeDataBaseRecord('users', array("user_street" => $strStreet));
-    changeDataBaseRecord('users', array("user_streetnumber" => $strStreetnumber));
-    changeDataBaseRecord('users', array("user_postal" => $strPostal));
-    changeDataBaseRecord('users', array("user_location" => $strCity));
-    changeDataBaseRecord('users', array("user_phone" => $strTelephone));
-    changeDataBaseRecord('users', array("user_cell" => $strMobile));
-    changeDataBaseRecord('users', array("user_mail" => $strMailadress));
-
+    changeDataBaseRecord('users', array("user_street" => $strStreet, "user_streetnumber" => $strStreetnumber, "user_postal" => $strPostal,
+                                        "user_location" => $strCity, "user_phone" => $strTelephone, "user_cell" => $strMobile,
+                                        "user_mail" => $strMailadress), "user_id", $_SESSION["userid"]);
     
 }

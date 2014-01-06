@@ -62,21 +62,25 @@ Class Account_Model extends CI_Model
         $arrUserData = mysql_fetch_assoc($result);
         {
             
-            $strContents .= "<table border ='1'>
+            $strContents .= "
+                    <form method = \"post\">
+                        <table border ='1'>
                             <thead>
                             <tr style='cursor: pointer;'>
                                 <td>".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</td>
                                 <td id='editClass'><input type ='submit' name ='frmSaveAccount' value='Sla op'/></td>
-                            </thead>
                             </tr>
+                            </thead>
                             
-            <tr><td>Straat: </td><td><input type='text' name='street' value='".$arrUserData["user_street"]."'placeholder ='Straat'/></td></tr>
-            <tr><td>Nummer: </td><td><input type='text' name='number' value='".$arrUserData["user_streetnumber"]."' placeholder='Nummer'/></td></tr>
-            <tr><td>Postcode: </td><td><input type='number' name='postal' value='".$arrUserData["user_postal"]."' placeholder='Postcode'/></td></tr>
-            <tr><td>Gemeente: </td><td><input type='text' name='city' value='".$arrUserData["user_location"]."' placeholder='Gemeente'/></td></tr>
-            <tr><td>Telefoon: </td><td><input type='number' name='telephone' value='".$arrUserData["user_phone"]."' placeholder='Telefoon'/></td></tr>
-            <tr><td>GSM: </td><td><input type='number' name='mobile' value='".$arrUserData["user_cell"]."' placeholder='GSM'/></td></tr>
-            <tr><td>Email: </td><td><input type='text' name='mailadress' value='".$arrUserData["user_mail"]."' placeholder='Email'/></td></tr></table>";
+                            <tr><td>Straat: </td><td><input type='text' name='street' value='".$arrUserData["user_street"]."'placeholder ='Straat'/></td></tr>
+                            <tr><td>Nummer: </td><td><input type='text' name='number' value='".$arrUserData["user_streetnumber"]."' placeholder='Nummer'/></td></tr>
+                            <tr><td>Postcode: </td><td><input type='number' name='postal' value='".$arrUserData["user_postal"]."' placeholder='Postcode'/></td></tr>
+                            <tr><td>Gemeente: </td><td><input type='text' name='city' value='".$arrUserData["user_location"]."' placeholder='Gemeente'/></td></tr>
+                            <tr><td>Telefoon: </td><td><input type='number' name='telephone' value='".$arrUserData["user_phone"]."' placeholder='Telefoon'/></td></tr>
+                            <tr><td>GSM: </td><td><input type='number' name='mobile' value='".$arrUserData["user_cell"]."' placeholder='GSM'/></td></tr>
+                            <tr><td>Email: </td><td><input type='text' name='mailadress' value='".$arrUserData["user_mail"]."' placeholder='Email'/></td></tr>
+                    </table>
+                </form>";
         }
         
         $strContents .="</div>";
