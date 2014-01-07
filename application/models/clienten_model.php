@@ -928,19 +928,18 @@ class Clienten_Model extends CI_Model
     //Deze functie laat de documenten zien die bij de clienten horen
     function getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId)
     {
-        $strSql="SELECT * FROM documents 
-            LEFT JOIN clients ON doc_about_client=client_id
-            WHERE doc_about_client = '$strId'";
-         
-         $strContent = "
+        $result1 = getDataBaseData("clients", array("client_id" => $strId));
+        $result2 = getDataBaseData("documents", array("doc_about_client" => $strId));
+        
+        $arrClientData = mysql_fetch_assoc($result1);
+        
+        $strContent = "
             </head>
                 <body onload='start();'>";
         
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
-        $strContent.="";
-        $result = mysql_query($strSql);
         $strContent.= "
                 <div id = \"upload\">
                     <form method = \"POST\" enctype = \"multipart/form-data\" >
@@ -949,13 +948,23 @@ class Clienten_Model extends CI_Model
                         <input type = \"file\" name = \"userfile\" />
                         <br>
                         <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
-                        <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
                         <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
                     </form>
                 </div>
                 <div id = \"file_info\">
                 </div>
-                <div id = \"documents_container\">";
+                <div id = \"documents_container\">
+                    <ul class = \"docs\">";
+        
+        while($arrDocData = mysql_fetch_assoc($result2))
+        {
+            $strContent .= "
+                        <li id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
+        }
+        
+        $strContent .= "
+                    </ul>
+                </div>";
         
         $strContent .= build_footer();
         
@@ -963,5 +972,3 @@ class Clienten_Model extends CI_Model
     }
 
 }
-
-?>
