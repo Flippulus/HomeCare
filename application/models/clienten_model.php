@@ -462,7 +462,7 @@ class Clienten_Model extends CI_Model
          if($result == null)
         {
             $strContent .="
-                    <table>
+                    <table border='1'>
                         <tr>
                             <td>
                                 Er ging iets fout. Vraag je lokale admin voor hulp
@@ -480,6 +480,7 @@ class Clienten_Model extends CI_Model
                             <tr style='cursor:pointer;' onclick=\"showHide('client','".$arrTopicData["client_id"]."');\">
                                 <td colspan='2'>".$arrTopicData["client_firstname"]." ".$arrTopicData["client_lastname"]."</td>
                             </tr>
+                            
                         </thead>
                         <tbody>
                             <tr style='display:none' id= '".$arrTopicData["client_id"]."' class = 'client".$arrTopicData["client_id"]."'>
@@ -498,7 +499,8 @@ class Clienten_Model extends CI_Model
                                 </td>
                             </tr>
                         </tbody>
-                    </table>";
+                    </table>
+                    <br/>";
             }                   
         }
         
@@ -570,13 +572,13 @@ class Clienten_Model extends CI_Model
                     <tr>
                         <td>Naam: </td>
                         <td>
-                            <input type='text' name='firstName' value=".$arrTopicData["client_firstname"].">
+                            <textarea name='firstName' id='firstName' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_firstname"]."</textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>Achternaam: </td>
                         <td>
-                            <input type='text' name='lastName' value=".$arrTopicData["client_lastname"].">
+                            <textarea name='lastName' id='lastName' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_lastname"]."</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -627,7 +629,7 @@ class Clienten_Model extends CI_Model
                     <tr>
                         <td>Naam van de partner: </td>
                         <td>
-                            <input type='text' name='partnerName' value=".$arrTopicData["client_partner_name"].">
+                            <textarea name='partnerName' id='partnerName' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_partner_name"]."</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -646,7 +648,7 @@ class Clienten_Model extends CI_Model
                     <tr>
                         <td>Gemeente: </td>
                         <td>
-                            <input type='text' name='location' value=".$arrTopicData["client_location"].">
+                            <textarea name='location' id='location' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_location"]."</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -658,7 +660,7 @@ class Clienten_Model extends CI_Model
                     <tr>
                         <td>Adres: </td>
                         <td>
-                            <input type='text' name='street' value=".$arrTopicData["client_streetname"].">
+                            <textarea name='street' id='street' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_streetname"]."</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -689,13 +691,13 @@ class Clienten_Model extends CI_Model
                     <tr>
                         <td>Dokter van de cliënt: </td>
                         <td>
-                            <input type='text' name='doctor' value=".$arrTopicData["client_doctor"].">
+                            <textarea name='doctor' id='doctor' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_doctor"]."</textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>Apotheker van de Cliënt: </td>
                         <td>
-                            <input type='text' name='apothecary' value=".$arrTopicData["client_apothecary"].">
+                            <textarea name='apothecary' id='apothecary' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_apothecary"]."</textarea>
                         </td>
                     </tr>
                     <tr><td colspan='2'><hr/></td></tr>
