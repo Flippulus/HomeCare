@@ -24,7 +24,7 @@ class Home extends CI_Controller
             $this->load->view("index_view", $arrContents);
         }
         else
-        {load_controller('start');}
+        {header("Location: http://www.rimiclacihomecare.co.nf");}
     }
 
 }

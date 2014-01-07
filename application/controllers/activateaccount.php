@@ -22,7 +22,7 @@ Class ActivateAccount extends CI_Controller
              if(isset($_POST['frmSaveAccount']))
             {
                 addAccount();
-                load_controller("start");
+                header("Location: http://localhost:8080/meet2eat/index.php");
               
             }
             else
@@ -34,7 +34,7 @@ Class ActivateAccount extends CI_Controller
         }
         else
             
-        {load_controller("start");}
+        {header("Location: http://localhost:8080/meet2eat/index.php");}
         
         
         

@@ -28,6 +28,6 @@ class Planning extends CI_Controller
             $this->load->view("index_view", $arrContents);
         }
         else
-        {load_controller('start');}
+        {header("Location: http://localhost:8080/meet2eat/index.php");}
     }
 }

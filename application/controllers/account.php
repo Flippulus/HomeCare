@@ -47,12 +47,9 @@ Class Account extends CI_Controller
             
         }
         else
-        {load_controller('start');}
+        {header("Location: http://localhost:8080/meet2eat/index.php");}
     }
     
     
     
 }
-
-
-?>
