@@ -123,6 +123,6 @@ class Clienten extends CI_Controller
             $this->load->view("index_view", $arrContents);
         }
         else
-        {header("Location: http://localhost:8080/meet2eat/index.php");}
+        {header("Location: www.rimiclacihomecare.co.nf");}
     }
 }

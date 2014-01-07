@@ -68,7 +68,7 @@ class Rapportage extends CI_Controller
         }
         else
         {
-            header("Location: http://localhost:8080/meet2eat/index.php");
+            header("Location: www.rimiclacihomecare.co.nf");
         }
     }
 
