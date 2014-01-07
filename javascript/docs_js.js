@@ -26,7 +26,14 @@ function selectmap(object)
             }
         }
     }
-    document.getElementById("selectedmap").value = object.id.replace(/map_/g, "");
+    var mapName = object.id.replace(/map_/g, "");
+    if(document.getElementById("selectedmap").value === mapName)
+    {
+        document.getElementById("selectedmap").value = "root";
+        object.style.color = "#EEEEEE";
+    }
+    else
+    {document.getElementById("selectedmap").value = mapName;}
 }
 
 function selectdoc(object)

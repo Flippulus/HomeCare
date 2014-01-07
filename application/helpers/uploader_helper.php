@@ -34,7 +34,14 @@ function uploadFile($strAction, $intClientId = 1)
         $CI -> load -> library("upload", getUploadConfig("general", $_POST["selectedmap"]));
         if($CI -> upload -> do_upload())
         {
-            
+            $result = getDataBaseData("documents", array("doc_name" => $CI -> upload -> file_name, "doc_map" => $_POST["selectedmap"]));
+            if($result != false)
+            {
+                $arrDocData = mysql_fetch_assoc($result);
+                deleteFromDataBase("documents", "doc_id", $arrDocData["doc_id"]);
+            }
+            insertDataBaseData("documents", array("doc_name" => $CI -> upload -> file_name, "doc_map" => $_POST["selectedmap"],
+                                                   "doc_size" => $CI -> upload -> file_size, "doc_type" => $CI -> upload -> file_ext));
         }
         else
         {

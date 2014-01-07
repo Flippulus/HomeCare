@@ -77,7 +77,7 @@ function insertDataBaseData($strTable, $arrParameters)
 
     foreach ($arrParameters as $strParameter => $strParamValue)
     {
-        if ($strParamValue != end($arrParameters))
+        if ($strParamValue !== end($arrParameters))
         {
             $strSql1 .= $strParameter . ", ";
             $strSql2 .= "\"" . $strParamValue . "\", ";

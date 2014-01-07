@@ -3,26 +3,11 @@
     Author     : Phil, Rob, Kenneth
 */
 
-div#upload
-{
-    float: right;
-    margin-top: 10%;
-    margin-right: 2%;
-    color: #EEEEEE;
-    background-color: #656565;
-    opacity: 0.8;
-    border-bottom: 2px solid #ff4c4c;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
-    padding: 2px;
-}
-
 div#file_info
 {
-    float: left;
-    margin-top: 10%;
-    margin-left: 2%;
+    float: right;
+    margin-top: 7%;
+    margin-right: 8%;
     color: #EEEEEE;
     background-color: #656565;
     opacity: 0.8;
@@ -31,12 +16,13 @@ div#file_info
     -webkit-border-radius:4px;
     border-radius:4px;
     padding: 5px;
-    min-width: 200px;
-    min-height: 100px;
+    width: 300px;
+    min-height: 300px;
 }
 
 div#documents_container
 {
+    float: left;
     padding: 5px;
     border-bottom: 2px solid #ff4c4c;
     -moz-border-radius:4px;
@@ -45,9 +31,22 @@ div#documents_container
     background-color: #656565;
     opacity: 0.8;
     color: #EEEEEE;
-    width: 20%;
-    margin-top: 5%;
-    margin-left: 40%;
+    width: 600px;
+    min-height: 300px;
+    margin-top: 7%;
+    margin-left: 10%;
+}
+
+div#doc_list
+{
+    float:left;
+    width: 50%;
+}
+
+div#upload
+{
+    float: right;
+    width: 50%;
 }
 
 li.map

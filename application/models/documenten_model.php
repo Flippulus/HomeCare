@@ -12,20 +12,10 @@ Class Documenten_Model extends CI_Model
         $strContents.=build_main_menu($arrMainMenuItems, $strActiveMenu);
 
         $strContents.= "
-                <div id = \"upload\">
-                    <form method = \"POST\" enctype = \"multipart/form-data\" >
-                        Select File To Upload:
-                        <br>
-                        <input type = \"file\" name = \"userfile\" />
-                        <br>
-                        <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
-                        <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
-                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
-                    </form>
-                </div>
                 <div id = \"file_info\">
                 </div>
-                <div id = \"documents_container\">";
+                <div id = \"documents_container\">
+                    <div id = \"doc_list\">";
         $strJs = "
                 <script>
                     var arrDocs = [";
@@ -50,7 +40,7 @@ Class Documenten_Model extends CI_Model
             
             foreach($arrContents as $strMap => $arrDoc)
             {
-                if($strMap != "")
+                if($strMap != "root")
                 {
                     $strContents .= "
                         <li class = \"map\" id = \"map_$strMap\" onclick = \"selectmap(this);\">$strMap</li>";
@@ -77,7 +67,7 @@ Class Documenten_Model extends CI_Model
             
             foreach($arrContents as $strMap => $arrDoc)
             {
-                if($strMap == "")
+                if($strMap == "root")
                 {
                     foreach($arrDoc as $intId => $strDoc)
                     {
@@ -94,7 +84,33 @@ Class Documenten_Model extends CI_Model
             $strContents .= "
                     </ul>";
         }
-        $strContents .= "            
+        else
+        {
+            $strContents .= "
+                    <ul class = \"maps\">";
+            
+            foreach($arrContents as $strMap => $arrEmpty)
+            {
+                $strContents .= "
+                        <li class = \"map\" id = \"map_$strMap\" onclick = \"selectmap(this);\">$strMap</li>";
+            }
+            
+            $strContents .= "
+                    </ul>";
+        }
+        $strContents .= "
+                    </div>
+                    <div id = \"upload\">
+                        <form method = \"POST\" enctype = \"multipart/form-data\" >
+                            Kies een bestand om te uploaden:
+                            <br>
+                            <input type = \"file\" name = \"userfile\" />
+                            <br>
+                            <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
+                            <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
+                            <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
+                        </form>
+                    </div>
                 </div>";
         
         $strJs .= "];
