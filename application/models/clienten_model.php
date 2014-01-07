@@ -2,6 +2,7 @@
 
 class Clienten_Model extends CI_Model
 {
+    //Deze functie toont de gegevens van de clienten
     function getClientData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu, $strId)
     {
          $strSql="SELECT * FROM clients AS c1
@@ -247,6 +248,7 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
     
+    //Deze functie zorgt voor het toevoegen van nieuwe clienten
     function addUser($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu)
     {
         $strContent = "
@@ -440,6 +442,7 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
     
+    //Deze functie laat de hoofdpagina zien van het clienten tabblad
     function showPages($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu)
     {
         $strSql="SELECT * FROM clients
@@ -518,6 +521,7 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
     
+    //Deze functie behandelt het aanpassen van de clienten gegevens
     function updateClient($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId)
     {
         $strSql="SELECT * FROM clients AS c1
@@ -788,6 +792,7 @@ class Clienten_Model extends CI_Model
         return $strContent;
     }
     
+    //Deze functie laat de rapportages zien die bij de clienten horen
     function getReportData($arrMainMenuItems, $strActiveMenu,$arrSubMenuItems,$strActiveSubMenu,$strId)
     {
         $boolCheck=false;
@@ -893,7 +898,6 @@ class Clienten_Model extends CI_Model
         </div>
         <br/>
         <br/>
-        <br/>
                     <div class='homecaretable'>
                         <table>
                             <thead>
@@ -920,5 +924,44 @@ class Clienten_Model extends CI_Model
         
         return $strContent;
     }
+
+    //Deze functie laat de documenten zien die bij de clienten horen
+    function getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId)
+    {
+        $strSql="SELECT * FROM documents 
+            LEFT JOIN clients ON doc_about_client=client_id
+            WHERE doc_about_client = '$strId'";
+         
+         $strContent = "
+            </head>
+                <body onload='start();'>";
+        
+        $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
+        $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
+        
+        $strContent.="";
+        $result = mysql_query($strSql);
+        $strContent.= "
+                <div id = \"upload\">
+                    <form method = \"POST\" enctype = \"multipart/form-data\" >
+                        Select File To Upload:
+                        <br>
+                        <input type = \"file\" name = \"userfile\" />
+                        <br>
+                        <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
+                        <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
+                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
+                    </form>
+                </div>
+                <div id = \"file_info\">
+                </div>
+                <div id = \"documents_container\">";
+        
+        $strContent .= build_footer();
+        
+        return $strContent;
+    }
+
 }
+
 ?>
