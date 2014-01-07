@@ -29,7 +29,7 @@ class Start extends CI_Controller
                 $this->load->view("index_view", $arrContents);
             }
             else
-            {header("Location: www.rimiclacihomecare.co.nf");}
+            {header("Location: http://www.rimiclacihomecare.co.nf");}
         }
         else
         {

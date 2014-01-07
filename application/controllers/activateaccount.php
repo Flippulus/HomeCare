@@ -22,7 +22,7 @@ Class ActivateAccount extends CI_Controller
              if(isset($_POST['frmSaveAccount']))
             {
                 addAccount();
-                header("Location: www.rimiclacihomecare.co.nf");
+                header("Location: http://www.rimiclacihomecare.co.nf");
               
             }
             else
@@ -34,7 +34,7 @@ Class ActivateAccount extends CI_Controller
         }
         else
             
-        {header("Location: www.rimiclacihomecare.co.nf");}
+        {header("Location: http://www.rimiclacihomecare.co.nf");}
         
         
         

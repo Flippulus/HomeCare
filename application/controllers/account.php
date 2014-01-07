@@ -47,7 +47,7 @@ Class Account extends CI_Controller
             
         }
         else
-        {header("Location: www.rimiclacihomecare.co.nf");}
+        {header("Location: http://www.rimiclacihomecare.co.nf");}
     }
     
     

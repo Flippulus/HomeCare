@@ -19,7 +19,7 @@ function saveAccount($strType)
                     <h1>Welkom bij Homecare, de site voor Thuiszorg Maasland!</h1>
                     <p>Deze mail komt van een collega van bij de thuiszorg en nodigt u uit
                     om u aan te melden bij de website!</p>
-                    <a href = \"www.rimiclacihomecare.co.nf/index.php/activateaccount?id=$intActivationNumber\">
+                    <a href = \"http://www.rimiclacihomecare.co.nf/index.php/activateaccount?id=$intActivationNumber\">
                         Klik hier om uw account aan te maken!
                     </a>";
                 if(mailto("Registratie Homecare", $strMail, $strContent) != false)
