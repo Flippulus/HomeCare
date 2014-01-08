@@ -50,7 +50,7 @@ class Rapportage_Model extends CI_Model
                             $arrTopicData["report_datetime"]."
                         </td>
                         <td>".
-                            "by:". $arrTopicData["user_firstname"]."
+                            $arrTopicData["user_firstname"]."
                         </td>";
                 
                 if ($_SESSION['userid']==$arrTopicData["user_id"])
