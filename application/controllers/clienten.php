@@ -5,6 +5,7 @@ class Clienten extends CI_Controller
     function index()
     {
         error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+        setlocale(LC_ALL, 'nl_BE');
         session_save_path(dirname('tmp/'));
         session_start();
         date_default_timezone_set("Europe/Brussels");
@@ -33,7 +34,7 @@ class Clienten extends CI_Controller
             if(isset($_POST['frmAddClient'])) //Event that adds new clients to the database
             {
                 $arrContents["arrHeader"] = array("table"=>"css","clienten"=>"css",
-                                                    "showHide"=>"js");
+                                                    "showHide"=>"js", "documenten" => "css", "docs_js" => "js");
                 
                 $strActiveSubMenu="client";
                 add_client($_POST['firstName'],$_POST['lastName'],$_POST['dateOfBirth'],$_POST['sex'],$_POST['civilState'],$_POST['partnerName'],$_POST['civilNumber'],$_POST['healtcareNumber'],$_POST['location'],$_POST['postal'],$_POST['street'],$_POST['number'],$_POST['mailbox'],$_POST['phone'],$_POST['cell'],$_POST['doctor'],$_POST['apothecary'],$_POST['dateInCare'],$_POST['respUser'],$_POST['familyData'],$_POST['indication'],$_POST['indicationDesc'],$_POST['anamnese'],$_POST['medication'],$_POST['extra']);
@@ -88,12 +89,12 @@ class Clienten extends CI_Controller
                                                     "docs_js" => "js" );
                 
                 $strId= $_GET['client_doc'];
-                $arrContents["strContents"] = $this->objClienten->getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId);
-            
-                /*if (isset($_POST["frmFileUpload"]))
+                
+                if (isset($_POST["frmFileUpload"]))
                 {
-                    uploadFile("clients",$strId);
-                }*/
+                    uploadFile("clients", $strId);
+                }
+                $arrContents["strContents"] = $this->objClienten->getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId);
             }
             elseif((isset($_GET["client"]))&&($_GET["client"]=="Nieuw"))//Event that shows the page where new clients are added
             {

@@ -930,11 +930,9 @@ class Clienten_Model extends CI_Model
     //Deze functie laat de documenten zien die bij de clienten horen
     function getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId)
     {
-        $result1 = getDataBaseData("clients", array("client_id" => $strId));
         $result2 = getDataBaseData("documents", array("doc_about_client" => $strId));
         
         $boolCheck=false;
-        $arrClientData = mysql_fetch_assoc($result1);
         
         $strContent = "
             </head>
@@ -943,25 +941,42 @@ class Clienten_Model extends CI_Model
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
+        $strJs = "
+            <script>
+                var arrDocs = [";
+        
         $strContent.= "
-                <div id = \"file_info\">
+                <div id = \"info\">
+                    <h4>Geselecteerd document</h4>
+                    <div id = \"file_info\">
+                        
+                    </div>
                 </div>
                 <div id = \"documents_container\">
                     <div id = \"doc_list\">
-                        <ul class = \"docs\">";
+                        <ul class = \"maps\">";
         if ($result2 !=false)
         {
             while($arrDocData = mysql_fetch_assoc($result2))
             {
+                $intId = $arrDocData["doc_id"];
+                $arrDocType = preg_split('/[.]/', $arrDocData["doc_name"]);
+                $strDocName = $arrDocType[0];
+                $strDocType = $arrDocType[1];
                 $boolCheck=true;
                 $strContent .= "
-                            <li class = \"doc\">Simpele test2</li>
-                            <li class = \"doc\" id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
+                            <li class = \"doc\" id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectclientdoc(this);\">".$arrDocData["doc_name"]."</li>";
+                $strJs .= "[$intId, '$strDocName', '$strDocType', '".$strId."'], ";
             }
             $strContent .= "
                         </ul>
-                    </div>";
+                    </div>
+                    ";
         }
+        
+        $strJs .= "
+            ];
+            </script>";
         
         if($boolCheck==true)
         {
@@ -980,7 +995,8 @@ class Clienten_Model extends CI_Model
         $strContent.= "
                     <div id = \"upload\">
                         <form method = \"POST\" enctype = \"multipart/form-data\" >
-                            Select File To Upload:
+                            Kies een bestand om te uploaden:
+                            <br>
                             <br>
                             <input type = \"file\" name = \"userfile\" />
                             <br>
@@ -992,6 +1008,7 @@ class Clienten_Model extends CI_Model
         
         
         $strContent .= build_footer();
+        $strContent .= $strJs;
         
         return $strContent;
     }

@@ -23,7 +23,7 @@ Class Planning_Model extends CI_Model
         {$strYear = date("Y");}
         
         $strPhpDate = "$strYear/$strMonth/$strDay";
-        $strNormalDate = strftime("%A %e %B %Y");
+        $strNormalDate = strftime("%A %e %B %Y", strtotime($strPhpDate));
         
         $arrPrefs = getCalendarPrefs("day", $strDay);
 
