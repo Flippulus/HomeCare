@@ -26,8 +26,8 @@ class Home_Model extends CI_Model
         
         $strSqlRapportage = "SELECT *
                     FROM reports 
-                    WHERE report_client=(
-                    SELECT max(report_id) FROM reports
+                    WHERE report_id=(
+                    SELECT max(report_id) FROM reports WHERE report_client = 0
                     )";
         
         
