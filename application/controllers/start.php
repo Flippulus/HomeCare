@@ -7,6 +7,7 @@ class Start extends CI_Controller
 
     function index()
     {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
         date_default_timezone_set("Europe/Brussels");
         if (session_id() == '')
         {session_save_path(dirname('tmp/'));session_start();}

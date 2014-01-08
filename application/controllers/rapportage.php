@@ -5,6 +5,7 @@ class Rapportage extends CI_Controller
 
     function index()
     {
+        error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
         //Runs script connecting to the Database
         session_save_path(dirname('tmp/'));
         session_start();
