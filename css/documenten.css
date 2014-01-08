@@ -7,7 +7,7 @@ div#file_info
 {
     float: right;
     margin-top: 7%;
-    margin-right: 8%;
+    margin-right: 10%;
     color: #EEEEEE;
     background-color: #656565;
     opacity: 0.8;
@@ -34,19 +34,21 @@ div#documents_container
     width: 600px;
     min-height: 300px;
     margin-top: 7%;
-    margin-left: 10%;
+    margin-left: 12%;
 }
 
 div#doc_list
 {
     float:left;
-    width: 50%;
+    height: 300px;
+    width: 49%;
 }
 
 div#upload
 {
+    padding: 3px;
     float: right;
-    width: 50%;
+    width: 49%;
 }
 
 li.map

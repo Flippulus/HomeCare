@@ -104,11 +104,19 @@ Class Documenten_Model extends CI_Model
                         <form method = \"POST\" enctype = \"multipart/form-data\" >
                             Kies een bestand om te uploaden:
                             <br>
+                            <br>
                             <input type = \"file\" name = \"userfile\" />
                             <br>
                             <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
                             <input type = \"hidden\" id = \"selectedmap\" name = \"selectedmap\" value = \"root\">
                             <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
+                        </form>
+                    </div>
+                    <div id = \"upload\">
+                        <p>nieuwe map toevoegen</p>
+                        <form method = \"POST\">
+                            <input type = \"text\" name = \"newMapName\" placeholder = \"Naam nieuwe map\">
+                            <input type = \"submit\" name = \"frmNewMap\" value = \"Aanmaken\">
                         </form>
                     </div>
                 </div>";

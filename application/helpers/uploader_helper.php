@@ -53,3 +53,43 @@ function uploadFile($strAction, $intClientId = 1)
         $CI -> load -> library("upload", getUploadConfig("clients", $intClientId));
     }
 }
+
+function removeFile($intId)
+{
+    $arrDocData = mysql_fetch_assoc(getDataBaseData("documents", array("doc_id" => $intId)));
+    
+    if($arrDocData["doc_about_client"] == 0)
+    {
+        $strDir = $arrDocData["doc_map"];
+        $strFileName = $arrDocData["doc_name"];
+        try
+        {
+            if(unlink("documents/general/$strDir/$strFileName") == true)
+            {deleteFromDataBase("documents", "doc_id", $intId);}
+        }
+        catch(Exception $e)
+        {echo "<script>alert(\"Verwijderen van bestand mislukt. Verwittig de server-admin.\");</script>";}
+    }
+    else
+    {
+        //Code voor Rob's files
+    }
+}
+
+function addMap($strMapName)
+{
+    try
+    {
+        if(mkdir("documents/general/$strMapName") == true)
+        {insertDataBaseData("mapdocs", array("doc_name" => $strMapName));}
+        else
+        {echo "<script>alert(\"Aanmaken van map mislukt. Verwittig de server-admin.\");</script>";}
+    }
+    catch (Exception $ex)
+    {echo "<script>alert(\"Aanmaken van map mislukt. Verwittig de server-admin.\");</script>";}
+}
+
+function deleteMap($strMapName)
+{
+    
+}

@@ -97,11 +97,15 @@ function selectdoc(object)
                     var type = "geen type gedefinieerd";
                     break;
             }
+            var id = document.getElementById("selecteddoc").value;
             tekst +=        "<p>Type: " + type + "</p>\n\
                              <p>Bestand downloaden:</p>\n\
-                             <a href = \"/documents/general/" + arrDocs[i][3] + "/" + arrDocs[i][1] + "." + arrDocs[i][2] + "\">\n\
+                             <a href = \"/documents/general/" + arrDocs[i][3] + "/" + arrDocs[i][1] + "." + arrDocs[i][2] + "\" target = \"_blank\">\n\
                                  " + arrDocs[i][1] + "." + arrDocs[i][2] + "\n\
-                             </a>";
+                             </a>\n\
+                             <br>\n\
+                             <br>\n\
+                             <a href = '/index.php/documenten?action=delete&id=" + id + "'>Bestand verwijderen</a>";
             document.getElementById("file_info").innerHTML = tekst;
             document.getElementById("file_info").style.padding = "10px";
         }
