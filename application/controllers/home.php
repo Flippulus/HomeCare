@@ -5,21 +5,21 @@ class Home extends CI_Controller
 
     function index()
     {
+        date_default_timezone_set("Europe/Brussels");
         session_save_path(dirname('tmp/'));
         session_start();
-        date_default_timezone_set("Europe/Brussels");
         connect_database();
         
         if (checkLogin() == true)
         {
+            
+            $arrContents["strTitle"] = "HomeCare";
+            $arrContents["arrHeader"] = array('showHide'=>'js', 'team'=>'css', 'table' => 'css');
             $strActiveMenu = "home";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-
-            $arrContents["strTitle"] = "HomeCare";
-            $arrContents["arrHeader"] = array();
-
             $this->load->model("Home_Model", "objModel");
+            
             $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
             $this->load->view("index_view", $arrContents);
         }
