@@ -24,13 +24,22 @@ class Home_Model extends CI_Model
                     SELECT max(doc_id) FROM documents
                     )";
         
+        $strSqlRapportage = "SELECT *
+                    FROM reports 
+                    WHERE report_client=(
+                    SELECT max(report_id) FROM reports
+                    )";
+        
+        
         $resultUser = mysql_query($strSqlUser);
         $resultClient = mysql_query($strSqlClient);
         $resultDocument = mysql_query($strSqlDocument);
+        $resultRapportage = mysql_query($strSqlRapportage);
                 
         $arrUserData = mysql_fetch_assoc($resultUser);
         $arrClientData = mysql_fetch_assoc($resultClient);
         $arrDocumentData = mysql_fetch_assoc($resultDocument);
+        $arrRapportageData = mysql_fetch_assoc($resultRapportage);
         
         $strContents = "
             </head>
@@ -57,6 +66,11 @@ class Home_Model extends CI_Model
             <tr><td>Laatst toegevoegde verpleegkundigen:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/team\">".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</a></td></tr>
             <tr><td><br/></td><td><br/></td></tr>
             <tr><td>Laatst toegevoegde documenten:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/documenten\">".$arrDocumentData["doc_name"]."</a></td></tr>
+            <tr><td><br/></td><td><br/></td></tr>
+            <tr><td>Laatst toegevoegde algemene rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrRapportageData["report_content"]."</a></td></tr>
+            <tr><td><br/></td><td><br/></td></tr>  
+            <tr><td>Laatst toegevoegde cliënt rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/documenten\">".$arrDocumentData["doc_name"]."</a></td></tr>
+           
             
           
             </table>";
