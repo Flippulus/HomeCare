@@ -28,6 +28,8 @@ class Documenten extends CI_Controller
             {removeFile($_GET["id"]);}
             if(isset($_POST["frmNewMap"]) && $_POST["newMapName"] != "")
             {addMap($_POST["newMapName"]);}
+            if(isset($_GET["action"]) && $_GET["action"] == "removemap")
+            {deleteMap($_GET["id"]);}
             
             $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
             $this->load->view("index_view", $arrContents);

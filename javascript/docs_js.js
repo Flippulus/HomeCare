@@ -31,9 +31,15 @@ function selectmap(object)
     {
         document.getElementById("selectedmap").value = "root";
         object.style.color = "#EEEEEE";
+        document.getElementById("map_info").innerHTML = "";
     }
     else
-    {document.getElementById("selectedmap").value = mapName;}
+    {
+        var code = "<p>" + mapName + "</p>\n\
+                    <a href = \"/index.php/documenten?action=removemap&id=" + object.id.replace(/map_/g, "") + "\">map verwijderen</a>";
+        document.getElementById("selectedmap").value = mapName;
+        document.getElementById("map_info").innerHTML = code;
+    }
 }
 
 function selectdoc(object)
@@ -44,8 +50,7 @@ function selectdoc(object)
         var docId = "doc_" + arrDocs[i][0];
         if(object.id == docId)
         {
-            var tekst = "<p>Geselecteerd bestand:</p>\n\
-                             <p>Naam: " + arrDocs[i][1] + "</p>";
+            var tekst = "<p>Naam: " + arrDocs[i][1] + "</p>";
             switch(arrDocs[i][2])
             {
                 case "txt":
@@ -99,15 +104,13 @@ function selectdoc(object)
             }
             var id = document.getElementById("selecteddoc").value;
             tekst +=        "<p>Type: " + type + "</p>\n\
-                             <p>Bestand downloaden:</p>\n\
                              <a href = \"/documents/general/" + arrDocs[i][3] + "/" + arrDocs[i][1] + "." + arrDocs[i][2] + "\" target = \"_blank\">\n\
-                                 " + arrDocs[i][1] + "." + arrDocs[i][2] + "\n\
+                                 Bestand downloaden\n\
                              </a>\n\
                              <br>\n\
                              <br>\n\
                              <a href = '/index.php/documenten?action=delete&id=" + id + "'>Bestand verwijderen</a>";
             document.getElementById("file_info").innerHTML = tekst;
-            document.getElementById("file_info").style.padding = "10px";
         }
     }
 }

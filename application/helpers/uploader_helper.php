@@ -81,7 +81,7 @@ function addMap($strMapName)
     try
     {
         if(mkdir("documents/general/$strMapName") == true)
-        {insertDataBaseData("mapdocs", array("doc_name" => $strMapName));}
+        {insertDataBaseData("docmaps", array("doc_name" => $strMapName));}
         else
         {echo "<script>alert(\"Aanmaken van map mislukt. Verwittig de server-admin.\");</script>";}
     }
@@ -91,5 +91,12 @@ function addMap($strMapName)
 
 function deleteMap($strMapName)
 {
-    
+    if(rmdir("documents/general/$strMapName" == true))
+    {
+        deleteFromDataBase("docmaps", "doc_name", $strMapName);
+    }
+    else
+    {
+        echo "<script>alert(\"Verwijderen van bestand mislukt. Verwittig de server-admin.\");</script>";
+    }
 }

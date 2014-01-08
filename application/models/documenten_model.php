@@ -12,7 +12,15 @@ Class Documenten_Model extends CI_Model
         $strContents.=build_main_menu($arrMainMenuItems, $strActiveMenu);
 
         $strContents.= "
-                <div id = \"file_info\">
+                <div id = \"info\">
+                    <h4>Geselecteerde map</h4>
+                    <div id = \"map_info\">
+                        
+                    </div>
+                    <h4>Geselecteerd document</h4>
+                    <div id = \"file_info\">
+                        
+                    </div>
                 </div>
                 <div id = \"documents_container\">
                     <div id = \"doc_list\">";
@@ -116,6 +124,7 @@ Class Documenten_Model extends CI_Model
                         <p>nieuwe map toevoegen</p>
                         <form method = \"POST\">
                             <input type = \"text\" name = \"newMapName\" placeholder = \"Naam nieuwe map\">
+                            <br>
                             <input type = \"submit\" name = \"frmNewMap\" value = \"Aanmaken\">
                         </form>
                     </div>

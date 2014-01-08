@@ -3,7 +3,7 @@
     Author     : Phil, Rob, Kenneth
 */
 
-div#file_info
+div#info
 {
     float: right;
     margin-top: 7%;
@@ -18,6 +18,25 @@ div#file_info
     padding: 5px;
     width: 300px;
     min-height: 300px;
+    text-align: center;
+}
+
+div#info a
+{
+    color: #EEEEEE;
+}
+
+div#file_info
+{
+    width: 100%;
+    text-align: center;
+}
+
+div#map_info
+{
+    width: 100%;
+    height: 60px;
+    text-align: center;
 }
 
 div#documents_container
