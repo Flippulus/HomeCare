@@ -30,6 +30,11 @@ class Home_Model extends CI_Model
                     SELECT max(report_id) FROM reports WHERE report_client = 0
                     )";
         
+        $strSqlClientRapportage = "SELECT *
+                    FROM reports 
+                    WHERE report_id=(
+                    SELECT max(report_id) FROM reports WHERE report_client <> 0
+                    )";
         
         $resultUser = mysql_query($strSqlUser);
         $resultClient = mysql_query($strSqlClient);
