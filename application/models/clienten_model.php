@@ -849,17 +849,23 @@ class Clienten_Model extends CI_Model
                                 $arrTopicData["report_content"]."
                             </td>
                             <td>".
-                                "at:".$arrTopicData["report_datetime"]."
+                                "Gepost
+                                <br>
+                                ".strftime("%A %e %B %Y", strtotime($arrTopicData["report_datetime"]))."
+                                <br>
+                                Om ".date("H:i", strtotime($arrTopicData["report_datetime"]))."
                             </td>
-                            <td>".
-                                "by:". $arrTopicData["user_firstname"]."
+                            <td>
+                                Door 
+                                <br>
+                                ". $arrTopicData["user_firstname"]."
                             </td>";
 
                     if ($_SESSION['userid']==$arrTopicData["user_id"])
                     {
                         $strContent.="
                             <td>
-                                <a href='/index.php/clienten?client_report=".$strId."&report_id=".$arrTopicData["report_id"]."'>Edit</a>
+                                <a href='/index.php/clienten?client_report=".$strId."&report_id=".$arrTopicData["report_id"]."'>Pas aan</a>
                             </td>
                         </tr>";
                     }

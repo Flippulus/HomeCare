@@ -46,11 +46,17 @@ class Rapportage_Model extends CI_Model
                         <td >".
                             $arrTopicData["report_content"]."
                         </td>
-                        <td>".
-                            $arrTopicData["report_datetime"]."
+                        <td>
+                            Gepost
+                            <br>
+                            ".strftime("%A %e %B %Y", strtotime($arrTopicData["report_datetime"]))."
+                            <br>
+                            Om ".date("H:i", strtotime($arrTopicData["report_datetime"]))."
                         </td>
-                        <td>".
-                            $arrTopicData["user_firstname"]."
+                        <td>
+                            Door 
+                            <br>
+                            ". $arrTopicData["user_firstname"]."
                         </td>";
                 
                 if ($_SESSION['userid']==$arrTopicData["user_id"])

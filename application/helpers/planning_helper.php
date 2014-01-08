@@ -42,55 +42,8 @@ function getCalendarPrefs($strView, $day)
     );
 }
 
-function createPlanningTable($date)
+function splitPlanning($strPlanning)
 {
-    
-    $intDay = date("d", strtotime($date));
-    
-    $arrPlanning = mysql_fetch_assoc(getDataBaseData("planning", array("planning_date" => date("Y-m-d", strtotime($date)))));
-    $arrUser1 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_morning_user"])));
-    $arrUser2 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_noon_user"])));
-    $arrUser3 = mysql_fetch_assoc(getDataBaseData("users", array($arrPlanning["planning_evening_user"])));
-    $strTable = "
-        <!-- Start Planning Table -->
-            <table id = \"dayplanningcontainer\">
-                <tr>
-                    <th>
-                        <a href = \"/index.php/planning?view=day&day=" . ($intDay - 1) . "\">Gisteren</a>
-                    </th>
-                    <th>
-                        Vandaag: " . date("d/m/Y") . "
-                    </th>
-                    <th>
-                        <a href = \"/index.php/planning?view=day&day=" . ($intDay + 1) . "\">Morgen</a>
-                    </th>
-                </tr>
-                <tr>
-                    <td>Ochtend: ".$arrUser1["user_firstname"]." ".$arrUser1["user_lastname"]."</td>
-                </tr>
-                <tr id = \"morning_data\">
-                    
-                </tr>
-                <tr>
-                    <td>Middag: ".$arrUser2["user_firstname"]." ".$arrUser2["user_lastname"]."</td>
-                </tr>
-                <tr id = \"noon_data\">
-                    
-                </tr>
-                <tr>
-                    <td>Avond: ".$arrUser3["user_firstname"]." ".$arrUser3["user_lastname"]."</td>
-                </tr>
-                <tr id = \"evening_data\">
-                    
-                </tr>
-            </table>";
-
-    return $strTable;
-}
-
-function getPlanning($strDayTime, $arrDayData)
-{
-    $strPlanning = $arrDayData["planning_".$strDayTime];
     $arrStrings = explode("/", $strPlanning);
     $arrPlanning = array();
     foreach($arrStrings as $strExploded)
@@ -99,4 +52,162 @@ function getPlanning($strDayTime, $arrDayData)
         $arrPlanning[$arrSplitted[0]] = $arrSplitted[1];
     }
     return $arrPlanning;
+}
+
+function getPlanningDate()
+{
+    if(isset($_GET["day"]))
+    {$strDay = $_GET["day"];}
+    else
+    {$strDay = date("d");}
+    if(isset($_GET["month"]))
+    {$strMonth = $_GET["month"];}
+    else
+    {$strMonth = date("m");}
+    if(isset($_GET["year"]))
+    {$strYear = $_GET["year"];}
+    else
+    {$strYear = date("Y");}
+    
+    return array("phpdate" => date("Y/m/d", strtotime("$strYear/$strMonth/$strDay")), "normaldate" => strftime("%A %e %B %Y", strtotime("$strYear/$strMonth/$strDay")),
+                     "day" => $strDay, "month" => $strMonth, "year" => $strYear);
+    
+}
+
+function getCalendar($strDay, $strMonth, $strYear, $strPhpDate)
+{
+    $arrPrefs = getCalendarPrefs("day", $strDay);
+    $CI =& get_instance();
+    $CI -> load -> library("calendar", $arrPrefs);
+    $arrData = array();
+    for ($i = 1; $i < 32; $i++)
+    {$arrData[$i] = "?view=day&day=$i&month=$strMonth&year=$strYear";}
+
+    return $CI -> calendar -> generate(date("Y", strtotime($strPhpDate)), date("n", strtotime($strPhpDate)), $arrData);
+}
+
+function getPartialPlanning($arrDate, $intPartOfDay)
+{
+    switch($intPartOfDay)
+    {
+        case 0:
+            $strPartOfDay = "Ochtend: ";
+            break;
+        case 1:
+            $strPartOfDay = "Middag: ";
+            break;
+        case 2:
+            $strPartOfDay = "Avond: ";
+    }
+    $strTable = "";
+    $intItem = 1;
+    $result = getDataBaseData("planningsitems", array("planningsitem_date" => date("Y-m-d", strtotime($arrDate["phpdate"])), "planningsitem_time" => $intPartOfDay));
+    if($result != false)
+    {
+        while ($arrPlanningData = mysql_fetch_assoc($result))
+        {
+            $arrUserData = mysql_fetch_assoc(getDataBaseData("users", array("user_id" => $arrPlanningData["planningsitem_user"])));
+            
+            $strTable .= "
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan = 2>
+                                $strPartOfDay".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."
+                                <mark style = \"background-color: transparent; cursor: pointer;\"
+                                      onclick = \"deleteItem('".$arrPlanningData["planningsitem_id"]."&day=".$arrDate["day"]."&month=".$arrDate["month"]."&year=".$arrDate["year"]."');\">
+                                    Verwijder planningsitem
+                                </mark>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>";
+            
+            $arrItems = splitPlanning($arrPlanningData["planningsitem_planning"]);
+            
+            foreach($arrItems as $strTime => $intClientId)
+            {
+                $arrClientData = mysql_fetch_assoc(getDataBaseData("clients", array("client_id" => $intClientId)));
+                
+                $strTable .= "
+                        <tr>
+                            <td>$strTime</td>
+                            <td>
+                                <a href =\"/index.php/clienten?client_id=$intClientId\">
+                                    ".$arrClientData["client_firstname"]." ".$arrClientData["client_lastname"]."
+                                </a>
+                            </td>
+                        </tr>";
+            }
+            if($arrPlanningData["planningsitem_notitie"] != "")
+            {
+                $strTable .= "
+                        <tr>
+                            <td colspan = 2>".$arrPlanningData["planningsitem_notitie"]."</td>
+                        </tr>";
+            }
+            $strTable .= "
+                    </tbody>";
+            $strTable .= "
+                </table>";
+            $intItem++;
+        }
+    }
+    else
+    {
+        $strTable = "
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                Nog geen planning voor dit deel van de dag.
+                            </td>
+                        </tr>
+                    </thead>
+                </table>";
+    }
+    return $strTable;
+}
+
+function deletePlanning()
+{
+    deleteFromDataBase("planningsitems", "planningsitem_id", $_GET["id"]);
+}
+
+function addPlanning()
+{
+    $intResponsibleUser = $_POST["user"];
+    $intTimeOfDay = $_POST["timeOfDay"];
+    $strNotes = $_POST["notes"];
+    $arrDate = getPlanningDate();
+    if($intResponsibleUser != "na" && $intTimeOfDay != "na")
+    {
+        if(isset($_POST["planning_time_1"]) && $_POST["planning_time_1"] != "" &&
+           isset($_POST["planning_client_1"]) && $_POST["planning_client_1"] != "na")
+        {
+            $strPlanning = $_POST["planning_time_1"]."-".$_POST["planning_client_1"]."/";
+            
+            $i = 2;
+            $blnWork = true;
+            while($blnWork == true)
+            {
+                if(isset($_POST["planning_time_$i"]) && $_POST["planning_time_$i"] != "" &&
+                   isset($_POST["planning_client_$i"]) && $_POST["planning_client_$i"] != "na")
+                {
+                    $strPlanning .= $_POST["planning_time_$i"]."-".$_POST["planning_client_$i"]."/";
+                    $i++;
+                }
+                else
+                {$blnWork = false;}
+            }
+            $strPlanning = rtrim($strPlanning, "/");
+            insertDataBaseData("planningsitems", array("planningsitem_user" => $intResponsibleUser, "planningsitem_date" => $arrDate["phpdate"],
+                                                       "planningsitem_time" => $intTimeOfDay, "planningsitem_planning" => $strPlanning,
+                                                        "planningsitem_notitie" => $strNotes));
+        }
+        else
+        {echo "<script>alert(\"Niet ingegeven, moet minstens 1 item ingeven.\");</script>";}
+    }
+    else
+    {echo "<script>alert(\"Niet ingegeven, u hebt geen tijdstip of verantwoordelijke user opgegeven.\");</script>";}
 }

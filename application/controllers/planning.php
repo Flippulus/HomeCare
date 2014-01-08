@@ -14,19 +14,34 @@ class Planning extends CI_Controller
         if (checkLogin() == true)
         {
             $arrContents["strTitle"] = "HomeCare planning";
-            $arrContents["arrHeader"] = array("planning" => "css", "table" => "css", "showHide" => "js");
+            $arrContents["arrHeader"] = array("planning" => "css", "table" => "css", "showHide" => "js", "remover" => "js", "planningadder" => "js");
             $strActiveMenu = "planning";
             $this->load->model("MenuItems_Model", "objMenuItems");
             $arrMainMenuItems = $this->objMenuItems->getMainMenuItems();
-            if(isset($_GET["view"]))
-            {$strActiveSubMenu = $_GET["view"];}
-            else
-            {$strActiveSubMenu = "day";}
-            $this->load->model("MenuItems_Model", "objMenuItems");
-            $arrSubMenuItems = $this->objMenuItems->getSubMenuItems("planning");
+            
             $this->load->model("Planning_Model", "objModel");
-            //Loading the model so the page contents can be created and given to the view
-            $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems, $strActiveSubMenu);
+            
+            if(isset($_GET["action"]))
+            {
+                if($_GET["action"] == "remove")
+                {
+                    deletePlanning();
+                    $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                }
+                if($_GET["action"] == "add")
+                {
+                    if(isset($_POST["frmPlanning"]))
+                    {
+                        addPlanning();
+                        $arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);
+                    }
+                    else
+                    {$arrContents["strContents"] = $this->objModel->getNewPlanningData($arrMainMenuItems, $strActiveMenu);}
+                }
+            }
+            else
+            {$arrContents["strContents"] = $this->objModel->getPageData($arrMainMenuItems, $strActiveMenu);}
+            
             $this->load->view("index_view", $arrContents);
         }
         else
