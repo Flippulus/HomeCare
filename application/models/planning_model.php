@@ -23,7 +23,7 @@ Class Planning_Model extends CI_Model
         {$strYear = date("Y");}
         
         $strPhpDate = "$strYear/$strMonth/$strDay";
-        $strNormalDate = "$strDay/$strMonth/$strYear";
+        $strNormalDate = strftime("%A %e %B %Y");
         
         $arrPrefs = getCalendarPrefs("day", $strDay);
 
@@ -115,10 +115,25 @@ Class Planning_Model extends CI_Model
         }
         else
         {
+            if(date("Y-m-d",strtotime($strPhpDate)) == date("Y-m-d"))
+            {
+                $strHeader = "Vandaag: ".$strNormalDate;
+            }
+            else
+            {
+                $strHeader = $strNormalDate;
+            }
             $strContents .= "
-                <table>
-                    <a href = \"/index.php/planning?day=$strDay&month=$strMonth&year=$strYear\">Nog geen planning. Vul planning voor deze dag in.</a>
-                </table>";
+                <div class = \"homecaretable\">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>$strHeader</td>
+                            </tr>
+                        </thead>
+                        <a href = \"/index.php/planning?day=$strDay&month=$strMonth&year=$strYear\">Nog geen planning. Vul planning voor deze dag in.</a>
+                    </table>
+                </div>";
         }
         
         $strContents .= build_footer();
