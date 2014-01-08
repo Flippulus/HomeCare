@@ -78,7 +78,8 @@ Class Account_Model extends CI_Model
                             <tr><td>Gemeente: </td><td><input type='text' name='city' value='".$arrUserData["user_location"]."' placeholder='Gemeente'/></td></tr>
                             <tr><td>Telefoon: </td><td><input type='number' name='telephone' value='".$arrUserData["user_phone"]."' placeholder='Telefoon'/></td></tr>
                             <tr><td>GSM: </td><td><input type='number' name='mobile' value='".$arrUserData["user_cell"]."' placeholder='GSM'/></td></tr>
-                            <tr><td>Email: </td><td><input type='text' name='mailadress' value='".$arrUserData["user_mail"]."' placeholder='Email'/></td></tr>
+                            <tr><td title='Enkel invullen voor nieuw wachtwoord.'>Nieuw wachtwoord: </td><td><input type='password' name='user_first_password'/></td></tr>
+                            <tr><td title='Enkel invullen voor nieuw wachtwoord.'>Herhaal nieuw wachtwoord: </td><td><input type='password' name='user_second_password'/></td></tr>
                     </table>
                 </form>";
         }
