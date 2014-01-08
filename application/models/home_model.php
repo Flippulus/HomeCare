@@ -69,10 +69,7 @@ class Home_Model extends CI_Model
             <tr><td><br/></td><td><br/></td></tr>
             <tr><td>Laatst toegevoegde algemene rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrRapportageData["report_content"]."</a></td></tr>
             <tr><td><br/></td><td><br/></td></tr>  
-            <tr><td>Laatst toegevoegde cliënt rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/documenten\">".$arrDocumentData["doc_name"]."</a></td></tr>
-           
-            
-          
+            <tr><td>Laatst toegevoegde cliënt rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrRapportageData["report_content"]."</a></td></tr>
             </table>";
       
         
