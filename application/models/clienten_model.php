@@ -955,8 +955,8 @@ class Clienten_Model extends CI_Model
             {
                 $boolCheck=true;
                 $strContent .= "
-                            <li>Simpele test2</li>
-                            <li id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
+                            <li class = \"doc\">Simpele test2</li>
+                            <li class = \"doc\" id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
             }
             $strContent .= "
                         </ul>
@@ -970,8 +970,8 @@ class Clienten_Model extends CI_Model
         else
         {
             $strContent .="
-                            <li>
-                                Er zijn  nog geen rapportages in de database over deze client.
+                            <li class = \"doc\">
+                                Er zijn  nog geen documenten in de database over deze client.
                             </li>
                         </ul>
                     </div>
