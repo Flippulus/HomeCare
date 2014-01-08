@@ -40,11 +40,13 @@ class Home_Model extends CI_Model
         $resultClient = mysql_query($strSqlClient);
         $resultDocument = mysql_query($strSqlDocument);
         $resultRapportage = mysql_query($strSqlRapportage);
+        $resultClientRapportage = mysql_query($strSqlClientRapportage);
                 
         $arrUserData = mysql_fetch_assoc($resultUser);
         $arrClientData = mysql_fetch_assoc($resultClient);
         $arrDocumentData = mysql_fetch_assoc($resultDocument);
         $arrRapportageData = mysql_fetch_assoc($resultRapportage);
+        $arrClientRapportageData = mysql_fetch_assoc($resultClientRapportage);
         
         $strContents = "
             </head>
@@ -74,7 +76,7 @@ class Home_Model extends CI_Model
             <tr><td><br/></td><td><br/></td></tr>
             <tr><td>Laatst toegevoegde algemene rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrRapportageData["report_content"]."</a></td></tr>
             <tr><td><br/></td><td><br/></td></tr>  
-            <tr><td>Laatst toegevoegde cliënt rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrRapportageData["report_content"]."</a></td></tr>
+            <tr><td>Laatst toegevoegde cliënt rapportage:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/rapportage\">".$arrClientRapportageData["report_content"]."</a></td></tr>
             </table>";
       
         
