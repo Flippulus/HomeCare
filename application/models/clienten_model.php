@@ -933,6 +933,7 @@ class Clienten_Model extends CI_Model
         $result1 = getDataBaseData("clients", array("client_id" => $strId));
         $result2 = getDataBaseData("documents", array("doc_about_client" => $strId));
         
+        $boolCheck=false;
         $arrClientData = mysql_fetch_assoc($result1);
         
         $strContent = "
@@ -943,30 +944,52 @@ class Clienten_Model extends CI_Model
         $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
         $strContent.= "
-                <div id = \"upload\">
-                    <form method = \"POST\" enctype = \"multipart/form-data\" >
-                        Select File To Upload:
-                        <br>
-                        <input type = \"file\" name = \"userfile\" />
-                        <br>
-                        <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
-                        <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
-                    </form>
-                </div>
                 <div id = \"file_info\">
                 </div>
                 <div id = \"documents_container\">
-                    <ul class = \"docs\">";
-        
-        while($arrDocData = mysql_fetch_assoc($result2))
+                    <div id = \"doc_list\">
+                        <ul class = \"docs\">";
+        if ($result2 !=false)
         {
+            while($arrDocData = mysql_fetch_assoc($result2))
+            {
+                $boolCheck=true;
+                $strContent .= "
+                            <li>Simpele test2</li>
+                            <li id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
+            }
             $strContent .= "
-                        <li id = \"doc_".$arrDocData["doc_id"]."\" onclick = \"selectdoc(this);\">".$arrDocData["doc_name"]."</li>";
+                        </ul>
+                    </div>";
         }
         
-        $strContent .= "
-                    </ul>
+        if($boolCheck==true)
+        {
+             //Leeg laten, Dit is slechts een controle om te kijken of de while lus uitgevoerd word
+        }
+        else
+        {
+            $strContent .="
+                            <li>
+                                Er zijn  nog geen rapportages in de database over deze client.
+                            </li>
+                        </ul>
+                    </div>
+            ";
+        }
+        $strContent.= "
+                    <div id = \"upload\">
+                        <form method = \"POST\" enctype = \"multipart/form-data\" >
+                            Select File To Upload:
+                            <br>
+                            <input type = \"file\" name = \"userfile\" />
+                            <br>
+                            <input type = \"submit\" name = \"frmFileUpload\" value = \"Uploaden\" />
+                            <input type = \"hidden\" id = \"selecteddoc\" name = \"selecteddoc\" value = \"\">
+                        </form>
+                    </div>
                 </div>";
+        
         
         $strContent .= build_footer();
         

@@ -83,11 +83,16 @@ class Clienten extends CI_Controller
             }
             elseif(isset($_GET['client_doc']))//Event that shows the documents about the chosen client
             {
-                $arrContents["arrHeader"] = array("documenten" => "css", 
+                $arrContents["arrHeader"] = array("clienten" => "css", 
                                                     "docs_js" => "js" );
                 
                 $strId= $_GET['client_doc'];
                 $arrContents["strContents"] = $this->objClienten->getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId);
+            
+                /*if (isset($_POST["frmFileUpload"]))
+                {
+                    uploadFile("clients",$strId);
+                }*/
             }
             elseif((isset($_GET["client"]))&&($_GET["client"]=="Nieuw"))//Event that shows the page where new clients are added
             {
