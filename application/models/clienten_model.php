@@ -148,7 +148,7 @@ class Clienten_Model extends CI_Model
                     </tr>
                     <tr><td colspan='2'><hr/></td></tr>
                     <tr>
-                        <td>Dokter van de cliënt: </td>
+                        <td>Huisarts: </td>
                         <td>".
                             $arrTopicData["client_doctor"]."
                         </td>
@@ -358,7 +358,7 @@ class Clienten_Model extends CI_Model
                         </tr>
                         <tr><td colspan='2'><hr/></td></tr>
                         <tr>
-                            <td>Dokter van de cliënt: </td>
+                            <td>Huisarts: </td>
                             <td>
                                 <input type='text' name='doctor'>
                             </td>
@@ -689,7 +689,7 @@ class Clienten_Model extends CI_Model
                     </tr>
                     <tr><td colspan='2'><hr/></td></tr>
                     <tr>
-                        <td>Dokter van de cliënt: </td>
+                        <td>Huisarts: </td>
                         <td>
                             <textarea name='doctor' id='doctor' cols='15' rows='1' wrap='soft' style='resize: none'>".$arrTopicData["client_doctor"]."</textarea>
                         </td>

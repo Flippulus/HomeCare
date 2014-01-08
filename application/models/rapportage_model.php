@@ -47,7 +47,7 @@ class Rapportage_Model extends CI_Model
                             $arrTopicData["report_content"]."
                         </td>
                         <td>".
-                            "at:".$arrTopicData["report_datetime"]."
+                            $arrTopicData["report_datetime"]."
                         </td>
                         <td>".
                             "by:". $arrTopicData["user_firstname"]."
@@ -57,7 +57,7 @@ class Rapportage_Model extends CI_Model
                 {
                     $strContent.="
                         <td>
-                            <a href='/index.php/rapportage?report_id=".$arrTopicData["report_id"]."'>Edit</a>
+                            <a href='/index.php/rapportage?report_id=".$arrTopicData["report_id"]."'>Pas aan</a>
                         </td>
                     </tr>";
                 }
@@ -174,7 +174,7 @@ class Rapportage_Model extends CI_Model
                                 <textarea name='report_update' id='description' cols='95' rows='8' maxlength='2048' wrap='soft' style='resize: none'>$report_content</textarea>          
                                 <div id='characterLeft'></div>
                                 <br/>
-                                <input type='submit' value='Submit' name='frmEditReport'>
+                                <input type='submit' value='Pas aan' name='frmEditReport'>
                             </form>";
 
         return $strData;
