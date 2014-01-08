@@ -94,6 +94,10 @@ class Clienten extends CI_Controller
                 {
                     uploadFile("clients", $strId);
                 }
+                if(isset($_GET["action"]) && $_GET["action"] == "delete")
+                {
+                    removeFile($_GET["id"]);
+                }
                 $arrContents["strContents"] = $this->objClienten->getDocData($arrMainMenuItems, $strActiveMenu, $arrSubMenuItems,$strActiveSubMenu, $strId);
             }
             elseif((isset($_GET["client"]))&&($_GET["client"]=="Nieuw"))//Event that shows the page where new clients are added

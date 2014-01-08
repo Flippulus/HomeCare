@@ -182,7 +182,7 @@ function selectclientdoc(object)
                              </a>\n\
                              <br>\n\
                              <br>\n\
-                             <a href = '/index.php/clienten?action=delete&id=" + id + "'>Bestand verwijderen</a>";
+                             <a href = '/index.php/clienten?client_doc=" + client + "&action=delete&id=" + id + "'>Bestand verwijderen</a>";
             document.getElementById("file_info").innerHTML = tekst;
         }
     }

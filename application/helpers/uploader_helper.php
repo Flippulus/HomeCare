@@ -75,20 +75,23 @@ function removeFile($intId)
     
     if($arrDocData["doc_about_client"] == 0)
     {
+        $strMainDir = "general";
         $strDir = $arrDocData["doc_map"];
         $strFileName = $arrDocData["doc_name"];
-        try
-        {
-            if(unlink("documents/general/$strDir/$strFileName") == true)
-            {deleteFromDataBase("documents", "doc_id", $intId);}
-        }
-        catch(Exception $e)
-        {echo "<script>alert(\"Verwijderen van bestand mislukt. Verwittig de server-admin.\");</script>";}
     }
     else
     {
-        //Code voor Rob's files
+        $strMainDir = "clients";
+        $strDir = $arrDocData["doc_about_client"];
+        $strFileName = $arrDocData["doc_name"];
     }
+    try
+    {
+        if(unlink("documents/$strMainDir/$strDir/$strFileName") == true)
+        {deleteFromDataBase("documents", "doc_id", $intId);}
+    }
+    catch(Exception $e)
+    {echo "<script>alert(\"Verwijderen van bestand mislukt. Verwittig de server-admin.\");</script>";}
 }
 
 function addMap($strMapName)

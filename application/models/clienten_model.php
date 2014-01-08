@@ -941,10 +941,6 @@ class Clienten_Model extends CI_Model
         $strContent .= build_main_menu($arrMainMenuItems, $strActiveMenu);
         $strContent .= buildSubMenu($arrSubMenuItems, $strActiveSubMenu);
         
-        $strJs = "
-            <script>
-                var arrDocs = [";
-        
         $strContent.= "
                 <div id = \"info\">
                     <h4>Geselecteerd document</h4>
@@ -955,6 +951,12 @@ class Clienten_Model extends CI_Model
                 <div id = \"documents_container\">
                     <div id = \"doc_list\">
                         <ul class = \"maps\">";
+        
+        $strJs = "
+            <script>
+                var client = ".$_GET["client_doc"]."
+                var arrDocs = [";
+        
         if ($result2 !=false)
         {
             while($arrDocData = mysql_fetch_assoc($result2))
