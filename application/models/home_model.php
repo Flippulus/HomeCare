@@ -18,11 +18,19 @@ class Home_Model extends CI_Model
                     SELECT max(client_id) FROM clients
                     )";
         
+        $strSqlDocument = "SELECT *
+                    FROM documents 
+                    WHERE doc_id=(
+                    SELECT max(doc_id) FROM documents
+                    )";
+        
         $resultUser = mysql_query($strSqlUser);
         $resultClient = mysql_query($strSqlClient);
+        $resultDocument = mysql_query($strSqlDocument);
                 
         $arrUserData = mysql_fetch_assoc($resultUser);
         $arrClientData = mysql_fetch_assoc($resultClient);
+        $arrDocumentData = mysql_fetch_assoc($resultDocument);
         
         $strContents = "
             </head>
@@ -32,7 +40,7 @@ class Home_Model extends CI_Model
         
         if($arrUserData["user_firstname"] == "")
         {
-           $arrUserData["user_firstname"] == $arrUserData["user_mail"];
+           $arrUserData["user_firstname"] = $arrUserData["user_mail"];
         }
         
         
@@ -44,11 +52,12 @@ class Home_Model extends CI_Model
             <div class='homecaretable'>
             <table border = '1'>
             <thead><tr><td colspan ='2'>Recente updates</td></tr></thead>
-            <tr><td>Laatst toegevoegde cliënten:</td></tr>
-            <tr><td><a href = \"http://www.rimiclacihomecare.co.nf/index.php/clienten?client_id=".$arrClientData["client_id"]."\">".$arrClientData["client_firstname"]."</a></td></tr>
-            <tr><td><br/></td></tr>
-            <tr><td>Laatst toegevoegde verpleegkundigen:</td></tr>
-            <tr><td>".$arrUserData["user_firstname"]."</td></tr>
+            <tr><td>Laatst toegevoegde cliënten:</td><td><a href = \"http://www.rimiclacihomecare.co.nf/index.php/clienten?client_id=".$arrClientData["client_id"]."\">".$arrClientData["client_firstname"]." ".$arrClientData["client_lastname"]."</a></td></tr>
+            <tr><td><br/></td><td><br/></td></tr>
+            <tr><td>Laatst toegevoegde verpleegkundigen:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/team\">".$arrUserData["user_firstname"]." ".$arrUserData["user_lastname"]."</a></td></tr>
+            <tr><td><br/></td><td><br/></td></tr>
+            <tr><td>Laatst toegevoegde documenten:</td><td><a href =\"http://www.rimiclacihomecare.co.nf/index.php/documenten\">".$arrDocumentData["doc_name"]."</a></td></tr>
+            
           
             </table>";
       
