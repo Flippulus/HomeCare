@@ -7,27 +7,27 @@ class MenuItems_Model extends CI_Model
     {
         $arrMainMenuItems = array(
             "Home" => array(
-                "name" => "Home", //Phil
+                "name" => "Home", 
                 "controller" => "home"
             ),
             "Planning" => array(
-                "name" => "Planning", //Phil
+                "name" => "Planning", 
                 "controller" => "planning"
             ),
             "Rapportage" => array(
-                "name" => "Rapportage", //Rob
+                "name" => "Rapportage",
                 "controller" => "rapportage"
             ),
             "Cliënten" => array(
-                "name" => "Cliënten", //Rob
+                "name" => "Cliënten",
                 "controller" => "clienten"
             ),
             "Documenten" => array(
-                "name" => "Documenten", //Kenneth
+                "name" => "Documenten", 
                 "controller" => "documenten"
             ),
             "Team" => array(
-                "name" => "Team", //Kenneth
+                "name" => "Team", 
                 "controller" => "team"
             ),
         );
